@@ -1,0 +1,26 @@
+{
+  "name": "03_back",
+  "version": "1.0.0",
+  "description": "back end for social network app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Team-Clarke/back_end.git"
+  },
+  "author": "Luke Payyapilli, Nawal Ali, Aaron Weinberg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-Clarke/back_end/issues"
+  },
+  "homepage": "https://github.com/Team-Clarke/back_end",
+  "dependencies": {
+    "async": "^1.2.1",
+    "body-parser": "^1.13.1",
+    "express": "^4.13.0",
+    "jade": "^1.11.0",
+    "mongoose": "^4.0.6"
+  }
+}
