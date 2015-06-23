@@ -1,11 +1,12 @@
 var express = require('express');
 var passport = require('passport');
-var Account = require('../models/account');
+// FIXME doesnt exist...
+// var Account = require('../models/account');
 var router = express.Router();
 
 
 router.get('/', function (req, res) {
-    res.render('index', { user : req.user });
+    res.render('index', { user : 'Aaron' });
 });
 
 router.get('/register', function(req, res) {

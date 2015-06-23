@@ -16,12 +16,32 @@
     "url": "https://github.com/Team-Clarke/back_end/issues"
   },
   "homepage": "https://github.com/Team-Clarke/back_end",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-blanket": "0.0.8",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-istanbul": "^0.5.0",
+    "grunt-jasmine-nodejs": "^1.4.0",
+    "grunt-jsbeautifier": "^0.2.10",
+    "grunt-jscs": "^1.8.0",
+    "grunt-jsonlint": "^1.0.4",
+    "grunt-node-inspector": "^0.2.0",
+    "grunt-nodemon": "^0.4.0",
+    "grunt-open": "^0.2.3",
+    "grunt-plato": "^1.2.1",
+    "load-grunt-config": "^0.17.1"
+  },
   "dependencies": {
     "async": "^1.2.1",
     "body-parser": "^1.13.1",
     "express": "^4.13.0",
     "jade": "^1.11.0",
     "mongoose": "^4.0.6",
-    "passport": "^0.2.2"
+    "passport": "^0.2.2",
+    "mongodb": "^2.0.34",
+    "nib": "^1.1.0",
+    "stylus": "^0.51.1",
+    "time-grunt": "^1.2.1"
   }
 }
