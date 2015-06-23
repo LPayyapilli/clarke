@@ -5,7 +5,7 @@ var router = express.Router();
 
 
 router.get('/', function (req, res, next) {
-    res.render('index', { title: "RiddleBook", user : req.user, views req.session});
+    res.render('index', { title: "RiddleBook", user : req.user, views: req.session});
 });
 
 router.get('/register', function(req, res, next) {
