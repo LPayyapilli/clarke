@@ -17,6 +17,8 @@ var Status = require('./lib/statuses.js');
 var Picture = require('./lib/pictures.js');
 var Listing = require('./lib/listings.js');
 
+mongoose.connect('mongodb://localhost/clark_back_end');
+
 app.use('/',routes);
 
 var server = app.listen(3000, function(){
