@@ -4,6 +4,12 @@ block content
     h1 Register
     form(role="form", action="/register", method="post")
         .form-group
+            label(for="firstName") First Name
+            input#firstName.form-control(name="firstName", value='', type="text")
+        .form-group
+            label(for="lastName") Last Name
+            input#lastName.form-control(name="lastName", value='', type="text")
+        .form-group
             label(for="email") Email
             input#email.form-control(name="email", value='', type="text")
         .form-group

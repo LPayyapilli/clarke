@@ -11,6 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var routes = require('./routes/index.js');
 var app = express();
 var jsonParser = bodyParser.json();
+var xmlParser = bodyParser.urlencoded();
 
 
 mongoose.connect('mongodb://localhost/clark_back_end');
@@ -28,7 +29,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(jsonParser);
+app.use(xmlParser);
+
 var Account = require('./lib/accounts.js');
 // var Listing = require('./lib/listings.js');
 
