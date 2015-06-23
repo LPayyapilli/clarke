@@ -44,6 +44,7 @@
     "mongodb": "^2.0.34",
     "nib": "^1.1.0",
     "stylus": "^0.51.1",
-    "time-grunt": "^1.2.1"
+    "time-grunt": "^1.2.1",
+    "express-session": "*"
   }
 }

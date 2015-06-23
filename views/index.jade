@@ -1,4 +1,16 @@
-extend layout
-block main
-    h1 #{user}'s Profile
-    h4 #{message}
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p
+    a.btn.btn-default(href="/contacts/") View contacts
+
+  if (user)
+    h2 You are logged in as #{user.username}
+      a(href="/logout")  logout
+  else
+    h2
+      a(href="/login") Please login
+      |  or
+      a(href="/auth/register")  register
