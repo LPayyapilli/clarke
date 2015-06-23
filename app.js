@@ -5,33 +5,40 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var jade = require('jade');
 var passport = require('passport');
+// var Strategy = require('strategy');
 var LocalStrategy = require('passport-local').Strategy;
+
 var routes = require('./routes/index.js');
 var app = express();
 var jsonParser = bodyParser.json();
 
-var Account = require('./lib/accounts.js');
-// var Listing = require('./lib/listings.js');
+
+mongoose.connect('mongodb://localhost/clark_back_end');
 
 app.set('view engine', 'jade');
 app.set('views', './views');
 
 app.use(session({
-  secret: 'learn node',
+  secret: 'we know nothing',
   resave: true,
   saveUnititialized: false
 }));
 
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-// passport.use(Account.createStrategy());
-// passport.serializeUser(Account.serializeUser());
-// passport.deserializeUser(Account.deserializeUser());
+app.use(jsonParser);
+var Account = require('./lib/accounts.js');
+// var Listing = require('./lib/listings.js');
+
+passport.use(Account.createStrategy());
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 
 
-mongoose.connect('mongodb://localhost/clark_back_end');
+
 
 app.use('/', routes);
 

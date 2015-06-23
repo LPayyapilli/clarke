@@ -2,7 +2,7 @@
   "name": "03_back",
   "version": "1.0.0",
   "description": "back end for social network app",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -45,6 +45,7 @@
     "nib": "^1.1.0",
     "stylus": "^0.51.1",
     "time-grunt": "^1.2.1",
-    "express-session": "*"
+    "express-session": "*",
+    "strategy": "*"
   }
 }
