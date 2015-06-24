@@ -13,6 +13,7 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', function(req, res, next) {
+    console.log(req.body);
     Account.register(new Account({ email : req.body.email }), req.body.password, function(err, account) {
         if (err) {
             //FIXME: add validations and uniqueness
