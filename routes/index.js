@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var User = require('../models/user.js');
 
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
@@ -58,18 +59,18 @@ module.exports = function(passport) {
   /* DELETE user */
   router.delete('/delete/user', function(req, res) {
     console.log('hello world');
-    console.log(req);
-    // db.users.find({username: ''})
-    //  User.remove({
-    //    _id: req.params.id
-    //  }, function(error) {
-    //    if (error) {
-    //      console.error(error);
-    //      res.sendStatus(400);
-    //    } else {
-    //      res.sendStatus(204);
-    //    }
-    //  });
+    console.log(req.user.username);
+    User.remove({
+        username: req.user.username
+      },
+      function(error) {
+        if (error) {
+          console.error(error);
+          res.sendStatus(400);
+        } else {
+          res.sendStatus(204);
+        }
+      });
   });
 
 

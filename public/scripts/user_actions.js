@@ -19,22 +19,22 @@ $(document).ready(function() {
   //   }
   // });
   $('#delete_user').on('click', function(event) {
-    // var username = $('.username').val();
-    var username = event.target.class;
-    console.log(event.target);
-    console.log(username);
+    // var username = $('#username').val();
+    // // var username = event.target.class;
+    // console.log('test');
+    // console.log(username);
     $.ajax({
       method: 'DELETE',
-      url: 'http://localhost:3000/delete/user/' + username
+      url: 'http://localhost:3000/delete/user'
     })
       .done(function(response) {
         response.session.destroy(function(error) {
           if (error) {
             console.log(error);
           } else {
-            session.destroy;
+            session.destroy();
           }
         });
-      })
+      });
   });
 });

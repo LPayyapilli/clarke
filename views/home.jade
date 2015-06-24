@@ -8,10 +8,10 @@ block content
 					h1.text-center.login-title Welcome #{user.firstName}. Check your details below:
 						div.signup-wall
 							ul.user-details
-								li.username #{user.username}
-								li Email    ---> #{user.email}
+								li Username ---> #{user.username}
+								li Email ---> #{user.email}
 								li First Name ---> #{user.firstName}
 								li Last Name ---> #{user.lastName}
 						a(href='/signout', class='text-center new-account') Sign Out
-						button#delete_user.user.username Delete Account
+						button#delete_user Delete Account
 
