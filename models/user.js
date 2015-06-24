@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var jade = require('jade');
 var passportLocalMongoose = require('passport-local-mongoose');
 
+
+
+
 var statusSchema = new mongoose.Schema({
   input: {
     type: String,
@@ -53,12 +56,12 @@ var userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique : true,
+    unique: true,
   },
   email: {
     type: String,
     required: true,
-    unique : true,
+    unique: true,
     match: /\S+@\S+\.\S+/
   },
   dob: {
@@ -71,6 +74,10 @@ var userSchema = new mongoose.Schema({
   status: {
     type: String,
   },
+  // userpic: {
+  //   type: Array,
+  //   required: true
+  // },
   status: [statusSchema],
   follower: [followerSchema],
   picture: [pictureSchema]
