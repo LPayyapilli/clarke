@@ -56,7 +56,8 @@ module.exports = function(passport) {
   });
 
   /* DELETE user */
-  router.delete('/delete_user', function(req, res) {
+  router.delete('/delete/user', function(req, res) {
+    console.log('hello world');
     console.log(req);
     // db.users.find({username: ''})
     //  User.remove({
