@@ -1,20 +1,19 @@
 extends layout
 
 block content
-    h1 Register
-    form(role="form", action="/register", method="post")
-        .form-group
-            label(for="firstName") First Name
-            input#firstName.form-control(name="firstName", value='', type="text")
-        .form-group
-            label(for="lastName") Last Name
-            input#lastName.form-control(name="lastName", value='', type="text")
-        .form-group
-            label(for="email") Email
-            input#email.form-control(name="email", value='', type="text")
-        .form-group
-            label(for="password") Password
-            input#password.form-control(name="password", value='', type="password")
-        p
-            a.btn.btn-link(href="/") Back
-            button.btn.btn-default(type="submit", value="Register") Register
+	div.container
+		div.row
+			div.col-sm-6.col-md-4.col-md-offset-4
+				h1.text-center.login-title Registration Details
+					div.signup-wall
+						form(class='form-signin', action='/signup', method='POST')
+							input(type='text', name='username', class='form-control', placeholder='Username',required, autofocus)
+							input(type='password', name='password', class='form-control nomargin', placeholder='Password', required)
+							input(type='email', name='email', class='form-control', placeholder='Email',required)
+							input(type='text', name='firstName', class='form-control', placeholder='First Name',required)
+							input(type='text', name='lastName', class='form-control', placeholder='Last Name',required)
+							button(class='btn btn-lg btn-primary btn-block', type='submit') Register
+							span.clearfix
+					#message
+						if message
+							h1.text-center.error-message #{message}

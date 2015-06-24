@@ -1,46 +1,58 @@
 var express = require('express');
-var passport = require('passport');
-var Account = require('../lib/accounts.js');
 var router = express.Router();
 
+var isAuthenticated = function (req, res, next) {
+	// if user is authenticated in the session, call the next() to call the next request handler 
+	// Passport adds this method to request object. A middleware is allowed to add properties to
+	// request and response objects
+	if (req.isAuthenticated())
+		return next();
+	// if the user is not authenticated then redirect him to the login page
+	res.redirect('/');
+}
 
-router.get('/', function (req, res, next) {
-    res.render('index', { title: "RiddleBook", user : req.user, views: req.session});
-});
+module.exports = function(passport){
 
-router.get('/register', function(req, res, next) {
-    res.render('register', { });
-});
+	/* GET login page. */
+	router.get('/', function(req, res) {
+    	// Display the Login page with any flash message, if any
+		res.render('index', { message: req.flash('message') });
+	});
 
-router.post('/register', function(req, res, next) {
-    console.log(req.body);
-    Account.register(new Account({ email : req.body.email }), req.body.password, function(err, account) {
-        if (err) {
-            //FIXME: add validations and uniqueness
-            return res.render('register', { account : account });
-        }
-        console.log("we registered");
-        passport.authenticate('local')(req, res, function () {
-            res.redirect('/');
-        });
-    });
-});
+	/* Handle Login POST */
+	router.post('/login', passport.authenticate('login', {
+		successRedirect: '/home',
+		failureRedirect: '/',
+		failureFlash : true  
+	}));
 
-router.get('/login', function(req, res, next) {
-    res.render('login', { user : req.user });
-});
+	/* GET Registration Page */
+	router.get('/signup', function(req, res){
+		res.render('register',{message: req.flash('message')});
+	});
 
-router.post('/login', passport.authenticate('local'), function(req, res, next) {
-    res.redirect('/');
-});
+	/* Handle Registration POST */
+	router.post('/signup', passport.authenticate('signup', {
+		successRedirect: '/home',
+		failureRedirect: '/signup',
+		failureFlash : true  
+	}));
 
-router.get('/logout', function(req, res, next) {
-    req.logout();
-    res.redirect('/');
-});
+	/* GET Home Page */
+	router.get('/home', isAuthenticated, function(req, res){
+		res.render('home', { user: req.user });
+	});
 
-router.get('/ping', function(req, res, next){
-    res.status(200).send("done!");
-});
+	/* Handle Logout */
+	router.get('/signout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	});
 
-module.exports = router;
+	return router;
+}
+
+
+
+
+

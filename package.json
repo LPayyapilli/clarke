@@ -1,51 +1,25 @@
 {
-  "name": "03_back",
-  "version": "1.0.0",
-  "description": "back end for social network app",
-  "main": "app.js",
+  "name": "passport-mongo",
+  "version": "0.0.1",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Team-Clarke/back_end.git"
-  },
-  "author": "Luke Payyapilli, Nawal Ali, Aaron Weinberg",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Team-Clarke/back_end/issues"
-  },
-  "homepage": "https://github.com/Team-Clarke/back_end",
-  "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-blanket": "0.0.8",
-    "grunt-concurrent": "^1.0.0",
-    "grunt-contrib-jshint": "^0.11.2",
-    "grunt-istanbul": "^0.5.0",
-    "grunt-jasmine-nodejs": "^1.4.0",
-    "grunt-jsbeautifier": "^0.2.10",
-    "grunt-jscs": "^1.8.0",
-    "grunt-jsonlint": "^1.0.4",
-    "grunt-node-inspector": "^0.2.0",
-    "grunt-nodemon": "^0.4.0",
-    "grunt-open": "^0.2.3",
-    "grunt-plato": "^1.2.1",
-    "load-grunt-config": "^0.17.1"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "async": "^1.2.1",
-    "body-parser": "^1.13.1",
-    "express": "^4.13.0",
-    "jade": "^1.11.0",
-    "mongoose": "^4.0.6",
-    "passport": "*",
-    "passport-local": "*",
+    "express": "~4.2.0",
+    "static-favicon": "~1.0.0",
+    "morgan": "~1.0.0",
+    "cookie-parser": "~1.0.1",
+    "body-parser": "~1.0.0",
+    "express-session": "~1.0.4",
+    "debug": "~0.7.4",
+    "jade": "~1.3.0",
+    "passport": "~0.2.0",
+    "passport-local": "~1.0.0",
     "passport-local-mongoose": "*",
-    "mongodb": "^2.0.34",
-    "nib": "^1.1.0",
-    "stylus": "^0.51.1",
-    "time-grunt": "^1.2.1",
-    "express-session": "*",
-    "strategy": "*"
+    "mongoose": "~3.8.12",
+    "bcrypt-nodejs" : "*",
+    "connect-flash" : "*"
   }
 }
