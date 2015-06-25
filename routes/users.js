@@ -4,8 +4,7 @@ var User = require('../models/user.js');
 
 
 
-// SHOW ALL USERS
-// GET
+/* GET All Users*/
 router.get('/', function(req, res) {
   User.find({}, function(error, userList) {
     res.render('users', {
@@ -14,8 +13,8 @@ router.get('/', function(req, res) {
   })
 });
 
-//SHOW A SPECIFIC USER?
-//GET
+
+/* GET User */
 router.get('/:username', function(req, res) {
   console.log(req.params.username);
   User.findOne({
