@@ -19,12 +19,13 @@ router.get('/allStatuses', function(req, res) {
 /* GET One USER STATUSES */
 router.get('/:statusID', function(req, res) {
   Status.findOne({
-    _id: req.paras.statusID
+    _id: req.params.statusID
   }, function(error, status){
     if (error) {
       console.log(error);
     }
     res.render('status', {
+      user: User.find({username: req.user.username}),
       status: status
     })
   });
