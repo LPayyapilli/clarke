@@ -4,6 +4,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var jade = require('jade');
 var passportLocalMongoose = require('passport-local-mongoose');
+var Status = require('./status.js');
+var Picture = require('./picture.js');
+var Follower = require('./follower.js');
 
 var statusSchema = new mongoose.Schema({
   input: {
@@ -14,10 +17,7 @@ var statusSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  firstName: {
-    type: String,
-    required: true
-  }
+  _creator: [{ type: Number, ref: 'user' }]
 });
 
 var followerSchema = new mongoose.Schema({
@@ -28,7 +28,8 @@ var followerSchema = new mongoose.Schema({
   avatar: {
     data: Buffer,
     type: String
-  }
+  },
+  user: [{ type: Number, ref: 'user'}]
 });
 
 var pictureSchema = new mongoose.Schema({
@@ -38,7 +39,8 @@ var pictureSchema = new mongoose.Schema({
   src: {
     data: Buffer,
     type: String
-  }
+  },
+  _creator: [{ type: String, ref: 'user'}]
 });
 
 var userSchema = new mongoose.Schema({
@@ -71,12 +73,10 @@ var userSchema = new mongoose.Schema({
   status: {
     type: String,
   },
-  status: [statusSchema],
-  follower: [followerSchema],
-  picture: [pictureSchema]
+  statuses: [{ type: Schema.Types.ObjectId, ref: 'Status' }],
+  followers: [{ type: Schema.Types.ObjectId, ref: 'Follower' }],
+  pictures: [{ type: Schema.Types.ObjectId, ref: 'Picture' }]
 });
-
-
 
 //FIXME: giving following error when
 //  user.plugin(passportLocalMongoose);
@@ -87,3 +87,4 @@ userSchema.plugin(passportLocalMongoose);
 var User = mongoose.model('user', userSchema);
 
 module.exports = User;
+
