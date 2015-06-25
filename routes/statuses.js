@@ -25,16 +25,18 @@ router.get('/allStatuses', function(req, res) {
 router.get('/:statusID', function(req, res) {
   Status.findOne({
     _id: req.params.statusID
-  }, function(error, status){
+  }, function(error, status) {
     if (error) {
       console.log(error);
     }
     res.render('status', {
-      user: User.find({username: req.user.username}),
+      user: User.find({
+        username: req.user.username
+      }),
       status: status
-    })
+    });
   });
-})
+});
 
 
 
@@ -53,7 +55,7 @@ router.post('/newStatus', function(req, res) {
 
       // set the user's status
       newStatus.input = req.param('input');
-      newStatus.likes = 0
+      newStatus.likes = 0;
       newStatus.postedAt = new Date();
       newStatus._creator = req.user.username;
 
@@ -72,17 +74,28 @@ router.post('/newStatus', function(req, res) {
 });
 
 
-// /* Delete Status */
-// router.delete('/home', function(req, res){
-//   Status.remove({
-//     _id: req.params.id
-//   }, function(error){
-//     if (error){
-//       console.log(error);
-//       res.sendStatus(400);
-//     }else{
-//       res.sendStatus(204);
-//     }
-//   });
-// });
+/* Delete Status */
+router.delete('/:statusID', function(req, res) {
+  console.log(req.params.statusID);
+  Status.remove({
+    _id: req.params.statusID
+  }, function(error) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      console.log('sup');
+      // res.sendStatus(204);
+      // , {
+      //   user: User.find({
+      //     username: req.user.username
+      //   })
+      // });
+    }
+
+    res.redirect('/');
+  });
+});
+
+
 module.exports = router;
