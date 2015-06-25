@@ -4,9 +4,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var jade = require('jade');
 var passportLocalMongoose = require('passport-local-mongoose');
-var User = require('./user.js');
 var Picture = require('./picture.js');
 var Follower = require('./follower.js');
+var User = require('./user.js');
 
 var statusSchema = new mongoose.Schema({
   input: {

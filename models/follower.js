@@ -22,3 +22,5 @@ var followerSchema = new mongoose.Schema({
 });
 
 var Follower = mongoose.model('follower', followerSchema);
+
+module.exports = Follower;
