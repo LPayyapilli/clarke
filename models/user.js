@@ -35,12 +35,18 @@ var userSchema = new mongoose.Schema({
   password: {
     type: String
   },
-  status: {
-    type: String,
-  },
-  statuses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Status' }],
-  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Follower' }],
-  pictures: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Picture' }],
+  statuses: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Status'
+  }],
+  followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Follower'
+  }],
+  pictures: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Picture'
+  }],
   age: {
     type: String,
   },
@@ -61,4 +67,3 @@ userSchema.plugin(passportLocalMongoose);
 var User = mongoose.model('user', userSchema);
 
 module.exports = User;
-
