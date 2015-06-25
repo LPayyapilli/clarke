@@ -19,6 +19,22 @@ router.get('/:username/statuses', function(req, res) {
   });
 })
 
+/* GET One USER STATUSES */
+router.get('/:statusID', function(req, res) {
+  Status.findOne({
+    _id: req.paras.statusID
+  }, function(error, status){
+    if (error) {
+      console.log(error);
+    }
+    res.render('status', {
+      status: status
+    })
+  });
+})
+
+
+
 /* Create Status */
 router.post('/newStatus', function(req, res) {
   console.log(req.user.username);
