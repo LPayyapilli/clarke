@@ -12,10 +12,11 @@ block content
 								li Email ---> #{user.email}
 								li First Name ---> #{user.firstName}
 								li Last Name ---> #{user.lastName}
-						div.statuses
+						block statuses
 							form(class='form-signin', action='/status/newStatus', method='POST')
 								input(type='text', name='input', class='form-control', placeholder='Status', required, autofocus)
 								button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
+						a(href='/status/allStatuses',  class='text-center new-account') All Users Statuses
 						a(href='/user',  class='text-center new-account') All Users
 						a(href='/signout', class='text-center new-account') Sign Out
 						a(href='/patch/user', class='text-center new-account') Account Settings
