@@ -1,0 +1,21 @@
+extends user
+
+block content
+  div.container
+    div.row
+      div.col-sm-6.col-md-4.col-md-offset-4
+        #status
+          a(href='/user/statuses', class='text-center status') Statuses
+          h1.text-center #{user.firstName}'s Statuses'
+            div stati
+              ul.user.statuses
+                for statuses in user
+                  if (statuses.length > 0)
+                    for status is statuses
+                      li
+                      a(href='/user/statuses' + user.username, class='text-center status')
+                    li #{status.input}
+                    li #{status.likes}
+                    li #{status.creator}
+
+

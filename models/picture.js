@@ -16,7 +16,7 @@ var pictureSchema = new mongoose.Schema({
     data: Buffer,
     type: String
   },
-  _creator: [{ type: String, ref: 'user'}]
+  _creator: [{ type: String, ref: 'User'}]
 });
 
 var Picture = mongoose.model('picture', pictureSchema);
