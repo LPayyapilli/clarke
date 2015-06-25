@@ -43,7 +43,7 @@ module.exports = function(passport) {
     failureFlash: true
   }));
 
-  /* GET Home Page */
+  /* GET Profile Page */
   router.get('/home', isAuthenticated, function(req, res) {
     res.render('home', {
       user: req.user

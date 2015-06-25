@@ -33,33 +33,26 @@ router.get('/:username', function(req, res) {
 
 
 
-// //UPDATE A SPECIFIC USER?
-// //PUT
-// router.put('/users/:id', jsonParser);
-// router.put('/users/:id', function(req, res) {
-//   User.findByIdAndUpdate(req.params.id, req.body, function(error, user) {
-//     if (error) {
-//       console.log(error);
-//       res.sendStatus(400);
-//     } else {
-//       res.sendStatus(200);
-//     }
-//   });
-// });
+/* GET Patch User Page */
+router.get('/patch', function(req, res) {
+  res.render('patchUser', {
+    message: req.flash('message')
+  });
+});
 
-// //UPDATE A SPECIFIC USER?
-// //PATCH
-// router.patch('/users.:id', jsonParser);
-// router.patch('/users/:id', function(req, res) {
-//   User.findByIdAndUpdate(req.params.id, req.body, function(error, user) {
-//     if (error) {
-//       console.log(error);
-//       res.sendStatus(400);
-//     }
-//     console.log("PATCH User, ", user);
-//     res.sendStatus(200);
-//   });
-// });
+/* PATCH user */
+router.post('/patch', function(req, res) {
+  console.log(req.body);
+  User.findOneAndUpdate({
+    username: req.user.username
+  }, req.body, function(err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('patchUser', {});
+    }
+  });
+});
 
 
 /* DELETE user */

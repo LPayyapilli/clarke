@@ -74,6 +74,15 @@ var userSchema = new mongoose.Schema({
   status: {
     type: String,
   },
+  age: {
+    type: String,
+  },
+  zip: {
+    type: String,
+  },
+  backgroundColor: {
+    type: String,
+  },
   // userpic: {
   //   type: Array,
   //   required: true
