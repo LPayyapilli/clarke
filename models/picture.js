@@ -20,6 +20,7 @@ var pictureSchema = new mongoose.Schema({
     type: String,
     ref: 'User'
   }]
+
 });
 
 var Picture = mongoose.model('picture', pictureSchema);

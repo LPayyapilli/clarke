@@ -53,6 +53,10 @@ var userRoutes = require('./routes/users.js');
 
 app.use('/user', userRoutes);
 
+var statusRoutes = require('./routes/statuses.js');
+
+app.use('/status', statusRoutes);
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -9,7 +9,7 @@ block content
             a(href='/home', class='text-center new-account') Home
             h1 All Users
             for user in users
-              div.signup-wall
+              div.signup-wall(style="background: #{user.backgroundColor}")
                 ul.user-details
                   li
                     a(href='/user/' + user.username, class='text-center new-account') #{user.firstName} #{user.lastName}

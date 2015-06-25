@@ -60,7 +60,8 @@ module.exports = function(passport) {
   /* GET Patch User Page */
   router.get('/patch/user', function(req, res) {
     res.render('patchUser', {
-      message: req.flash('message')
+      user: req.user,
+      // message: req.flash('message')
     });
   });
 
