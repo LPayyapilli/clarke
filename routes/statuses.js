@@ -48,5 +48,4 @@ router.post('/newStatus', function(req, res) {
   });
 });
 
-
 module.exports = router;
