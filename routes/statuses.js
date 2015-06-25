@@ -4,20 +4,17 @@ var User = require('../models/user.js');
 var Status = require('../models/status.js');
 
 /* GET ALL USER STATUSES */
-router.get('/:username/statuses', function(req, res) {
-  console.log(req.params.username);
-  User.findOne({
-    username: req.params.username
-  }, function(error, user) {
+router.get('/allStatuses', function(req, res) {
+  Status.find({_creator: req.user.username}, function(error, statusList) {
     if (error) {
       console.log(error);
       res.sendStatus(404);
-    }
-    res.render('user', {
-      statuses: statuses
+    } res.render('statuses', {
+      user: User.find({username: req.user.username}),
+      statuses: statusList
     });
   });
-})
+});
 
 /* Create Status */
 router.post('/newStatus', function(req, res) {
@@ -47,8 +44,7 @@ router.post('/newStatus', function(req, res) {
           console.log('Status succesful');
           res.send(newStatus);
       });
-  }
-
+    }
   });
 });
 

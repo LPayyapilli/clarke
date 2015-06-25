@@ -17,10 +17,10 @@ var statusSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  _creator: [{
+  _creator: {
     type: String,
     ref: 'User'
-  }],
+  },
   postedAt: {
     type: Date,
     required: true
