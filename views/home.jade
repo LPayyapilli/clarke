@@ -5,11 +5,13 @@ block content
 		div.row
 			div.col-sm-6.col-md-4.col-md-offset-4
 				#user
-					h1.text-center.login-title Welcome #{user.firstName}. Check your details below:
-						div.signup-wall
+					h1.text-center.login-title Welcome #{user.firstName}.
+						div.signup-wall(style="background: #{user.backgroundColor}")
 							ul.user-details
 								li Username ---> #{user.username}
-								li Email    ---> #{user.email}
-								li First Name ---> #{user.firstName} 
+								li Email ---> #{user.email}
+								li First Name ---> #{user.firstName}
 								li Last Name ---> #{user.lastName}
+						a(href='/user',  class='text-center new-account') All Users
 						a(href='/signout', class='text-center new-account') Sign Out
+						a(href='/patch/user', class='text-center new-account') Account Settings

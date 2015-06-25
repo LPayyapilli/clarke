@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  div.container
+    div.row
+      div.col-sm-6.col-md-4.col-md-offset-4
+        #user
+          if (users.length > 0)
+            a(href='/home', class='text-center new-account') Home
+            h1 All Users
+            for user in users
+              div.signup-wall
+                ul.user-details
+                  li
+                    a(href='/user/' + user.username, class='text-center new-account') #{user.firstName} #{user.lastName}
+                  li #{user.username}
+                  li #{user.email}
+                  li #{user.dob}
+          a(href='/signout', class='text-center new-account') Sign Out
