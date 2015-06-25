@@ -1,0 +1,9 @@
+extends home
+
+block statuses
+  ul.user-details
+    a(href='/home', class='text-center status') Home
+    li #{status.input}
+    li #{status.likes}
+    li #{status._creator}
+    li #{status.postedAt}
