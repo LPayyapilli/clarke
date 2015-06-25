@@ -20,6 +20,8 @@
     "passport-local-mongoose": "*",
     "mongoose": "~3.8.12",
     "bcrypt-nodejs" : "*",
-    "connect-flash" : "*"
+    "connect-flash" : "*",
+    "nib" : "*",
+    "stylus" : "*"
   }
 }

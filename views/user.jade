@@ -7,7 +7,7 @@ block content
         #user
           a(href='/home', class='text-center new-account') Home
           h1.text-center.login-title Welcome #{user.firstName}. Check your details below:
-            div.signup-wall
+            div.signup-wall(style="background: #{user.backgroundColor}")
               ul.user-details
                 li First Name ---> #{user.firstName}
                 li Last Name ---> #{user.lastName}
