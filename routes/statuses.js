@@ -21,6 +21,23 @@ router.get('/allStatuses', function(req, res) {
   });
 });
 
+/* GET One USER STATUSES */
+router.get('/:statusID', function(req, res) {
+  Status.findOne({
+    _id: req.params.statusID
+  }, function(error, status){
+    if (error) {
+      console.log(error);
+    }
+    res.render('status', {
+      user: User.find({username: req.user.username}),
+      status: status
+    })
+  });
+})
+
+
+
 /* Create Status */
 router.post('/newStatus', function(req, res) {
   console.log(req.user.username);

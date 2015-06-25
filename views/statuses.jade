@@ -4,7 +4,7 @@ block statuses
   if (statuses.length > 0)
     for status in statuses
       ul.user-details
-        a(href='/status' + status._id, class='text-center status')
+        a(href='/status/' + status._id, class='text-center status') Show Status
         li #{status.input}
         li #{status.likes}
         li #{status._creator}
