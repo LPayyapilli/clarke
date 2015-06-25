@@ -8,14 +8,15 @@ block content
 					h1.text-center.login-title Welcome #{user.firstName}.
 						div.signup-wall(style="background: #{user.backgroundColor}")
 							ul.user-details
-								li #{user.username}
-								li #{user.email}
-								li #{user.firstName}
-								li #{user.lastName}
-						div.statuses
+								li Username ---> #{user.username}
+								li Email ---> #{user.email}
+								li First Name ---> #{user.firstName}
+								li Last Name ---> #{user.lastName}
+						block statuses
 							form(class='form-signin', action='/status/newStatus', method='POST')
 								input(type='text', name='input', class='form-control', placeholder='Status', required, autofocus)
 								button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
-						a(href='/user',  class='text-center new-account') All Users
-						a(href='/signout', class='text-center new-account') Sign Out
-						a(href='/patch/user', class='text-center new-account') Account Settings
+							a(href='/status/allStatuses',  class='text-center new-account') All Users Statuses
+							a(href='/user',  class='text-center new-account') All Users
+							a(href='/signout', class='text-center new-account') Sign Out
+							a(href='/patch/user', class='text-center new-account') Account Settings

@@ -1,0 +1,13 @@
+extends home
+
+block statuses
+  if (statuses.length > 0)
+    for status in statuses
+      ul.user-details
+        a(href='/status' + status._id, class='text-center status')
+        li #{status.input}
+        li #{status.likes}
+        li #{status._creator}
+        li #{status.postedAt}
+
+
