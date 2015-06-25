@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Status = require('../models/status.js');
+var async = require('async');
 
 /* GET ALL USER STATUSES */
 router.get('/allStatuses', function(req, res) {
@@ -66,7 +67,7 @@ router.post('/newStatus', function(req, res) {
           throw err;
         }
         console.log('Status succesful');
-        res.send(newStatus);
+        res.redirect('/home');
       });
     }
 
@@ -78,23 +79,16 @@ router.post('/newStatus', function(req, res) {
 router.delete('/:statusID', function(req, res) {
   console.log(req.params.statusID);
   Status.remove({
-    _id: req.params.statusID
-  }, function(error) {
-    if (error) {
-      console.log(error);
-      res.sendStatus(400);
-    } else {
-      console.log('sup');
-      // res.sendStatus(204);
-      // , {
-      //   user: User.find({
-      //     username: req.user.username
-      //   })
-      // });
-    }
-
-    res.redirect('/');
-  });
+        _id: req.params.statusID
+      },
+      function(error) {
+        if (error) {
+          console.error(error);
+          res.redirect('/allStatuses');
+        } else {
+          res.redirect('/home');
+        }
+      });
 });
 
 

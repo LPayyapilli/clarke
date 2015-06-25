@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
+var async = require('async');
 
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
@@ -90,9 +91,10 @@ module.exports = function(passport) {
       function(error) {
         if (error) {
           console.error(error);
-          res.sendStatus(400);
+          res.redirect('/home');
         } else {
-          res.sendStatus(204);
+          console.log("redirect");
+          res.redirect('/');
         }
       });
   });

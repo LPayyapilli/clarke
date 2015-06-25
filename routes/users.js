@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
-
-
+var async = require('async');
 
 /* GET All Users*/
 router.get('/', function(req, res) {

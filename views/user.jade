@@ -9,11 +9,11 @@ block content
           h1.text-center.login-title Welcome #{user.firstName}. Check your details below:
             div.signup-wall(style="background: #{user.backgroundColor}")
               ul.user-details
-                li First Name ---> #{user.firstName}
-                li Last Name ---> #{user.lastName}
-                li Username ---> #{user.username}
-                li Email ---> #{user.email}
-                li DOB ---> #{user.dob}
+                li #{user.firstName}
+                li #{user.lastName}
+                li #{user.username}
+                li #{user.email}
+                li #{user.dob}
             a(href='/signout', class='text-center new-account') Sign Out
             a(href='/user', class='text-center new-account') All Users
 
