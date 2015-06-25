@@ -5,12 +5,13 @@ var Status = require('../models/status.js');
 
 /* GET ALL USER STATUSES */
 router.get('/allStatuses', function(req, res) {
-  Status.find({username : req.user.username}, function(error, statusList) {
+  Status.find({_creator: req.user.username}, function(error, statusList) {
     if (error) {
       console.log(error);
       res.sendStatus(404);
     } res.render('statuses', {
-      status: statusList
+      user: User.find({username: req.user.username}),
+      statuses: statusList
     });
   });
 });
