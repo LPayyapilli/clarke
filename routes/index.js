@@ -56,22 +56,6 @@ module.exports = function(passport) {
     res.redirect('/');
   });
 
-  /* DELETE user */
-  router.delete('/delete/user', function(req, res) {
-    console.log('hello world');
-    console.log(req.user.username);
-    User.remove({
-        username: req.user.username
-      },
-      function(error) {
-        if (error) {
-          console.error(error);
-          res.sendStatus(400);
-        } else {
-          res.sendStatus(204);
-        }
-      });
-  });
 
 
 
