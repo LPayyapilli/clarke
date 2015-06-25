@@ -24,7 +24,8 @@ async.series([
         username: 'AWein',
         email: 'aweinberg@gmail.com',
         dob: '4/12/96',
-        password: createHash('aaron')
+        password: createHash('aaron'),
+
       }, done);
     },
 
