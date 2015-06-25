@@ -8,10 +8,10 @@ block content
 					h1.text-center.login-title Welcome #{user.firstName}.
 						div.signup-wall(style="background: #{user.backgroundColor}")
 							ul.user-details
-								li Username ---> #{user.username}
-								li Email ---> #{user.email}
-								li First Name ---> #{user.firstName}
-								li Last Name ---> #{user.lastName}
+								li #{user.username}
+								li #{user.email}
+								li #{user.firstName}
+								li #{user.lastName}
 						div.statuses
 							form(class='form-signin', action='/status/newStatus', method='POST')
 								input(type='text', name='input', class='form-control', placeholder='Status', required, autofocus)

@@ -36,7 +36,7 @@ router.post('/newStatus', function(req, res) {
       newStatus.input = req.param('input');
       newStatus.likes = 0
       newStatus.postedAt = new Date();
-      newStatus.creator = req.user.username;
+      newStatus._creator = req.user.username;
 
       // save the status
       newStatus.save(function(err) {
