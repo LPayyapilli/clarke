@@ -73,9 +73,9 @@ var userSchema = new mongoose.Schema({
   status: {
     type: String,
   },
-  statuses: [{ type: Schema.Types.ObjectId, ref: 'Status' }],
-  followers: [{ type: Schema.Types.ObjectId, ref: 'Follower' }],
-  pictures: [{ type: Schema.Types.ObjectId, ref: 'Picture' }]
+  statuses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Status' }],
+  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Follower' }],
+  pictures: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Picture' }]
 });
 
 //FIXME: giving following error when

@@ -17,7 +17,7 @@ var statusSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  _creator: [{ type: Number, ref: 'user' }]
+  _creator: [{ type: String, ref: 'User' }]
 });
 
 
