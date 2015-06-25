@@ -18,7 +18,7 @@ var followerSchema = new mongoose.Schema({
     data: Buffer,
     type: String
   },
-  following: [{ type: Number, ref: 'user'}]
+  following: [{ type: Number, ref: 'User'}]
 });
 
 var Follower = mongoose.model('follower', followerSchema);
