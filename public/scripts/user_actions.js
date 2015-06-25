@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('#delete_user').on('click', function(event) {
     $.ajax({
       method: 'DELETE',
-      url: 'http://localhost:3000/user/delete'
+      url: 'http://localhost:3000/delete/user'
     })
       .done(function(response) {
         // document.location.href="/";
@@ -11,7 +11,7 @@ $(document).ready(function() {
   $('#patch_user').on('click', function(event) {
     $.ajax({
       method: 'PATCH',
-      url: 'http://localhost:3000/user/patch'
+      url: 'http://localhost:3000/patch/user'
     })
       .done(function(response) {
         // document.location.href="/";
