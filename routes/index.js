@@ -43,7 +43,7 @@ module.exports = function(passport) {
     failureFlash: true
   }));
 
-  /* GET Home Page */
+  /* GET Profile Page */
   router.get('/home', isAuthenticated, function(req, res) {
     res.render('home', {
       user: req.user
@@ -58,21 +58,40 @@ module.exports = function(passport) {
 
   /* DELETE user */
   router.delete('/delete/user', function(req, res) {
-    console.log('hello world');
-    console.log(req.user.username);
     User.remove({
         username: req.user.username
-      },
-      function(error) {
+    },function(error) {
         if (error) {
           console.error(error);
-          res.sendStatus(400);
+          res.redirect('/home');
         } else {
-          res.sendStatus(204);
+          // res.render('index', {
+          //   message: req.flash('message')
+          // });
         }
-      });
+    });
   });
 
+
+  /* GET Patch User Page */
+  router.get('/patch/user', function(req, res) {
+    res.render('patchUser', {
+      message: req.flash('message')
+    });
+  });
+
+  /* PATCH user */
+  router.post('/patch/user', function(req, res) {
+    console.log(req.body);
+    User.findOneAndUpdate({username: req.user.username}, req.body, function (err, user) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render('patchUser', {
+        });
+      }
+    });
+  });
 
 
   return router;
