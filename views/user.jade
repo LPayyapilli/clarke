@@ -9,6 +9,8 @@ block main
       li #{otherUser.username}
       li #{otherUser.email}
       li #{otherUser.dob}
+        form(class='form-signin', action='/user/follow/'+ otherUser.username, method='POST')
+          input(class='btn btn-lg btn-primary btn-block', type="submit", placeholder='Follow' value="Follow")
 
 
 
