@@ -6,7 +6,7 @@ $(document).ready(function() {
       url: 'http://localhost:3000/delete/status/' + statusID
     })
       .done(function(response) {
-
-      });
+        window.location.pathname = '/auth/home';
+    });
   });
 });

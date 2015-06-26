@@ -18,7 +18,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 
-
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -51,17 +50,13 @@ app.use('/', indexRoutes);
 var authRoutes = require('./routes/auth.js')(passport);
 app.use('/auth', authRoutes);
 
-
 var userRoutes = require('./routes/users.js');
-
 app.use('/user', userRoutes);
 
 var statusRoutes = require('./routes/statuses.js');
-
 app.use('/status', statusRoutes);
 
 var deleteRoutes = require('./routes/delete.js');
-
 app.use('/delete', deleteRoutes);
 
 /// catch 404 and forward to error handler

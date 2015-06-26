@@ -17,47 +17,33 @@ var isAuthenticated = function(req, res, next) {
 
 /* DELETE user */
   router.delete('/user', isAuthenticated, function(req, res) {
-    console.log('hello world');
-    console.log(req.user.username);
     User.remove({
         username: req.user.username
       },
       function(error) {
-        // if (error) {
-        //   console.error(error);
-        //   res.redirect('/home');
-        // } else {
-        //   console.log("redirect");
-        //   res.redirect('/');
-        // }
+        if (error) {
+          console.error(error);
+        }
+        res.status(204);
+        res.end();
       });
   });
 
 
 /* Delete Status */
 router.delete('/status/:statusID', isAuthenticated, function(req, res) {
-  console.log("deleting")
   Status.remove({
     _id: req.params.statusID
   })
   .exec(function(error) {
-    console.log("DELETE status callback...")
-    // if (error) {
-    //   console.log(error)
-    // }
-
-    // res.redirect('/auth/home');
-
-    // res.render('home',{
-    //   user: req.user
-    // })
-
-
-
-
-
+    if (error) {
+      console.log(error)
+    }
+    res.status(204);
+    res.end();
   });
 });
+
 
 
 
