@@ -8,10 +8,10 @@ var multer = require('multer');
 var AWS = require('aws-sdk');
 var bodyParser = require('body-parser');
 
-var aws_acess_key =  process.env.AWS_ACCESS_KEY || "AKIAIW4V3BVXLOJKVTHA";
-var aws_secret_key = process.env.AWS_SECRET_KEY || "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";
+var aws_acess_key =  process.env.AWS_ACCESS_KEY;
+var aws_secret_key = process.env.AWS_SECRET_KEY;
 
-var s3 = new AWS.S3();
+
 
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
@@ -23,7 +23,7 @@ var isAuthenticated = function(req, res, next) {
   res.redirect('/');
 }
 
-/* GET ALL USER Pictures */
+// /* GET ALL USER Pictures */
 // router.get('/allPictures', isAuthenticated, function(req, res) {
 //   Picture.find({
 //     _creator: req.user.username
@@ -41,26 +41,28 @@ var isAuthenticated = function(req, res, next) {
 //   });
 // });
 
-/* GET One USER PICTURES */
-// router.get('/:pictureID', isAuthenticated, function(req, res) {
-//   Picture.findOne({
-//     _id: req.params.pictureID
-//   }, function(error, picture) {
+// /* GET One USER PICTURES */
+//  router.get('/:pictureID', isAuthenticated, function(req, res) {
+//    Picture.findOne({
+//        _id: req.params.pictureID
+//    }, function(error, picture) {
 //     if (error) {
 //       console.log(error);
-//     }
-//     res.render('picture', {
-//       user: req.user,
-//       picture: picture
-//     });
-//   });
+//      }
+//      res.render('picture', {
+//        user: req.user,
+//        picture: picture
+//      })
+//    });
 // });
 
 
 AWS.config.update({
-    accessKeyId: 'AKIAIW4V3BVXLOJKVTHA',
-    secretAccessKey: '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'
+    accessKeyId: aws_access_key,
+    secretAccessKey: aws_secret_key
 });
+
+var s3 = new AWS.S3();
 
 router.use(bodyParser({uploadDir:'./uploads'}));
 
@@ -73,7 +75,7 @@ router.use(multer({
   onFileUploadData: function (file, data, req, res) {
     // file : { fieldname, originalname, name, encoding, mimetype, path, extension, size, truncated, buffer }
     var params = {
-      Bucket: 'imagebucketeer',
+      Bucket: 'clarkedbteer',
       Key: file.name,
       Body: data
     };
@@ -82,20 +84,51 @@ router.use(multer({
       if (perr) {
         console.log("Error uploading data: ", perr);
       } else {
-        console.log("Successfully uploaded data to imagebucketeer");
+        console.log("Successfully uploaded data to clarkedbteer");
       }
     });
   }
 }));
 
-router.post('/upload', function(req, res){
+/* Create Picture for User */
+router.post('/upload', function(req, res, next) {
   console.log(req.body);
-    if(req.files.image !== undefined){ // `image` is the field name from your form
-        // res.redirect("/uploads"); // success
+    if(req.files.image !== undefined){
         console.log("successful upload");
+        next();
     } else {
         res.send("error, no file chosen");
     }
 });
+
+// router.post('/allPictures', function(req, res) {
+//   User.findOne({
+//     username: req.user.username
+//   }, function(error) {
+//     if (error) {
+//       console.log(error);
+//       res.sendStatus(404);
+//     } else {
+
+//       var newPicture = new Picture();
+
+//       // set the user's picture
+//       newPicture = req.param('caption');
+//       newStatus.likes = 0;
+//       newStatus.postedAt = new Date();
+//       newStatus._creator = req.user.username;
+
+//       // save the picture
+//       newPicture.save(function(err) {
+//         if (err) {
+//           console.log('Error in Saving status: ' + err);
+//           throw err;
+//         }
+//         res.redirect('/auth/home');
+//       });
+//     }
+//   });
+// });
+
 
 module.exports = router;
