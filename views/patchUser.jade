@@ -1,26 +1,22 @@
-extends layout
+extends home
 
-block content
-  div.container
-    div.row
-      div.col-sm-6.col-md-4.col-md-offset-4
-        h1.text-center.login-title Account Settings
-          div.signup-wall
-            a(href='/home', class='text-center new-account') Home
-            form(class='form-signin', action='/patch/user', method='POST')
-              input(type='text', name='age', class='form-control', placeholder='Age',autofocus)
-              button(class='btn btn-lg btn-primary btn-block', type='submit') Update
-              span.clearfix
-            form(class='form-signin', action='/patch/user', method='POST')
-              input(type='text', name='zip', class='form-control', placeholder='Zip Code',autofocus)
-              button(class='btn btn-lg btn-primary btn-block', type='submit') Update
-              span.clearfix
-            form(class='form-signin', action='/patch/user', method='POST')
-              input(type='text', id="backgroundColorField", name='backgroundColor', class='form-control', placeholder='Background Color (HEX - #1234ef)',autofocus)
-              button(class='btn btn-lg btn-primary btn-block', type='submit') Update
-              span.clearfix
-            a(href='/signout', class='text-center new-account') Sign Out
-            a(id='delete_user' class='text-center new-account') Delete Account
-          #message
-            if message
-              h1.text-center.error-message #{message}
+block main
+  ul.user-details
+    li Username: #{user.username}
+    li Email: #{user.email}
+    li Age: #{user.age}
+    li Zip: #{user.zip}
+  form(class='form-signin', action='/patch/user', method='POST')
+    input(type='text', name='age', class='form-control', placeholder='Age',autofocus)
+    button(class='btn btn-lg btn-primary btn-block', type='submit') Update
+    span.clearfix
+  form(class='form-signin', action='/patch/user', method='POST')
+    input(type='text', name='zip', class='form-control', placeholder='Zip Code',autofocus)
+    button(class='btn btn-lg btn-primary btn-block', type='submit') Update
+    span.clearfix
+  form(class='form-signin', action='/patch/user', method='POST')
+    input(type='text', id="backgroundColorField", name='backgroundColor', class='form-control', placeholder='Background Color (HEX - #1234ef)',autofocus)
+    button(class='btn btn-lg btn-primary btn-block', type='submit') Update
+    span.clearfix
+  a(href='/signout', class='text-center new-account') Sign Out
+  a(id='delete_user' class='text-center new-account') Delete Account

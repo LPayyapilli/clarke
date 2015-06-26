@@ -4,8 +4,18 @@ var User = require('../models/user.js');
 var Status = require('../models/status.js');
 var async = require('async');
 
+var isAuthenticated = function(req, res, next) {
+  // if user is authenticated in the session, call the next() to call the next request handler
+  // Passport adds this method to request object. A middleware is allowed to add properties to
+  // request and response objects
+  if (req.isAuthenticated())
+    return next();
+  // if the user is not authenticated then redirect him to the login page
+  res.redirect('/');
+}
+
 /* GET ALL USER STATUSES */
-router.get('/allStatuses', function(req, res) {
+router.get('/allStatuses', isAuthenticated, function(req, res) {
   Status.find({
     _creator: req.user.username
   }, function(error, statusList) {
@@ -14,16 +24,14 @@ router.get('/allStatuses', function(req, res) {
       res.sendStatus(404);
     }
     res.render('statuses', {
-      user: User.find({
-        username: req.user.username
-      }),
+      user:req.user,
       statuses: statusList
     });
   });
 });
 
 /* GET One USER STATUSES */
-router.get('/:statusID', function(req, res) {
+router.get('/:statusID', isAuthenticated, function(req, res) {
   Status.findOne({
     _id: req.params.statusID
   }, function(error, status) {
@@ -31,9 +39,7 @@ router.get('/:statusID', function(req, res) {
       console.log(error);
     }
     res.render('status', {
-      user: User.find({
-        username: req.user.username
-      }),
+      user: req.user,
       status: status
     });
   });
@@ -42,7 +48,7 @@ router.get('/:statusID', function(req, res) {
 
 
 /* Create Status */
-router.post('/newStatus', function(req, res) {
+router.post('/newStatus', isAuthenticated, function(req, res) {
   console.log(req.user.username);
   User.findOne({
     username: req.user.username
@@ -76,19 +82,13 @@ router.post('/newStatus', function(req, res) {
 
 
 /* Delete Status */
-router.delete('/:statusID', function(req, res) {
-  console.log(req.params.statusID);
+router.delete('/:statusID', isAuthenticated, function(req, res) {
   Status.remove({
-        _id: req.params.statusID
-      },
-      function(error) {
-        if (error) {
-          console.error(error);
-          res.redirect('/allStatuses');
-        } else {
-          res.redirect('/home');
-        }
-      });
+    _id: req.params.statusID
+  })
+  .exec(function(error) {
+    res.redirect('../home');
+  });
 });
 
 

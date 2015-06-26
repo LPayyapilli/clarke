@@ -19,9 +19,9 @@ $(document).ready(function() {
   });
   $('#backgroundColorField').keyup(function(event) {
     console.log($('#backgroundColorField').val());
-    if ($('#backgroundColorField').val().length > 3) {
+    if ($('#backgroundColorField').val().length > 2) {
       console.log("color change");
-      $('body').css('background-color',''+ $('#backgroundColorField').val());
+      $('.signup-wall').css('background-color',''+ $('#backgroundColorField').val());
     };
   });
 
