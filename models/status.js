@@ -17,6 +17,9 @@ var statusSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  likers: {
+    type: Array
+  },
   _creator: {
     type: String,
     ref: 'User'
