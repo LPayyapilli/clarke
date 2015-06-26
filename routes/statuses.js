@@ -51,7 +51,6 @@ router.get('/:statusID', isAuthenticated, function(req, res) {
 
 /* Create Status */
 router.post('/newStatus', isAuthenticated, function(req, res) {
-  console.log(req.user.username);
   User.findOne({
     username: req.user.username
   }, function(error) {
@@ -86,7 +85,8 @@ router.post('/newStatus', isAuthenticated, function(req, res) {
 router.post('/like/:statusID', isAuthenticated, function(req, res) {
   console.log("post like request");
   console.log(req.params.statusID);
-  Status.findOne({_objectId:req.params.statusID}), function(err, status) {
+  console.log(Status.find());
+  Status.findOne({id:req.params.statusID}), function(err, status) {
     if (err) {
       console.log(err);
     } else {
