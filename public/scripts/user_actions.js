@@ -5,7 +5,7 @@ $(document).ready(function() {
       url: 'http://localhost:3000/delete/user'
     })
       .done(function(response) {
-        // document.location.href="/";
+        window.location.pathname = '/';
       });
   });
   $('#patch_user').on('click', function(event) {
