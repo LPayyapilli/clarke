@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var dbConfig = require('./db.js');
 var mongoose = require('mongoose');
-var User = require('./models/user.js');
 
 // Connect to DB
 mongoose.connect(dbConfig.url);
