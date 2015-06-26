@@ -35,17 +35,13 @@ var userSchema = new mongoose.Schema({
   password: {
     type: String
   },
-  statuses: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Status'
-  }],
-  followers: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Follower'
-  }],
   pictures: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Picture'
+  }],
+  Followers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Follower'
   }],
   age: {
     type: String,

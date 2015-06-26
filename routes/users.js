@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
+var Follower = require('../models/follower.js');
 var async = require('async');
 
 var isAuthenticated = function(req, res, next) {
@@ -35,7 +36,7 @@ router.get('/:username', isAuthenticated, function(req, res) {
   .exec(function(error, otherUser) {
     if (error) {
       console.log(error);
-      res.sendStatus(404);
+      res.status(404);
     }
     res.render('user', {
       otherUser: otherUser,
@@ -44,5 +45,27 @@ router.get('/:username', isAuthenticated, function(req, res) {
   });
 });
 
+
+router.post('/follow/:otherUser', isAuthenticated, function(req, res, next) {
+  User.findOneAndUpdate({
+    username: req.user.username
+  }, {/* UPDATE FOLLOWING  */}, function(err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      //update otherUser for followed by
+      User.findOneAndUpdate({
+        username: req.params.otherUser
+      }, {/* UPDATE FOLLOWING  */}, function(err, user) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect('/user/' + req.params.otherUser);
+          //update otherUser for followed by
+        }
+      });
+    }
+  });
+});
 
 module.exports = router;
