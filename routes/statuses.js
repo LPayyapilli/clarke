@@ -83,26 +83,31 @@ router.post('/newStatus', isAuthenticated, function(req, res) {
 
 /* LIKE Status*/
 router.post('/like/:statusID', isAuthenticated, function(req, res) {
-  console.log("post like request");
-  console.log(req.params.statusID);
-  console.log(Status.find());
-  Status.findOne({id:req.params.statusID}), function(err, status) {
+  Status.findOne({"_id":req.params.statusID}).exec( function(err, status) {
     if (err) {
       console.log(err);
     } else {
-      console.log(status);
-      console.log(status.likes);
+      var liked = false;
+      for (var i = 0; i < status.likers.length; i++) {
+        if (status.likers[i] === req.user.username) {
+          liked = true;
+        }
+      }
+      if (liked === false) {
+        var newLikes = status.likes + 1;
+        status.likers.push(req.user.username);
+        Status.findOneAndUpdate({"_id":req.params.statusID}, {likes: newLikes,likers: status.likers}, function(err, user) {
+          if (err) {
+            console.log(err);
+          } else {
+            res.redirect('/status/' + req.params.statusID);
+          }
+        });
+      } else {
+        console.log("already liked");
+      }
     }
-  };
-  // Status.findOneAndUpdate({
-  //     _id: req.params.statusID
-  //   }, {likes: 0}, function(err, user) {
-  //     if (err) {
-  //       console.log(err);
-  //     } else {
-  //       res.redirect('/status/' + req.params.statusID);
-  //     }
-  //   });
+  });
 });
 
 module.exports = router;
