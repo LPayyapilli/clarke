@@ -89,17 +89,14 @@ router.post('/like/:statusID', isAuthenticated, function(req, res) {
     } else {
       var liked = false;
       for (var i = 0; i < status.likers.length; i++) {
-        console.log(status.likers[i]);
         if (status.likers[i] === req.user.username) {
           liked = true;
         }
       }
       if (liked === false) {
         var newLikes = status.likes + 1;
-        var newLikers = status.likers;
-        // push(req.user.username);
-        console.log(newLikers);
-        Status.findOneAndUpdate({"_id":req.params.statusID}, {likes: newLikes,likers: newLikers}, function(err, user) {
+        status.likers.push(req.user.username);
+        Status.findOneAndUpdate({"_id":req.params.statusID}, {likes: newLikes,likers: status.likers}, function(err, user) {
           if (err) {
             console.log(err);
           } else {
