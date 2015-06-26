@@ -82,15 +82,27 @@ router.post('/newStatus', isAuthenticated, function(req, res) {
 });
 
 
-/* Delete Status */
-router.delete('/:statusID', isAuthenticated, function(req, res) {
-  Status.remove({
-    _id: req.params.statusID
-  })
-  .exec(function(error) {
-    res.redirect('/auth/home');
-  });
+/* LIKE Status*/
+router.post('/like/:statusID', isAuthenticated, function(req, res) {
+  console.log("post like request");
+  console.log(req.params.statusID);
+  Status.findOne({_objectId:req.params.statusID}), function(err, status) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(status);
+      console.log(status.likes);
+    }
+  };
+  // Status.findOneAndUpdate({
+  //     _id: req.params.statusID
+  //   }, {likes: 0}, function(err, user) {
+  //     if (err) {
+  //       console.log(err);
+  //     } else {
+  //       res.redirect('/status/' + req.params.statusID);
+  //     }
+  //   });
 });
-
 
 module.exports = router;

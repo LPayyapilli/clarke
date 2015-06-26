@@ -81,23 +81,5 @@ module.exports = function(passport) {
   });
 
 
-  /* DELETE user */
-  router.delete('/delete/user', isAuthenticated, function(req, res) {
-    console.log('hello world');
-    console.log(req.user.username);
-    User.remove({
-        username: req.user.username
-      },
-      function(error) {
-        // if (error) {
-        //   console.error(error);
-        //   res.redirect('/home');
-        // } else {
-        //   console.log("redirect");
-        //   res.redirect('/');
-        // }
-      });
-  });
-
   return router;
 }
