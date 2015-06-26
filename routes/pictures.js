@@ -8,7 +8,7 @@ var multer = require('multer');
 var AWS = require('aws-sdk');
 var bodyParser = require('body-parser');
 
-var aws_acess_key =  process.env.AWS_ACCESS_KEY;
+var aws_access_key =  process.env.AWS_ACCESS_KEY;
 var aws_secret_key = process.env.AWS_SECRET_KEY;
 
 
