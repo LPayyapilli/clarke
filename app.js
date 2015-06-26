@@ -13,6 +13,7 @@ mongoose.connect(dbConfig.url);
 
 var app = express();
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -55,6 +56,9 @@ app.use('/user', userRoutes);
 
 var statusRoutes = require('./routes/statuses.js');
 app.use('/status', statusRoutes);
+
+var pictureRoutes = require('./routes/pictures.js');
+app.use('/picture', pictureRoutes);
 
 var deleteRoutes = require('./routes/delete.js');
 app.use('/delete', deleteRoutes);

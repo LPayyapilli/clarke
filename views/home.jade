@@ -13,6 +13,9 @@ block content
 								form(class='form-signin', action='/status/newStatus', method='POST')
 									input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
 									button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
+								form(class='form-singin', method="post" enctype="multipart/form-data" action="/picture/upload")
+									input(class='form-control', type="file" name="thumbnail")
+									button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
 								a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
 								a(href='/user',  class='text-center new-account') All Users
 								a(href='/auth/signout', class='text-center new-account') Sign Out
@@ -20,4 +23,8 @@ block content
 							#message
 							if message
 								h1.text-center.error-message #{message}
+
+
+
+
 

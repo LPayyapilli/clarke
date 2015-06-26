@@ -16,11 +16,18 @@ var pictureSchema = new mongoose.Schema({
     data: Buffer,
     type: String
   },
-  _creator: [{
+  _creator: {
     type: String,
     ref: 'User'
-  }]
-
+  },
+  likes: {
+    type: Number,
+    required: true
+  },
+  postedAt: {
+    type: Date,
+    required: true
+  }
 });
 
 var Picture = mongoose.model('picture', pictureSchema);
