@@ -18,7 +18,9 @@ var isAuthenticated = function(req, res, next) {
 router.get('/allStatuses', isAuthenticated, function(req, res) {
   Status.find({
     _creator: req.user.username
-  }, function(error, statusList) {
+  })
+  .sort('-postedAt')
+  .exec( function(error, statusList) {
     if (error) {
       console.log(error);
       res.sendStatus(404);
@@ -72,8 +74,7 @@ router.post('/newStatus', isAuthenticated, function(req, res) {
           console.log('Error in Saving status: ' + err);
           throw err;
         }
-        console.log('Status succesful');
-        res.redirect('/home');
+        res.redirect('/auth/home');
       });
     }
 
@@ -87,7 +88,7 @@ router.delete('/:statusID', isAuthenticated, function(req, res) {
     _id: req.params.statusID
   })
   .exec(function(error) {
-    res.redirect('../home');
+    res.redirect('/auth/home');
   });
 });
 

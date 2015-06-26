@@ -87,3 +87,9 @@ ul.user-details{
     list-style: none;
     padding-left: 0;
 }
+
+
+.home_button{
+    font-size: 20pt;
+    padding-bottom: 20px;
+}

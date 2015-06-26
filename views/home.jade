@@ -7,7 +7,7 @@ block content
 				#user
 					div.signup-wall(style="background: #{user.backgroundColor}")
 						h1.text-center.login-title Welcome #{user.firstName} #{user.lastName}
-							a(href='/auth/home', class='text-center new-account') Home
+							a(href='/auth/home', class='text-center new-account home_button') Home
 								br
 							block main
 								form(class='form-signin', action='/status/newStatus', method='POST')
