@@ -1,10 +1,10 @@
 extends home
 
-block statuses
+block main
   ul.user-details
-    a(href='/home', class='text-center status') Home
+    a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
     li #{status.input}
-    li #{status.likes}
-    li #{status._creator}
-    li #{status.postedAt}
+    li Likes: #{status.likes}
+    li By: #{status._creator}
+    li Posted At: #{status.postedAt}
     a(id='delete_status', class='text-center new-account', title='' + status._id) Delete Status

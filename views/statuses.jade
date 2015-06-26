@@ -1,13 +1,13 @@
 extends home
 
-block statuses
+block main
   if (statuses.length > 0)
     for status in statuses
       ul.user-details
-        a(href='/status/' + status._id, class='text-center status') Show Status
-        li #{status.input}
-        li #{status.likes}
-        li #{status._creator}
-        li #{status.postedAt}
+        li
+          a(href='/status/' + status._id, class='text-center status') #{status.input}
+        li Likes: #{status.likes}
+        li By: #{status._creator}
+        br
 
 
