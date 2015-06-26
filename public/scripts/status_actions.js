@@ -3,7 +3,7 @@ $(document).ready(function() {
     var statusID = event.target.title;
     $.ajax({
       method: 'DELETE',
-      url: 'http://localhost:3000/status/' + statusID
+      url: 'http://localhost:3000/delete/status/' + statusID
     })
       .done(function(response) {
 

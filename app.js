@@ -60,6 +60,10 @@ var statusRoutes = require('./routes/statuses.js');
 
 app.use('/status', statusRoutes);
 
+var deleteRoutes = require('./routes/delete.js');
+
+app.use('/delete', deleteRoutes);
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
