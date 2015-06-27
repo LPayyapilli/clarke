@@ -1,32 +1,55 @@
 extends layout
 
 block content
-	div.jumbotron
-		i.fa.fa-user-plus.fa-5x
-			h1.title Clarke
-			p.subtitle A place to do something
-	//- div.navbar
-	//- 	ul.nav.nav-pills
-	//- 		li.active
-	//- 			a(href="#", class="active") Sign Up
-	//- 		li.active
-	//- 			a(href="#", class="active") Login
-	//- 		li.active
-	//- 			a(href="#", class="active") About
-	//- 		li.active
-	//- 			a(href="#", class="active") Contact
+	//- div.jumbotron
+	//- 	i.fa.fa-user-plus.fa-5x
+	//- 		h1.title Clarke
+	//- 		p.subtitle A place to do something
+	div#myCarousel.carousel.slide
+		ol.carousel-indicators
+			li(data-target="#myCarousel", data-slide-to = "0", class="active")
+			li(data-target="#myCarousel", data-slide-to = "1")
+			li(data-target="#myCarousel", data-slide-to = "2")
+		div.carousel-inner
+			div.item.active
+				img(src="http://i.imgur.com/B9fCMFh.jpg?1", alt= "firstimg", class="img-responsive")
+				div.carousel-caption
+					h3 Clouds
+					p Clarke does
+			div.item
+				img(src="http://i.imgur.com/ARV3iv6.jpg?1", alt= "secondimg", class="img-responsive")
+				div.carousel-caption
+					h3 More clouds
+					p Clarke does something
+			div.item
+				img(src="http://i.imgur.com/taL7O29.jpg?1", alt= "thirdimg", class="img-responsive")
+				div.carousel-caption
+					h3 Cloudy
+					p Clarke does something cool
+		a(href="#myCarousel", class="carousel-control left", data-slide="prev")
+			span.icon-prev
+		a(href="#myCarousel", class="carousel-control right", data-slide="next")
+			span.icon-next
 	div.container.indexcontainer
 		div.row.indexcontainer
-			div.navbar
-				ul.nav.nav-pills
-					li.active
-						a(href="#", class="active") Sign Up
-					li.active
-						a(href="#", class="active") Login
-					li.active
-						a(href="#", class="active") About
-					li.active
-						a(href="#", class="active") Contact
+			div.navbar.navbar-default.navbar-fixed-top
+				div.container
+					div.navbar-brand Clarke
+					button.navbar-toggle(data-toggle="collapse", data-target=".navHeaderCollapse")
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+
+					div.collapse.navbar-collapse.navHeaderCollapse
+						ul.nav.navbar-nav.navbar-right
+							li.active
+								a(href="#", class="active") Login
+							li
+								a(href="#", class="active") Sign Up
+							li
+								a(href="#", class="active") About
+							li
+								a(href="#", class="active") Contact Us
 			div.col-sm-8.col-md-8
 			div.col-sm-12
 				h1.text-center.login-title

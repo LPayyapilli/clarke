@@ -1,25 +1,29 @@
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color:white;
   background: url("https://static.pexels.com/photos/1250/sky-clouds-cloudy-blur.jpg");
-  background-position: right 0px center;
+  background-position: right 0px center;*/
 }
+
+
 .indexcontainer{
     margin:0;
     width:100%;
 }
 
-.jumbotron{
+/*.jumbotron{
     height:400px;
     background: url("https://static.pexels.com/photos/798/bench-people-smartphone-sun.jpg");
     background-position: right 0px center;
     /*background-position: 100% 40%;*/
-    background-size:100%;
+    /*background-size:100%;*/
     /*background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(68, 130, 168, 1));*/
    /* background: linear-gradient(180deg, rgb(230, 222, 222), rgb(215, 142, 225));*/
-    color:white;
-}
-.title{
+    /*color:white;*/
+/*}*/
+
+
+/*.title{
     margin-top: -7%;
     margin-left:40px;
 }
@@ -27,21 +31,16 @@ body {
 
 .fa-user-plus{
     margin-left:39%;
-}
+}*/
 
-.subtitle{
+/*.subtitle{
     margin-top:15%;
     font-family: Helvetica;
     letter-spacing: 2px;
-}
+}*/
 
 a {
   color: #00B7FF;
-}
-
-.navbar{
-    float:right;
-    margin-right:18px;
 }
 
 .random{
