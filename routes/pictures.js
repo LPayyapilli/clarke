@@ -10,9 +10,6 @@ var bodyParser = require('body-parser');
 
 var aws_access_key =  process.env.AWS_ACCESS_KEY;
 var aws_secret_key = process.env.AWS_SECRET_KEY;
-console.log("secretAccessKey: " + aws_secret_key);
-
-
 
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
@@ -92,8 +89,8 @@ router.use(multer({
 }));
 
 /* Create Picture for User */
-router.post('/upload', function(req, res, next) {
-  console.log(req.body);
+router.post('/upload', isAuthenticated, function(req, res, next) {
+  console.log(req.files);
     if(req.files.image !== undefined){
         console.log("successful upload");
         next();
