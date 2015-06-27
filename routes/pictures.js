@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 
 var aws_access_key =  process.env.AWS_ACCESS_KEY;
 var aws_secret_key = process.env.AWS_SECRET_KEY;
+console.log("secretAccessKey: " + aws_secret_key);
 
 
 
