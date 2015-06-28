@@ -38,10 +38,23 @@ body {
     to   { opacity: 1; }
 }
 
+.navbarlinks{
+    color:#CA4249 !important;
+    font-weight:bold;
+    font-family:'Open Sans', sans-serif;
+    letter-spacing: 2px
+}
+
+.navbar-default{
+    background-color:#DED8DC;
+}
+
+
 .main-title{
     font-family: 'Open Sans', sans-serif;
     margin-top:20px;
     font-size:100px;
+    letter-spacing:1px;
 }
 
 .btn{
@@ -210,13 +223,16 @@ ul.user-details{
     margin-top:40px;
     margin-left:15px;
     color:#CA4249;
+    letter-spacing: 2px;
 }
 
 .subtitle{
     font-family: 'Calligraffitti', cursive;
     font-size:30px;
+    word-spacing:8px;
 }
 
 #clarkelogintitle{
     color:#CA4249;
 }
+
