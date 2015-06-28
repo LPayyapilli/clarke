@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
-var Follower = require('../models/follower.js');
 var async = require('async');
 
 var isAuthenticated = function(req, res, next) {
@@ -26,6 +25,65 @@ router.get('/', isAuthenticated, function(req, res) {
   });
 });
 
+/* GET All Users*/
+router.get('/followers', isAuthenticated, function(req, res) {
+  User.findOne({username: req.user.username},function(error, user){
+    if (error) {
+      console.log(error)
+    } else {
+      var array = [];
+      var length = 0;
+      var followLength = user.followedBy.length;
+      for (var i = 0;i<followLength;i++) {
+        User.findOne({username: user.followedBy[i]},function(error, follower) {
+          if (error) {
+            console.log(error);
+            followLength = followLength - 1;
+          } else {
+            array.push(follower);
+            length +=1;
+            if(length === followLength){
+              res.render('users', {
+                users: array,
+                user: req.user
+              });
+            }
+          }
+        });
+      }
+    }
+  });
+});
+
+/* GET All Users*/
+router.get('/followings', isAuthenticated, function(req, res) {
+  User.findOne({username: req.user.username},function(error, user){
+    if (error) {
+      console.log(error)
+    } else {
+      var array = [];
+      var length = 0;
+      var followLength = user.following.length;
+      for (var i = 0;i<followLength;i++) {
+        User.findOne({username: user.following[i]},function(error, follower) {
+          if (error) {
+            console.log(error);
+            followLength = followLength - 1;
+          } else {
+            array.push(follower);
+            length +=1;
+            if(length === followLength){
+              res.render('users', {
+                users: array,
+                user: req.user
+              });
+            }
+          }
+        });
+      }
+    }
+  });
+});
 
 /* GET User */
 router.get('/:username', isAuthenticated, function(req, res) {
@@ -47,21 +105,34 @@ router.get('/:username', isAuthenticated, function(req, res) {
 
 
 router.post('/follow/:otherUser', isAuthenticated, function(req, res, next) {
-  User.findOneAndUpdate({
-    username: req.user.username
-  }, {/* UPDATE FOLLOWING  */}, function(err, user) {
-    if (err) {
-      console.log(err);
-    } else {
-      //update otherUser for followed by
+  User.findOne({username: req.user.username},function(error, user) {
+    var followed = false;
+    for (var i = 0; i < user.following.length; i++) {
+      if (user.following[i] === req.params.otherUser) {
+        followed = true;
+        console.log("cannot follow someone twice");
+      }
+    }
+    if (followed === false) {
+      user.following.push(req.params.otherUser)
       User.findOneAndUpdate({
-        username: req.params.otherUser
-      }, {/* UPDATE FOLLOWING  */}, function(err, user) {
+        username: req.user.username
+      }, {following: user.following}, function(err, user) {
         if (err) {
           console.log(err);
         } else {
-          res.redirect('/user/' + req.params.otherUser);
-          //update otherUser for followed by
+          User.findOne({username: req.user.username},function(error, otherUser) {
+            otherUser.followedBy.push(req.user.username);
+            User.findOneAndUpdate({
+              username: req.params.otherUser
+            }, {followedBy: otherUser.followedBy}, function(err, user) {
+              if (err) {
+                console.log(err);
+              } else {
+                res.redirect('/user/' + req.params.otherUser);
+              }
+            });
+          });
         }
       });
     }

@@ -6,7 +6,6 @@ var jade = require('jade');
 var passportLocalMongoose = require('passport-local-mongoose');
 var Status = require('./status.js');
 var Picture = require('./picture.js');
-var Follower = require('./follower.js');
 
 var userSchema = new mongoose.Schema({
   firstName: {
@@ -39,10 +38,8 @@ var userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Picture'
   }],
-  Followers: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Follower'
-  }],
+  following: [],
+  followedBy: [],
   age: {
     type: String,
   },

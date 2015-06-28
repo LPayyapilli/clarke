@@ -12,9 +12,6 @@ require('dotenv').load();
 var aws_access_key =  process.env.AWS_ACCESS_KEY_ID;
 var aws_secret_key = process.env.AWS_SECRET_KEY_ID;
 
-
-
-
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
   // Passport adds this method to request object. A middleware is allowed to add properties to
