@@ -14,52 +14,92 @@ block content
 			div.item.active
 				img(src="http://i.imgur.com/B9fCMFh.jpg?1", alt= "firstimg", class="img-responsive")
 				div.carousel-caption
-					h3 Clouds
-					p Clarke does
+					h1.main-title Clarke
+					//- p Something goes here
 			div.item
-				img(src="http://i.imgur.com/ARV3iv6.jpg?1", alt= "secondimg", class="img-responsive")
+				img(src="http://i.imgur.com/ARV3iv6.jpg?1", alt= "secondimg", class="img-responsive images")
 				div.carousel-caption
-					h3 More clouds
-					p Clarke does something
+					h1.main-title Clarke
+					//- p Clarke Clarke Clarke
 			div.item
-				img(src="http://i.imgur.com/taL7O29.jpg?1", alt= "thirdimg", class="img-responsive")
+				img(src="http://i.imgur.com/zpWbLK1.jpg?1", alt= "thirdimg", class="img-responsive")
 				div.carousel-caption
-					h3 Cloudy
-					p Clarke does something cool
+					h1.main-title Clarke
+					//- p Clarke does something cool
 		a(href="#myCarousel", class="carousel-control left", data-slide="prev")
 			span.icon-prev
 		a(href="#myCarousel", class="carousel-control right", data-slide="next")
 			span.icon-next
-	div.container.indexcontainer
-		div.row.indexcontainer
-			div.navbar.navbar-default.navbar-fixed-top
-				div.container
-					div.navbar-brand Clarke
-					button.navbar-toggle(data-toggle="collapse", data-target=".navHeaderCollapse")
-						span.icon-bar
-						span.icon-bar
-						span.icon-bar
 
-					div.collapse.navbar-collapse.navHeaderCollapse
-						ul.nav.navbar-nav.navbar-right
-							li.active
-								a(href="#", class="active") Login
-							li
-								a(href="#", class="active") Sign Up
-							li
-								a(href="#", class="active") About
-							li
-								a(href="#", class="active") Contact Us
-			div.col-sm-8.col-md-8
-			div.col-sm-12
+	div.navbar.navbar-default.navbar-fixed-top
+		div.container
+			//- div.navbar-brand Connected
+			button.navbar-toggle(data-toggle="collapse", data-target=".navHeaderCollapse")
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+
+			div.collapse.navbar-collapse.navHeaderCollapse
+				ul.nav.navbar-nav.navbar-right
+					li.active
+						a(href="#", class="active") Login
+					li
+						a(href="#", class="active") Sign Up
+					li
+						a(href="#", class="active") About
+					li
+						a(href="#", class="active") Contact Us
+
+
+
+		//- div.row
+		//- 	div.col-xs-6.paddingcircle
+		//- 		img(src="http://static9.bigstockphoto.com/thumbs/1/3/3/small2/33117209.jpg", alt= "fourthimg", class="img-circle img-responsive")
+		//- 	div.col-xs-6.paddingcircle
+		//- 		h2.text-center i designed it
+		//- 			p.text-justify blahblah
+		//- hr
+		//- div.row
+		//- 	div.col-xs-6.paddingcircle
+		//- 		h2.text-center hey there
+		//- 			p.text-justify blahblah
+		//- 	div.col-xs-6.paddingcircle
+		//- 		img(src="http://static9.bigstockphoto.com/thumbs/1/3/3/small2/33117209.jpg", alt= "fifthimg", class="img-circle img-responsive")
+		//- hr
+		//- div.row
+		//- 	div.col-xs-6.paddingcircle
+		//- 		img(src="http://static9.bigstockphoto.com/thumbs/1/3/3/small2/33117209.jpg", alt= "sixthimg", class="img-circle img-responsive")
+		//- 	div.col-xs-6.paddingcircle
+		//- 		h2.text-center i designed it
+		//- 			p.text-justify blahblah
+	div.container
+		div.row.row-position
+			div.col-md-4.paddingcircle
+				span.fa-stack.fa-lg
+					i.fa.fa-user-plus.fa-3x
+				h2.text-center.title Add
+					h3.subtitle family & friends
+			div.col-md-4.paddingcircle
+				span.fa-stack.fa-lg
+					i.fa.fa-camera-retro.fa-3x
+				h2.text-center.title Post
+					h3.subtitle pics of your loved ones
+			div.col-md-4.paddingcircle
+				span.fa-stack.fa-lg
+					i.fa.fa-magic.fa-3x
+				h2.text-center.title Customize
+					h3.subtitle your page
+			a(href="#", class="btn btn-default") Learn More
+	div.container
+		div.row.row-position
+			div.col-md-4.col-md-offset-4
+				h3.clarke-main-title#clarkelogintitle Already have an account?
 				h1.text-center.login-title
-					div.account-wall
-						form(class='form-signin', action='/auth/login', method='POST')
-							input(type='text', name='username' class='form-control', placeholder='Username',required, autofocus)
-							input(type='password', name='password' class='form-control', placeholder='Password', required)
-							button(class='btn btn-lg btn-primary btn-block', type='submit') Login
-							span.clearfix
-					a(href='/auth/signup', class='text-center new-account') Create an account
-					#message
-					if message
-						h1.text-center.error-message #{message}
+					form(class='form-signin form-signin-position' action='/auth/login', method='POST')
+						input(type='text', name='username' class='form-control', placeholder='Username',required, autofocus)
+						input(type='password', name='password' class='form-control', placeholder='Password', required)
+						button(class='btn btn-lg btn-primary btn-block', type='submit') Login
+						span.clearfix
+				a(href='/auth/signup', class='text-center new-account member-text') Not a member? Join now
+				if message
+					h1.text-center.error-message #{message}
