@@ -159,6 +159,7 @@ router.post('/like/:statusID', isAuthenticated, function(req, res) {
         });
       } else {
         console.log("already liked");
+        res.redirect('/status/' + req.params.statusID);
       }
     }
   });

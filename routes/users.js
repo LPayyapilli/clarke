@@ -100,9 +100,21 @@ router.get('/:username', isAuthenticated, function(req, res) {
       console.log(error);
       res.status(404);
     }
-    res.render('user', {
-      otherUser: otherUser,
-      user: req.user
+
+    Status.find({
+      _creator: req.params.username
+    })
+    .sort('-postedAt')
+    .exec( function(error, statusList) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(404);
+      }
+      res.render('user', {
+        statuses: statusList,
+        otherUser: otherUser,
+        user: req.user
+     });
     });
   });
 });
