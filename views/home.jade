@@ -10,19 +10,24 @@ block content
 							a(href='/auth/home', class='text-center new-account home_button') Home
 								br
 							block main
-								form(class='form-signin', action='/status/newStatus', method='POST')
-									input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
-									button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
-								form(class='form-singin', method="post" enctype="multipart/form-data" action="/picture/upload")
-									input(class='form-control', type="file" name="thumbnail")
-									button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
-								a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
-								a(href='/user',  class='text-center new-account') All Users
-								a(href='/auth/signout', class='text-center new-account') Sign Out
-								a(href='/auth/patch/user', class='text-center new-account') Account Settings
-							#message
-							if message
-								h1.text-center.error-message #{message}
+						div#search
+							form(id='tfnewsearch', method='get', action='/search')
+								input(type='text', id='tfq', class='tftextinput2', placeholder='Search Users', name="q", size="21", maxlength="120", value="Search for users")
+								input(type='submit', value='>', class='tfbutton2')
+
+							form(class='form-signin', action='/status/newStatus', method='POST')
+								input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
+								button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
+							form(class='form-singin', method="post" enctype="multipart/form-data" action="/picture/upload")
+								input(class='form-control', type="file" name="thumbnail")
+								button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
+							a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
+							a(href='/user',  class='text-center new-account') All Users
+							a(href='/auth/signout', class='text-center new-account') Sign Out
+							a(href='/auth/patch/user', class='text-center new-account') Account Settings
+						#message
+						if message
+							h1.text-center.error-message #{message}
 
 
 
