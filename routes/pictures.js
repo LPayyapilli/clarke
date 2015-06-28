@@ -106,11 +106,11 @@ router.post('/upload', function(req, res) {
 
       // set the user's picture
       newPicture.src = req.files.thumbnail.name;
-      newPicture = req.param('caption');
+      newPicture.caption = req.param('caption');
       newPicture.likes = 0;
       newPicture.postedAt = new Date();
       newPicture._creator = req.user.username;
-
+      console.log(newPicture);
       // save the picture
       newPicture.save(function(err) {
         if (err) {
