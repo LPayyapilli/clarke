@@ -7,9 +7,11 @@ var fs = require('fs');
 var multer = require('multer');
 var AWS = require('aws-sdk');
 var bodyParser = require('body-parser');
+require('dotenv').load();
 
-var aws_access_key =  process.env.AWS_ACCESS_KEY;
-var aws_secret_key = process.env.AWS_SECRET_KEY;
+var aws_access_key =  process.env.AWS_ACCESS_KEY_ID;
+var aws_secret_key = process.env.AWS_SECRET_KEY_ID;
+
 
 
 
@@ -91,11 +93,10 @@ router.use(multer({
 }));
 
 /* Create Picture for User */
-router.post('/upload', function(req, res, next) {
+router.post('/upload', function(req, res) {
   console.log(req.body);
     if(req.files.image !== undefined){
         console.log("successful upload");
-        next();
     } else {
         res.send("error, no file chosen");
     }
