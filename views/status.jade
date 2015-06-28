@@ -2,11 +2,11 @@ extends home
 
 block main
   ul.user-details
-    a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
     li #{status.input}
     li Likes: #{status.likes}
       form(class='form-signin', action='/status/like/'+ status._id, method='POST')
         input(class='btn btn-lg btn-primary btn-block', type="submit", placeholder='Like' value="Like")
     li By: #{status._creator}
     li Posted At: #{status.postedAt}
-    a(id='delete_status', class='text-center new-account', title='' + status._id) Delete Status
+    if status._creator == user.username
+      a(id='delete_status', class='text-center new-account', title='' + status._id) Delete Status

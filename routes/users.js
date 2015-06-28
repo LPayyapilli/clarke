@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
+var Status = require('../models/status.js');
 var async = require('async');
 
 var isAuthenticated = function(req, res, next) {
@@ -25,7 +26,10 @@ router.get('/', isAuthenticated, function(req, res) {
   });
 });
 
-/* GET All Users*/
+
+
+
+/* GET All followers*/
 router.get('/followers', isAuthenticated, function(req, res) {
   User.findOne({username: req.user.username},function(error, user){
     if (error) {
@@ -55,7 +59,7 @@ router.get('/followers', isAuthenticated, function(req, res) {
   });
 });
 
-/* GET All Users*/
+/* GET who I follow*/
 router.get('/followings', isAuthenticated, function(req, res) {
   User.findOne({username: req.user.username},function(error, user){
     if (error) {
@@ -96,9 +100,21 @@ router.get('/:username', isAuthenticated, function(req, res) {
       console.log(error);
       res.status(404);
     }
-    res.render('user', {
-      otherUser: otherUser,
-      user: req.user
+
+    Status.find({
+      _creator: req.params.username
+    })
+    .sort('-postedAt')
+    .exec( function(error, statusList) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(404);
+      }
+      res.render('user', {
+        statuses: statusList,
+        otherUser: otherUser,
+        user: req.user
+     });
     });
   });
 });
