@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Status = require('../models/status.js');
+var Picture = require('../models/picture.js');
 var async = require('async');
 var fs = require('fs');
 var multer = require('multer');
@@ -89,44 +90,40 @@ router.use(multer({
   }
 }));
 
-/* Create Picture for User */
 router.post('/upload', function(req, res) {
-  console.log(req.body);
-    if(req.files.image !== undefined){
-        console.log("successful upload");
-    } else {
+  if(req.files !== undefined) {
+    User.findOne({
+      username: req.user.username
+    },    function(error) {
+            if (error) {
+              console.log(error);
+              res.sendStatus(404);
+            } else {
+
+      var newPicture = new Picture();
+
+      // set the user's picture
+      newPicture.src = req.files.thumbnail.name;
+      newPicture = req.param('caption');
+      newPicture.likes = 0;
+      newPicture.postedAt = new Date();
+      newPicture._creator = req.user.username;
+
+      // save the picture
+      newPicture.save(function(err) {
+        if (err) {
+          console.log('Error in Saving status: ' + err);
+          throw err;
+        }
+        console.log('picture saved!');
+        res.redirect('/auth/home');
+        });
+      }
+    });
+  } else {
         res.send("error, no file chosen");
-    }
+  }
 });
-
-// router.post('/allPictures', function(req, res) {
-//   User.findOne({
-//     username: req.user.username
-//   }, function(error) {
-//     if (error) {
-//       console.log(error);
-//       res.sendStatus(404);
-//     } else {
-
-//       var newPicture = new Picture();
-
-//       // set the user's picture
-//       newPicture = req.param('caption');
-//       newStatus.likes = 0;
-//       newStatus.postedAt = new Date();
-//       newStatus._creator = req.user.username;
-
-//       // save the picture
-//       newPicture.save(function(err) {
-//         if (err) {
-//           console.log('Error in Saving status: ' + err);
-//           throw err;
-//         }
-//         res.redirect('/auth/home');
-//       });
-//     }
-//   });
-// });
 
 
 module.exports = router;
