@@ -93,8 +93,8 @@ router.use(multer({
 
 /* Create Picture for User */
 router.post('/upload', function(req, res) {
-  console.log(req.files.thumbnail.name);
-    if(req.files.thumbnail !== undefined){
+  console.log(req.body);
+    if(req.files.image !== undefined){
         console.log("successful upload");
     } else {
         res.send("error, no file chosen");
