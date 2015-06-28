@@ -32,6 +32,60 @@ router.get('/allStatuses', isAuthenticated, function(req, res) {
   });
 });
 
+
+/*GET my listing*/
+router.get('/listing', isAuthenticated, function(req, res) {
+  console.log("getting listing");
+    User.findOne({username: req.user.username},function(error, user){
+    if (error) {
+      console.log(error)
+    } else {
+      var array = [];
+      var length = 0;
+      var followLength = user.following.length;
+      for (var i = 0;i<followLength;i++) {
+        User.findOne({username: user.following[i]},function(error, follower) {
+          if (error) {
+            console.log(error);
+            followLength = followLength - 1;
+          } else {
+
+            Status.find({
+              _creator: follower.username
+            })
+            .sort('-postedAt')
+            .exec( function(error, statusList) {
+              if (error) {
+                console.log(error);
+              } else {
+                statusList.forEach(function(status) {
+                  array.push(status);
+                })
+                length +=1;
+                if(length === followLength){
+                  array.sort(function (a, b) {
+                    if (a.postedAt > b.postedAt) {
+                      return 1;
+                    }
+                    if (a.postedAt < b.postedAt) {
+                      return -1;
+                    }
+                    return 0;
+                  });
+                  res.render('statuses', {
+                    user:req.user,
+                    statuses: array
+                  });
+                }
+              }
+            });
+          }
+        });
+      }
+    }
+  });
+});
+
 /* GET One USER STATUSES */
 router.get('/:statusID', isAuthenticated, function(req, res) {
   Status.findOne({
