@@ -1,0 +1,10 @@
+extends home
+
+block main
+  if (pictures.length > 0)
+    for picture in pictures
+      ul.user-details
+        li
+          a(href='/picture/' + picture._id, class='text-center status') #{picture.src}
+        li By: #{picture._creator}
+        br
