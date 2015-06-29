@@ -25,38 +25,35 @@ var isAuthenticated = function(req, res, next) {
   res.redirect('/');
 }
 
-// /* GET ALL USER Pictures */
-// router.get('/allPictures', isAuthenticated, function(req, res) {
-//   Picture.find({
-//     _creator: req.user.username
-//   })
-//   .sort('-postedAt')
-//   .exec( function(error, pictureList) {
-//     if (error) {
-//       console.log(error);
-//       res.sendStatus(404);
-//     }
-//     res.render('pictures', {
-//       user:req.user,
-//       pictures: picturesList
-//     });
-//   });
-// });
+/* GET ALL USER Pictures */
+router.get('/allPictures', isAuthenticated, function(req, res) {
+  Picture.find({
+    _creator: req.user.username
+  })
+  .sort('-postedAt')
+  .exec( function(error, pictures) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(404);
+    }
+    res.render('pictures', {
+      user:req.user,
+      pictures: pictures
+    });
+  });
+});
 
-// /* GET One USER PICTURES */
-//  router.get('/:pictureID', isAuthenticated, function(req, res) {
-//    Picture.findOne({
-//        _id: req.params.pictureID
-//    }, function(error, picture) {
-//     if (error) {
-//       console.log(error);
-//      }
-//      res.render('picture', {
-//        user: req.user,
-//        picture: picture
-//      })
-//    });
-// });
+/* GET One USER PICTURES */
+ router.get('/:src', isAuthenticated, function(req, res) {
+   Picture.findOne({
+       _id: req.params.src
+   }, function(error, picture) {
+    if (error) {
+      console.log(error);
+     }
+     res.send(picture);
+   });
+});
 
 
 AWS.config.update({

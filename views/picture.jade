@@ -3,10 +3,13 @@ extends home
 block main
   ul.user-details
     a(href='/picture/allPictures',  class='text-center new-account') All My Pictures
-    li Caption: #{picture.caption}
+    br
+    if picture.caption
+      li Caption: #{picture.caption}
     li Likes: #{picture.likes}
       form(class='form-signin', action='/picture/like/'+ picture._id, method='POST')
         input(type="submit" placeholder='Like' value="Like")
+    div#pictureContainer
     li By: #{picture._creator}
     li Posted At: #{picture.postedAt}
-    a(id='delete_picture', class='text-center new-account', title='' + picture._id) Delete Picture
+    //- a(id='delete_picture', class='text-center new-account', title='' + picture._id) Delete Picture

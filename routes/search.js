@@ -17,9 +17,9 @@ var isAuthenticated = function(req, res, next) {
 
 
 /*search for a user*/
-router.get('/search', isAuthenticated, function(req, res) {
+router.post('/', isAuthenticated, function(req, res) {
   User.findOne({
-    search: req.body
+    username: req.body.q
   })
     .select('-password')
     .exec(function(error, otherUser) {
@@ -27,10 +27,7 @@ router.get('/search', isAuthenticated, function(req, res) {
         console.log(error);
         res.status(404);
       }
-      res.render('user', {
-        otherUser: otherUser,
-        user: req.user
-      });
+      res.redirect('/user/'+otherUser.username)
     });
 });
 
