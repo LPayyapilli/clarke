@@ -12,7 +12,7 @@ $(document).ready(function() {
 
   $('.pictureLink').on('click',function(event) {
     $.ajax({
-      url: 'http://localhost:3000' +event.target.title,
+      url: 'http://localhost:3000' + event.target.title,
       type: 'GET'
     })
     .done(function(picture) {
@@ -23,5 +23,4 @@ $(document).ready(function() {
       console.log("error");
     })
   });
-
 });
