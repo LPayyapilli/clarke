@@ -10,30 +10,14 @@ $(document).ready(function() {
   //   });
   // });
 
-  var AWS = require('aws-sdk');
-  var s3 = new AWS.S3();
-
   $('.pictureLink').on('click',function(event) {
     $.ajax({
       url: 'http://localhost:3000' +event.target.title,
       type: 'GET'
     })
     .done(function(picture) {
-      console.log(picture.src);
-      //make get req to aws s3 on the data.src
-      var params = {
-        Bucket: 'clarkedbteer',
-        Key: picture.src
-      };
-
-      s3.getObject(params, function(error, data) {
-        if (error) {
-          console.log(error);
-        } else {
-          $('#pictureContainer').append(data.body);
-        }
-      })
-
+      var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
+      $('#pictureContainer').html('<img src="' + link + '"/>');
     })
     .fail(function() {
       console.log("error");
