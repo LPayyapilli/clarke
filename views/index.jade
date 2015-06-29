@@ -8,17 +8,17 @@ block content
 			li(data-target="#myCarousel", data-slide-to = "2")
 		div.carousel-inner
 			div.item.active
-				img(src="http://i.imgur.com/B9fCMFh.jpg?1", alt= "firstimg", class="img-responsive")
+				img(src="http://i.imgur.com/zXrcUvJ.jpg?1", alt= "firstimg", class="img-responsive")
 				div.carousel-caption
 					h1.main-title Clarke
 					//- p Something goes here
 			div.item
-				img(src="http://i.imgur.com/ARV3iv6.jpg?1", alt= "secondimg", class="img-responsive images")
+				img(src="http://i.imgur.com/7wgciRK.jpg?1", alt= "secondimg", class="img-responsive images")
 				div.carousel-caption
 					h1.main-title Clarke
 					//- p Clarke Clarke Clarke
 			div.item
-				img(src="http://i.imgur.com/zpWbLK1.jpg?1", alt= "thirdimg", class="img-responsive")
+				img(src="http://i.imgur.com/vLYx18r.jpg?1", alt= "thirdimg", class="img-responsive")
 				div.carousel-caption
 					h1.main-title Clarke
 					//- p Clarke does something cool
@@ -68,34 +68,38 @@ block content
 		//- 	div.col-xs-6.paddingcircle
 		//- 		h2.text-center i designed it
 		//- 			p.text-justify blahblah
-	div.container
-		div.row.row-position
-			div.col-md-4.paddingcircle
-				span.fa-stack.fa-lg
-					i.fa.fa-user-plus.fa-3x
-				h2.text-center.title Add
-					h3.subtitle family & friends
-			div.col-md-4.paddingcircle
-				span.fa-stack.fa-lg
-					i.fa.fa-camera-retro.fa-3x
-				h2.text-center.title Post
-					h3.subtitle pics of your loved ones
-			div.col-md-4.paddingcircle
-				span.fa-stack.fa-lg
-					i.fa.fa-magic.fa-3x
-				h2.text-center.title Customize
-					h3.subtitle your page
-			a(href="#", class="btn btn-default") Learn More
-	div.container
-		div.row.row-position
-			div.col-md-4.col-md-offset-4
-				h3.clarke-main-title#clarkelogintitle Already have an account?
-				h1.text-center.login-title
-					form(class='form-signin form-signin-position' action='/auth/login', method='POST')
-						input(type='text', name='username' class='form-control', placeholder='Username',required, autofocus)
-						input(type='password', name='password' class='form-control', placeholder='Password', required)
-						button(class='btn btn-lg btn-primary btn-block', type='submit') Login
-						span.clearfix
-				a(href='/auth/signup', class='text-center new-account member-text') Not a member? Join now
-				if message
-					h1.text-center.error-message #{message}
+	section(id="intro", class="hidden-xs" data-speed='6', data-type='background')
+		div.container
+			div.row.row-position
+				div.col-md-4.paddingcircle
+					span.fa-stack.fa-lg
+						i.fa.fa-user-plus.fa-3x.fa-inverse
+					h2.text-center.title Add
+						h3.subtitle family & friends
+				div.col-md-4.paddingcircle
+					span.fa-stack.fa-lg
+						i.fa.fa-camera-retro.fa-3x.fa-inverse
+					h2.text-center.title Post
+						h3.subtitle pics of your loved ones
+				div.col-md-4.paddingcircle
+					span.fa-stack.fa-lg
+						i.fa.fa-magic.fa-3x.fa-inverse
+					h2.text-center.title Customize
+						h3.subtitle your page
+				a(href="#", class="btn btn-default") Learn More
+
+	section(id="loginhome", data-speed='4', data-type='background')
+		div.container
+			div.row.row-position
+				div.col-md-4.col-md-offset-4
+					h3.clarke-main-title#clarkelogintitle Already have an account?
+					h1.text-center.login-title
+						form(class='form-signin form-signin-position' action='/auth/login', method='POST')
+							input(type='text', name='username' class='form-control', placeholder='Username',required, autofocus)
+							input(type='password', name='password' class='form-control', placeholder='Password', required)
+							button(class='btn btn-lg btn-primary btn-block', type='submit') Login
+							span.clearfix
+					a(href='/auth/signup', class='text-center new-account member-text') Not a member? Join now
+					if message
+						h1.text-center.error-message #{message}
+
