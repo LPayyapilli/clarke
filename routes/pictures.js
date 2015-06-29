@@ -89,7 +89,7 @@ router.use(multer({
     var params = {
       Bucket: 'clarkedbteer',
       Key: file.name,
-      Body: data
+      Body: data,
     };
 
     s3.putObject(params, function (perr, pres) {

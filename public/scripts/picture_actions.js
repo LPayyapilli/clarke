@@ -18,6 +18,7 @@ $(document).ready(function() {
     .done(function(picture) {
       var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
       $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
+      $('#pictureContainer').append(picture.caption);
     })
     .fail(function() {
       console.log("error");
