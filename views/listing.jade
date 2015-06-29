@@ -1,0 +1,19 @@
+extends home
+
+block main
+  if (listing.length > 0)
+    for item in listing
+      if item.src
+        ul.user-details
+          li
+            a(title='/picture/' + item._id, class='text-center pictureLink') #{item.src}
+          li By: #{item._creator}
+          br
+      else
+        ul.user-details
+          li
+            a(href='/status/' + item._id, class='text-center status') #{item.input}
+          li By: #{item._creator}
+          br
+
+

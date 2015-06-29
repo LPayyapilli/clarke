@@ -66,6 +66,9 @@ app.use('/delete', deleteRoutes);
 var searchRoutes = require('./routes/search.js');
 app.use('/search', searchRoutes);
 
+var listingRoutes = require('./routes/listing.js');
+app.use('/listing', listingRoutes);
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
