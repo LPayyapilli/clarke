@@ -10,32 +10,33 @@ $(document).ready(function() {
   //   });
   // });
 
-
-  $('.pictureLink').on('click', function(event) {
+  $('.pictureLink').on('click',function(event) {
     $.ajax({
       url: 'http://localhost:3000' + event.target.title,
       type: 'GET'
     })
-      .done(function(picture) {
-        console.log(picture.src);
-        //make get req to aws s3 on the data.src
-        var params = {
-          Bucket: 'clarkedbteer',
-          Key: picture.src
-        };
-
-        s3.getObject(params, function(error, data) {
-          if (error) {
-            console.log(error);
-          } else {
-            $('#pictureContainer').append(data.body);
-          }
-        })
-
-      })
-      .fail(function() {
-        console.log("error");
-      })
+    .done(function(picture) {
+      var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
+      $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
+    })
+    .fail(function() {
+      console.log("error");
+    })
+  });
+  $('#pictureContainer').on('click',function(event) {
+    console.log(event);
+    // $.ajax({
+    //   url: 'http://localhost:3000' + event.target.title,
+    //   type: 'GET'
+    // })
+    // .done(function(picture) {
+    //   console.log(picture);
+    //   var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
+    //   $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
+    // })
+    // .fail(function() {
+    //   console.log("error");
+    // })
   });
 
 });

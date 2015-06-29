@@ -55,6 +55,19 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
    });
 });
 
+ router.get('/', isAuthenticated, function(req, res) {
+   Picture.findOne({
+       _id: req.params.src
+   }, function(error, picture) {
+    if (error) {
+      console.log(error);
+     }
+     res.render('picture', {
+      user: req.user
+     });
+   });
+});
+
 
 AWS.config.update({
     accessKeyId: aws_access_key,
