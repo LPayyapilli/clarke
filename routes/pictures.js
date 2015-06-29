@@ -36,37 +36,14 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
       console.log(error);
       res.sendStatus(404);
     }
-    res.render('pictures', {
+    res.render('listing', {
       user:req.user,
-      pictures: pictures
+      listing: pictures
     });
   });
 });
 
-/* GET One USER PICTURES */
- router.get('/:src', isAuthenticated, function(req, res) {
-   Picture.findOne({
-       _id: req.params.src
-   }, function(error, picture) {
-    if (error) {
-      console.log(error);
-     }
-     res.send(picture);
-   });
-});
 
- router.get('/', isAuthenticated, function(req, res) {
-   Picture.findOne({
-       _id: req.params.src
-   }, function(error, picture) {
-    if (error) {
-      console.log(error);
-     }
-     res.render('picture', {
-      user: req.user
-     });
-   });
-});
 
 router.post('/like/:pictureID', isAuthenticated, function(req, res) {
   Picture.findOne({"_id":req.params.pictureID}).exec( function(err, picture) {
@@ -161,13 +138,25 @@ router.post('/upload', function(req, res) {
           throw err;
         }
         console.log('picture saved!');
-        res.redirect('/auth/home');
+        res.redirect('/listing');
         });
       }
     });
   } else {
         res.send("error, no file chosen");
   }
+});
+
+/* GET One USER PICTURES */
+ router.get('/:src', isAuthenticated, function(req, res) {
+   Picture.findOne({
+       _id: req.params.src
+   }, function(error, picture) {
+    if (error) {
+      console.log(error);
+     }
+     res.send(picture);
+   });
 });
 
 
