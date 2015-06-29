@@ -16,8 +16,10 @@ block content
 					input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
 					button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
 				form(class='form-singin', method="post" enctype="multipart/form-data" action="/picture/upload")
+				form(class='form-singin', method="post" enctype="multipart/form-data" action="/picture/upload")
 					input(class='form-control', type="file" name="thumbnail")
 					button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
+					button(class='btn btn-lg btn-primary btn-block', type='submit') Submit Caption
 				a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
 				a(href='/picture/allPictures', class='text-center new-account') All Pictures
 				a(href='/status/listing', class='text-center new-account') My Newsfeed
