@@ -17,10 +17,26 @@ $(document).ready(function() {
     })
     .done(function(picture) {
       var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
-      $('#pictureContainer').html('<img src="' + link + '"/>');
+      $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
     })
     .fail(function() {
       console.log("error");
     })
   });
+  $('#pictureContainer').on('click',function(event) {
+    console.log(event);
+    // $.ajax({
+    //   url: 'http://localhost:3000' + event.target.title,
+    //   type: 'GET'
+    // })
+    // .done(function(picture) {
+    //   console.log(picture);
+    //   var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
+    //   $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
+    // })
+    // .fail(function() {
+    //   console.log("error");
+    // })
+  });
+
 });
