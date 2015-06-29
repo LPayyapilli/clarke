@@ -38,25 +38,22 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
     }
     res.render('pictures', {
       user:req.user,
-      pictures: req.user.pictures
+      pictures: pictures
     });
   });
 });
 
-// /* GET One USER PICTURES */
-//  router.get('/:src', isAuthenticated, function(req, res) {
-//    Picture.findOne({
-//        src: req.picture.params.src
-//    }, function(error, picture) {
-//     if (error) {
-//       console.log(error);
-//      }
-//      res.render('picture', {
-//        user: req.user,
-//        picture.src: req.picture.params.src;
-//      })
-//    });
-// });
+/* GET One USER PICTURES */
+ router.get('/:src', isAuthenticated, function(req, res) {
+   Picture.findOne({
+       _id: req.params.src
+   }, function(error, picture) {
+    if (error) {
+      console.log(error);
+     }
+     res.send(picture);
+   });
+});
 
 
 AWS.config.update({

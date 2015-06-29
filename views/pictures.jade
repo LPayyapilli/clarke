@@ -5,6 +5,5 @@ block main
     for picture in pictures
       ul.user-details
         li
-          a(href='/picture/' + picture._id, class='text-center status') #{picture.src}
-        li By: #{picture._creator}
+          a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.src}
         br
