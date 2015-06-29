@@ -68,6 +68,38 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
    });
 });
 
+router.post('/like/:pictureID', isAuthenticated, function(req, res) {
+  Picture.findOne({"_id":req.params.pictureID}).exec( function(err, picture) {
+    if (err) {
+      console.log(err);
+    } else {
+      var liked = false;
+      for (var i = 0; i < picture.likers.length; i++) {
+        if (picture.likers[i] === req.user.username) {
+          liked = true;
+        }
+      }
+      if (liked === false) {
+        var newLikes = picture.likes + 1;
+        picture.likers.push(req.user.username);
+        Picture.findOneAndUpdate({"_id":req.params.pictureID}, {likes: newLikes,likers: picture.likers}, function(err, user) {
+          if (err) {
+            console.log(err);
+            res.status(404);
+            res.end();
+          } else {
+            res.status(202);
+            res.end();
+          }
+        });
+      } else {
+        res.status(304);
+        res.send(picture);
+      }
+    }
+  });
+});
+
 
 AWS.config.update({
     accessKeyId: aws_access_key,
@@ -109,7 +141,8 @@ router.post('/upload', function(req, res) {
     },    function(error) {
             if (error) {
               console.log(error);
-              res.sendStatus(404);
+              res.status(404);
+              res.end();
             } else {
 
       var newPicture = new Picture();
