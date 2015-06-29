@@ -18,25 +18,25 @@ $(document).ready(function() {
     .done(function(picture) {
       var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
       $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
+      $('#pictureContainer').append(picture.caption);
     })
     .fail(function() {
       console.log("error");
     })
   });
+
   $('#pictureContainer').on('click',function(event) {
-    console.log(event);
-    // $.ajax({
-    //   url: 'http://localhost:3000' + event.target.title,
-    //   type: 'GET'
-    // })
-    // .done(function(picture) {
-    //   console.log(picture);
-    //   var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
-    //   $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
-    // })
-    // .fail(function() {
-    //   console.log("error");
-    // })
+    var imageID = event.target.id.substring(5);
+    console.log(imageID);
+    $.ajax({
+      url: 'http://localhost:3000/picture/like/' + imageID,
+      type: 'POST'
+    })
+    .done(function(picture) {
+    })
+    .fail(function() {
+      console.log("error");
+    })
   });
 
 });

@@ -36,36 +36,45 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
       console.log(error);
       res.sendStatus(404);
     }
-    res.render('pictures', {
+    res.render('listing', {
       user:req.user,
-      pictures: pictures
+      listing: pictures
     });
   });
 });
 
-/* GET One USER PICTURES */
- router.get('/:src', isAuthenticated, function(req, res) {
-   Picture.findOne({
-       _id: req.params.src
-   }, function(error, picture) {
-    if (error) {
-      console.log(error);
-     }
-     res.send(picture);
-   });
-});
 
- router.get('/', isAuthenticated, function(req, res) {
-   Picture.findOne({
-       _id: req.params.src
-   }, function(error, picture) {
-    if (error) {
-      console.log(error);
-     }
-     res.render('picture', {
-      user: req.user
-     });
-   });
+
+router.post('/like/:pictureID', isAuthenticated, function(req, res) {
+  Picture.findOne({"_id":req.params.pictureID}).exec( function(err, picture) {
+    if (err) {
+      console.log(err);
+    } else {
+      var liked = false;
+      for (var i = 0; i < picture.likers.length; i++) {
+        if (picture.likers[i] === req.user.username) {
+          liked = true;
+        }
+      }
+      if (liked === false) {
+        var newLikes = picture.likes + 1;
+        picture.likers.push(req.user.username);
+        Picture.findOneAndUpdate({"_id":req.params.pictureID}, {likes: newLikes,likers: picture.likers}, function(err, user) {
+          if (err) {
+            console.log(err);
+            res.status(404);
+            res.end();
+          } else {
+            res.status(202);
+            res.end();
+          }
+        });
+      } else {
+        res.status(304);
+        res.send(picture);
+      }
+    }
+  });
 });
 
 
@@ -89,7 +98,7 @@ router.use(multer({
     var params = {
       Bucket: 'clarkedbteer',
       Key: file.name,
-      Body: data
+      Body: data,
     };
 
     s3.putObject(params, function (perr, pres) {
@@ -109,7 +118,8 @@ router.post('/upload', function(req, res) {
     },    function(error) {
             if (error) {
               console.log(error);
-              res.sendStatus(404);
+              res.status(404);
+              res.end();
             } else {
 
       var newPicture = new Picture();
@@ -128,13 +138,25 @@ router.post('/upload', function(req, res) {
           throw err;
         }
         console.log('picture saved!');
-        res.redirect('/auth/home');
+        res.redirect('/listing');
         });
       }
     });
   } else {
         res.send("error, no file chosen");
   }
+});
+
+/* GET One USER PICTURES */
+ router.get('/:src', isAuthenticated, function(req, res) {
+   Picture.findOne({
+       _id: req.params.src
+   }, function(error, picture) {
+    if (error) {
+      console.log(error);
+     }
+     res.send(picture);
+   });
 });
 
 

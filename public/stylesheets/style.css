@@ -379,6 +379,12 @@ ul.user-details{
     margin-left:55px;
 }
 
+#pictureContainer img{
+    height: 300px;
+    width: 300px;
+    background-position: center;
+}
+
 #newsfeed{
     text-align:center;
     color:white;
