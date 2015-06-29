@@ -35,7 +35,6 @@ router.get('/allStatuses', isAuthenticated, function(req, res) {
 
 /*GET my listing*/
 router.get('/listing', isAuthenticated, function(req, res) {
-  console.log("getting listing");
     User.findOne({username: req.user.username},function(error, user){
     if (error) {
       console.log(error)

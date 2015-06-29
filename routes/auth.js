@@ -68,7 +68,6 @@ module.exports = function(passport) {
 
   /* PATCH user */
   router.post('/patch/user', isAuthenticated, function(req, res) {
-    console.log(req.body);
     User.findOneAndUpdate({
       username: req.user.username
     }, req.body, function(err, user) {
