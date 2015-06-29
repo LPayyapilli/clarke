@@ -11,7 +11,6 @@ $(document).ready(function() {
   // });
 
   $('.pictureLink').on('click',function(event) {
-    console.log("test");
     $.ajax({
       url: 'http://localhost:3000' + event.target.title,
       type: 'GET'
