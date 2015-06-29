@@ -1,7 +1,8 @@
 body {
     text-align: center;
     background-color: #DED8DC;
-
+/*    min-width: 800px;
+*/
     -webkit-animation: fadein 2s;
        -moz-animation: fadein 2s;
         -ms-animation: fadein 2s;
@@ -330,13 +331,13 @@ ul.user-details{
     width:20px !important;
 }
 
-#welcome-msg{
+/*#welcome-msg{
     margin-right:1200px;
     color:white;
     font-size:30px;
     font-family: 'Raleway', sans-serif;
     letter-spacing:2px;
-}
+}*/
 
 .push-icon{
     margin-right:20px;
@@ -378,6 +379,7 @@ ul.user-details{
     margin-left:55px;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 */
 
 
@@ -388,5 +390,17 @@ ul.user-details{
     width: 300px;
     background-position: center;
 }
-=======
->>>>>>> ec4428d91169a44a572e514475eeb3900f0a3b5c
+
+#newsfeed{
+    text-align:center;
+    color:white;
+}
+
+.msg{
+    margin-left:0;
+    color:white;
+    font-size:30px;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing:2px;
+
+}
