@@ -1,32 +1,35 @@
 extends layout
 
 block content
-	div.container
-		div.row
-			div.col-sm-6.col-md-4.col-md-offset-4
-				#user
-					div.signup-wall(style="background: #{user.backgroundColor}")
-						h1.text-center.login-title Welcome #{user.firstName} #{user.lastName}
-							a(href='/auth/home', class='text-center new-account home_button') Home
-								br
-							block main
-								form(class='form-signin', action='/status/newStatus', method='POST')
-									input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
-									button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
-								form(class='form-singin', method="post" enctype="multipart/form-data" action="/picture/upload")
-									input(class='form-control', type="file" name="thumbnail")
-									button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
-								a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
-								a(href='/picture/allPictures', class='text-center new-account') All Pictures
-								a(href='/status/listing', class='text-center new-account') My Newsfeed
-								a(href='/user',  class='text-center new-account') All Users
-								a(href='/user/followers',  class='text-center new-account') All Followers
-								a(href='/user/followings',  class='text-center new-account') All Followings
-								a(href='/auth/signout', class='text-center new-account') Sign Out
-								a(href='/auth/patch/user', class='text-center new-account') Account Settings
-							#message
-							if message
-								h1.text-center.error-message #{message}
+	div.container#userpage
+		div.signup-wall(style="background: #{user.backgroundColor}")
+			h1.text-center.login-title Welcome #{user.firstName} #{user.lastName}
+				a(href='/auth/home', class='text-center new-account home_button') Home
+					br
+				block main
+			div#search
+				form(id='tfnewsearch', method='POST', action='/search')
+					input(type='text', id='tfq', class='tftextinput2', placeholder='Search Users', name="q", size="21", maxlength="120", value="")
+					input(type='submit', value='>', class='tfbutton2')
+
+				form(class='form-signin', action='/status/newStatus', method='POST')
+					input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
+					button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
+				form(class='form-singin', method="post" enctype="multipart/form-data" action="/picture/upload")
+					input(class='form-control', type="file" name="thumbnail")
+					button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
+				a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
+				a(href='/auth/patch/user', class='text-center new-account') All Pictures
+				a(href='/status/listing', class='text-center new-account') My Newsfeed
+				a(href='/user',  class='text-center new-account') All Users
+				a(href='/user/followers',  class='text-center new-account') All Followers
+				a(href='/user/followings',  class='text-center new-account') All Followings
+				a(href='/auth/signout', class='text-center new-account') Sign Out
+				a(href='/auth/patch/user', class='text-center new-account') Account Settings
+			#message
+			if message
+				h1.text-center.error-message #{message}
+
 
 
 

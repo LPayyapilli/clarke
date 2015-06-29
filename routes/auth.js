@@ -46,7 +46,6 @@ module.exports = function(passport) {
 
   /* GET Profile Page */
   router.get('/home', isAuthenticated, function(req, res) {
-    console.log(res.sendStatus);
     res.render('home', {
       user: req.user
     });
@@ -69,7 +68,6 @@ module.exports = function(passport) {
 
   /* PATCH user */
   router.post('/patch/user', isAuthenticated, function(req, res) {
-    console.log(req.body);
     User.findOneAndUpdate({
       username: req.user.username
     }, req.body, function(err, user) {
