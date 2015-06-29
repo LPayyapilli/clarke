@@ -78,10 +78,14 @@ body {
 
 
 .main-title{
-    font-family: 'Open Sans', sans-serif;
-    margin-bottom: 300px;
-    font-size: 6em;
+    font-family: 'Raleway', sans-serif;
+    font-size: 4em;
     letter-spacing:1px;
+}
+
+.main-title-sub{
+    font-family: 'Raleway', sans-serif;
+    font-size:1em;
 }
 
 .btn{
