@@ -2,11 +2,9 @@ extends home
 block main
   #user
     if (users.length > 0)
-      h1 All Users
       for otherUser in users
-        div.signup-wall(style="background: #{otherUser.backgroundColor}")
-          ul.user-details
-            li
-              a(href='/user/' + otherUser.username, class='text-center new-account') #{otherUser.firstName} #{otherUser.lastName}
-            li #{otherUser.username}
+        ul.user-details
+          li
+            a(href='/user/' + otherUser.username, class='text-center new-account') #{otherUser.firstName} #{otherUser.lastName}
+          li #{otherUser.username}
 
