@@ -89,61 +89,55 @@ router.use(bodyParser({uploadDir:'./uploads'}));
 
 router.use(multer({
   dest: './uploads',
-  limits : { fileSize:100000 },
+  limits : { fileSize:1000000 },
   rename: function (pictures, src) {
     return src.replace(/\W+/g, '-').toLowerCase();
-  },
-  onFileUploadData: function (file, data, req, res) {
-    // file : { fieldname, originalname, name, encoding, mimetype, path, extension, size, truncated, buffer }
-    var params = {
-      Bucket: 'clarkedbteer',
-      Key: file.name,
-      Body: data,
-    };
-
-    s3.putObject(params, function (perr, pres) {
-      if (perr) {
-        console.log("Error uploading data: ", perr);
-      } else {
-        console.log("Successfully uploaded data to clarkedbteer");
-      }
-    });
   }
 }));
 
 router.post('/upload', function(req, res) {
   if(req.files !== undefined) {
-    User.findOne({
-      username: req.user.username
-    },    function(error) {
-            if (error) {
-              console.log(error);
-              res.status(404);
-              res.end();
-            } else {
-
-      var newPicture = new Picture();
-
-      // set the user's picture
-      newPicture.src = req.files.thumbnail.name;
-      newPicture.caption = req.param('caption');
-      newPicture.likes = 0;
-      newPicture.postedAt = new Date();
-      newPicture._creator = req.user.username;
-      console.log(newPicture);
-      // save the picture
-      newPicture.save(function(err) {
-        if (err) {
-          console.log('Error in Saving status: ' + err);
-          throw err;
-        }
-        console.log('picture saved!');
-        res.redirect('/listing');
+    fs.readFile(req.files.thumbnail.path, function(err, data){
+      var params = {
+        Bucket: 'clarkedbteer',
+        Key: req.files.thumbnail.name,
+        Body: data
+      };
+    s3.putObject(params, function (perr, pres) {
+      if (perr) {
+        console.log("Error uploading data: ", perr);
+      } else {
+        console.log("Successfully uploaded data to clarkedbteer");
+        User.findOne({
+          username: req.user.username
+        }, function(error) {
+        if (error) {
+          console.log(error);
+          res.status(404);
+          res.end();
+        } else {
+          var newPicture = new Picture();
+          // set the user's picture
+          newPicture.src = req.files.thumbnail.name;
+          newPicture.caption = req.param('caption');
+          newPicture.likes = 0;
+          newPicture.postedAt = new Date();
+          newPicture._creator = req.user.username;
+          console.log(newPicture);
+          // save the picture
+          newPicture.save(function(err) {
+            if (err) {
+              console.log('Error in Saving status: ' + err);
+              throw err;
+            }
+              console.log('picture saved!');
+              res.redirect('/listing');
+            });
+          }
         });
-      }
-    });
-  } else {
-        res.send("error, no file chosen");
+        }
+      });
+    })
   }
 });
 
