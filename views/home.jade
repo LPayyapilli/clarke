@@ -5,19 +5,19 @@ block content
 		div.signup-wall(style="background: #{user.backgroundColor}")
 		a(href='/auth/home', class='text-center new-account home_button') Home
 		div.row
-			div.col-md-3
+			div.col-xs-12.col-md-5
 				div.msg
 					h1.text-center#welcome-msg
 						span.push-icon.fa.fa-user  #{user.firstName} #{user.lastName}
 							br
-			div.col-md-9
+			div.col-xs-12.col-md-7
 				div#search
 					form(id='tfnewsearch', method='POST', action='/search')
 						input(type='text', id='tfq', class='tftextinput2 ', placeholder='Search Users', name="q", size="21", maxlength="120", value="")
 						input(type='submit', value='>', class='tfbutton2', id='searchbutton')
 					//- block main
 		div.row
-			div.col-md-3
+			div.col-xs-5.col-lg-3.profile-position
 				div#about-me-blurb
 					div#transparent-about-me
 						ul
@@ -42,7 +42,6 @@ block content
 			#message
 			if message
 				h1.text-center.error-message #{message}
-			div.col-md-9
+			div.col-xs-7.col-lg-9.newsfeed-position
 				div#newsfeed
-					//- h1 Newsfeed
 					block main

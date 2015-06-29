@@ -1,10 +1,11 @@
 extends home
 block main
+  h1 Friends
   #user
     if (users.length > 0)
       for otherUser in users
         ul.user-details
           li
-            a(href='/user/' + otherUser.username, class='text-center new-account') #{otherUser.firstName} #{otherUser.lastName}
-          li #{otherUser.username}
+            a(href='/user/' + otherUser.username, class='text-center new-account listing-fonts') #{otherUser.firstName} #{otherUser.lastName}
+
 

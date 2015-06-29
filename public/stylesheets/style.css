@@ -209,6 +209,8 @@ a {
 
 .member-text{
     margin:0 auto;
+    color:white;
+    font-size:16pt;
 }
 
 h1.error-message{
@@ -331,13 +333,10 @@ ul.user-details{
     width:20px !important;
 }
 
-/*#welcome-msg{
-    margin-right:1200px;
-    color:white;
-    font-size:30px;
-    font-family: 'Raleway', sans-serif;
-    letter-spacing:2px;
-}*/
+#welcome-msg{
+    padding-left:60px;
+    text-align:left;
+}
 
 .push-icon{
     margin-right:20px;
@@ -397,4 +396,44 @@ ul.user-details{
     font-family: 'Raleway', sans-serif;
     letter-spacing:2px;
 
+}
+
+
+.profile-position{
+    width:400px;
+}
+
+.newsfeed-position{
+    width:calc(100vw - 400px);
+    min-width: 400px;
+}
+
+/*listing*/
+.listing-fonts{
+    font-size:20pt;
+    text-align:center;
+}
+
+/*user*/
+
+/*.follow-button{
+    float:right;
+    margin-right:23px;
+}
+
+.userinfo{
+    padding-right:100px;
+    font-size:16pt;
+    float:right;
+    clear:both;
+    text-align:center;
+}
+
+#padding-top-user{
+    padding-top:80px;
+    margin-left:60px;
+}*/
+
+.usershiz{
+    text-align: right;
 }
