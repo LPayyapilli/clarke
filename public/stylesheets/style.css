@@ -1,7 +1,8 @@
 body {
     text-align: center;
     background-color: #DED8DC;
-
+/*    min-width: 800px;
+*/
     -webkit-animation: fadein 2s;
        -moz-animation: fadein 2s;
         -ms-animation: fadein 2s;
@@ -330,13 +331,13 @@ ul.user-details{
     width:20px !important;
 }
 
-#welcome-msg{
+/*#welcome-msg{
     margin-right:1200px;
     color:white;
     font-size:30px;
     font-family: 'Raleway', sans-serif;
     letter-spacing:2px;
-}
+}*/
 
 .push-icon{
     margin-right:20px;
@@ -376,4 +377,18 @@ ul.user-details{
     clear:both;
     margin-top:50px;
     margin-left:55px;
+}
+
+#newsfeed{
+    text-align:center;
+    color:white;
+}
+
+.msg{
+    margin-left:0;
+    color:white;
+    font-size:30px;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing:2px;
+
 }
