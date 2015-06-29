@@ -43,7 +43,6 @@ $(document).ready(function() {
     type: 'GET'
   })
   .done(function(picture) {
-    console.log("adding pro pic");
     var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
     $('#profilePicture').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
   })
