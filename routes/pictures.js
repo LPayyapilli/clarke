@@ -44,7 +44,7 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
 });
 
 
-
+/*GET ONE PIC*/
 router.post('/like/:pictureID', isAuthenticated, function(req, res) {
   Picture.findOne({"_id":req.params.pictureID}).exec( function(err, picture) {
     if (err) {
@@ -77,7 +77,7 @@ router.post('/like/:pictureID', isAuthenticated, function(req, res) {
   });
 });
 
-
+/*POST PICTURES*/
 AWS.config.update({
     accessKeyId: aws_access_key,
     secretAccessKey: aws_secret_key

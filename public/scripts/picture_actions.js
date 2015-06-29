@@ -38,5 +38,17 @@ $(document).ready(function() {
       console.log("error");
     })
   });
-
+  $.ajax({
+    url: 'http://localhost:3000/user/profilePicture',
+    type: 'GET'
+  })
+  .done(function(picture) {
+    console.log("adding pro pic");
+    var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
+    $('#profilePicture').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
+  })
+  .fail(function() {
+    console.log("error");
+  })
 });
+

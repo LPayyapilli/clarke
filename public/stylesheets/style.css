@@ -437,3 +437,9 @@ ul.user-details{
 .usershiz{
     text-align: right;
 }
+
+#profilePicture{
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+}

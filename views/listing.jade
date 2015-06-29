@@ -10,6 +10,8 @@ block main
           li
             a(title='/picture/' + item._id, class='text-center pictureLink') #{item.src}
           li By: #{item._creator}
+          if item._creator == user.username
+            a(href='/user/makeProfilePicture/' + item._id, class='text-center status') Make Profile Picture
           br
       else
         ul.user-details.listing-fonts
