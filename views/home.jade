@@ -8,8 +8,8 @@ block content
 					br
 				block main
 			div#search
-				form(id='tfnewsearch', method='get', action='/search')
-					input(type='text', id='tfq', class='tftextinput2', placeholder='Search Users', name="q", size="21", maxlength="120", value="Search for users")
+				form(id='tfnewsearch', method='POST', action='/search')
+					input(type='text', id='tfq', class='tftextinput2', placeholder='Search Users', name="q", size="21", maxlength="120", value="")
 					input(type='submit', value='>', class='tfbutton2')
 
 				form(class='form-signin', action='/status/newStatus', method='POST')
