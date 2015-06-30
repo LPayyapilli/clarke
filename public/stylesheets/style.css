@@ -1,6 +1,8 @@
 body {
     text-align: center;
     background-color: #BD3E44;
+    margin: 0;
+    padding: 0;
 
     -webkit-animation: fadein 2s;
        -moz-animation: fadein 2s;
@@ -51,11 +53,10 @@ body {
     position: relative;
     box-shadow: 0 0 50px rgba(0,0,0,0.8);
     padding: 100px 0;
-    padding-top:200px;
+    padding-top:300px;
 }
 #loginhome {
     background: #BD3E44;
-   /* background:url("https://static.pexels.com/photos/4837/fishing-sea-man-person.jpg");*/
     height: 100vh;
     margin: 0 auto;
     width: 100%;
@@ -89,9 +90,10 @@ body {
 }
 
 .btn{
-    margin-top:20px;
-    color:white;
-    background-color:#C4B699;
+    margin-bottom: 20px;
+    color:black;
+    /*rgb(189, 56, 56);*/
+    background-color:rgba(230,230,230,0.5);
 }
 
 .btn:hover{
@@ -113,7 +115,7 @@ a {
 }
 
 .btn-primary{
-    background-color:#C4B699;
+    background-color:rgba(230,230,230,0.5);
     border-color:#C4B699;
 }
 
@@ -322,6 +324,7 @@ ul.user-details{
 
 #userpage{
     width:100%;
+    padding: 0;
 }
 
 #userpage input, #userpage button, #userpage a{
@@ -417,6 +420,10 @@ a{
     color:white;
 }
 
+#links a{
+    font-size:13.5pt;
+}
+
 /*User*/
 .usershiz{
     text-align: right;
@@ -432,4 +439,12 @@ a{
     font-size:30px;
     margin-top:40px;
     margin-bottom:20px;
+}
+
+.align-center{
+    margin-left:calc(50% - 150px);
+}
+
+.userinfo{
+    font-size: 16pt;
 }

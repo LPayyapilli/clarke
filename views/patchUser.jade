@@ -2,20 +2,21 @@ extends home
 
 block main
   ul.user-details
-    li Username: #{user.username}
-    li Email: #{user.email}
-    li Age: #{user.age}
-    li Zip: #{user.zip}
-  form(class='form-signin', action='/auth/patch/user', method='POST')
-    input(type='text', name='age', class='form-control', placeholder='Age',autofocus)
-    button(class='btn btn-lg btn-primary btn-block', type='submit') Update
-    span.clearfix
-  form(class='form-signin', action='/auth/patch/user', method='POST')
-    input(type='text', name='zip', class='form-control', placeholder='Zip Code',autofocus)
-    button(class='btn btn-lg btn-primary btn-block', type='submit') Update
-    span.clearfix
-  form(class='form-signin', action='/auth/patch/user', method='POST')
-    input(type='text', id="backgroundColorField", name='backgroundColor', class='form-control', placeholder='Background Color, image...',autofocus)
-    button(class='btn btn-lg btn-primary btn-block', type='submit') Update
-    span.clearfix
-  a(id='delete_user' class='text-center new-account') Delete Account
+    li.userinfo Username: #{user.username}
+    li.userinfo Email: #{user.email}
+    li.userinfo Age: #{user.age}
+    li.userinfo Zip: #{user.zip}
+  div.align-center
+    form(class='form-signin', action='/auth/patch/user', method='POST')
+      input(type='text', name='age', class='form-control', placeholder='Age',autofocus)
+      button(class='btn btn-lg btn-primary btn-block', type='submit') Update
+      span.clearfix
+    form(class='form-signin', action='/auth/patch/user', method='POST')
+      input(type='text', name='zip', class='form-control', placeholder='Zip Code',autofocus)
+      button(class='btn btn-lg btn-primary btn-block', type='submit') Update
+      span.clearfix
+    form(class='form-signin', action='/auth/patch/user', method='POST')
+      input(type='text', id="backgroundColorField", name='backgroundColor', class='form-control', placeholder='Background Color, image...',autofocus)
+      button(class='btn btn-lg btn-primary btn-block', type='submit') Update
+      span.clearfix
+    a(id='delete_user' class='text-center new-account userinfo') Delete Account
