@@ -350,9 +350,12 @@ ul.user-details{
 #about-me-blurb{
     height:300px;
     width:300px;
-    background-color:pink;
     margin-left:55px;
     padding-left:0;
+    overflow: hidden;
+    border: solid blue 2px;
+    background-size: contain;
+    background-position: center;
 }
 
 #transparent-about-me{
@@ -436,10 +439,4 @@ ul.user-details{
 
 .usershiz{
     text-align: right;
-}
-
-#profilePicture{
-    height: 300px;
-    width: 300px;
-    overflow: hidden;
 }

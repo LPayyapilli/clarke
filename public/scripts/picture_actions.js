@@ -44,7 +44,8 @@ $(document).ready(function() {
   })
   .done(function(picture) {
     var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
-    $('#profilePicture').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
+    // $('#profilePicture').html('<img class="bigImage" id=image'+ picture._id+);
+    $('#about-me-blurb').css('background-image','url(' + link + ')');
   })
   .fail(function() {
     console.log("error");
