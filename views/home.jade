@@ -26,6 +26,8 @@ block content
 							li Interests
 							li
 								a(href='/user/followings',  class='new-account') Friends
+							li.settings_button
+								a(href='/auth/patch/user', class='text-center new-account fa fa-gear')
 				div#links
 					form(class='form-signin', action='/status/newStatus', method='POST')
 						input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
@@ -41,7 +43,7 @@ block content
 					a(href='/user/followers',  class='text-center new-account') All Followers
 					a(href='/user/followings',  class='text-center new-account') All Followings
 					a(href='/auth/signout', class='text-center new-account') Sign Out
-					a(href='/auth/patch/user', class='text-center new-account') Account Settings
+					//- a(href='/auth/patch/user', class='text-center new-account') Account Settings
 			#message
 			if message
 				h1.text-center.error-message #{message}
