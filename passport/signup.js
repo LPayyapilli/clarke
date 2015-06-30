@@ -32,14 +32,16 @@ module.exports = function(passport){
                         newUser.email = req.param('email');
                         newUser.firstName = req.param('firstName');
                         newUser.lastName = req.param('lastName');
+                        newUser.following = [username];
+                        newUser.followedBy = [username];
 
                         // save the user
                         newUser.save(function(err) {
                             if (err){
-                                console.log('Error in Saving user: '+err);  
-                                throw err;  
+                                console.log('Error in Saving user: '+err);
+                                throw err;
                             }
-                            console.log('User Registration succesful');    
+                            console.log('User Registration succesful');
                             return done(null, newUser);
                         });
                     }
