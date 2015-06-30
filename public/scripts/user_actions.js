@@ -1,8 +1,9 @@
 $(document).ready(function() {
+  var urlBase = 'https://clarkesocial.herokuapp.com';
   $('#delete_user').on('click', function(event) {
     $.ajax({
       method: 'DELETE',
-      url: 'http://localhost:3000/delete/user'
+      url: urlBase + '/delete/user'
     })
       .done(function(response) {
         window.location.pathname = '/';
@@ -11,7 +12,7 @@ $(document).ready(function() {
   $('#patch_user').on('click', function(event) {
     $.ajax({
       method: 'PATCH',
-      url: 'http://localhost:3000/patch/user'
+      url: urlBase + '/patch/user'
     })
       .done(function(response) {
         // document.location.href="/";

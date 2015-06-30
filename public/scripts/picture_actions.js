@@ -1,7 +1,8 @@
 $(document).ready(function() {
+  var urlBase = 'https://clarkesocial.herokuapp.com';
   $('.pictureLink').on('click',function(event) {
     $.ajax({
-      url: 'http://localhost:3000' + event.target.title,
+      url: urlBase + event.target.title,
       type: 'GET'
     })
     .done(function(picture) {
@@ -19,12 +20,12 @@ $(document).ready(function() {
     if (event.target.id.substring(0, 5) === 'image') {
       var imageID = event.target.id.substring(5);
       $.ajax({
-        url: 'http://localhost:3000/picture/like/' + imageID,
+        url: urlBase + '/picture/like/' + imageID,
         type: 'POST'
       })
       .done(function(picture) {
         $.ajax({
-          url: 'http://localhost:3000/picture/' + imageID,
+          url: urlBase + '/picture/' + imageID,
           type: 'GET'
         })
         .done(function(picture) {
@@ -43,7 +44,7 @@ $(document).ready(function() {
       var pictureID = event.target.title;
       $.ajax({
         method: 'DELETE',
-        url: 'http://localhost:3000/delete/picture/' + pictureID
+        url: urlBase + '/delete/picture/' + pictureID
       })
         .done(function(response) {
           window.location.pathname = '/auth/home';
@@ -55,7 +56,7 @@ $(document).ready(function() {
 
 
   $.ajax({
-    url: 'http://localhost:3000/user/profilePicture',
+    url: urlBase + '/user/profilePicture',
     type: 'GET'
   })
   .done(function(picture) {
