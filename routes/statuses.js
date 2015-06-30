@@ -92,8 +92,7 @@ router.post('/like/:statusID', isAuthenticated, function(req, res) {
   Status.findOne({"_id":req.params.statusID}).exec( function(err, status) {
     if (err) {
       console.log(err);
-      res.status(404);
-      res.end();
+      res.redirect('/auth/home');
     } else {
       var liked = false;
       for (var i = 0; i < status.likers.length; i++) {
