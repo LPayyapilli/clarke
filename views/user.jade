@@ -18,6 +18,14 @@ block main
             li
               a(href='/status/' + status._id, class='text-center status') #{status.input}
             br
+      if pictures.length > 0
+        h3 #{otherUser.firstName}'s Pictures
+        for picture in pictures
+          ul.user-details
+            if picture.caption
+              a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.caption}
+            else
+              a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.src}
 
 
 

@@ -138,11 +138,25 @@ router.get('/:username', isAuthenticated, function(req, res) {
         console.log(error);
         res.sendStatus(404);
       }
-      res.render('user', {
-        statuses: statusList,
-        otherUser: otherUser,
-        user: req.user
-     });
+
+      Picture.find({
+        _creator: req.user.username
+      })
+      .sort('-postedAt')
+      .exec( function(error, pictures) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(404);
+        }
+        res.render('user', {
+          pictures: pictures,
+          statuses: statusList,
+          otherUser: otherUser,
+          user: req.user
+       });
+      });
+
+
     });
   });
 });
