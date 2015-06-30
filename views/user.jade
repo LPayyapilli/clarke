@@ -11,13 +11,13 @@ block main
         li.userinfo #{otherUser.username}
         li.userinfo #{otherUser.email}
         li.userinfo #{otherUser.dob}
-      if statuses
+      if statuses.length > 0
         h3 #{otherUser.firstName}'s Statuses
-      for status in statuses
-        ul.user-details
-          li
-            a(href='/status/' + status._id, class='text-center status') #{status.input}
-          br
+        for status in statuses
+          ul.user-details
+            li
+              a(href='/status/' + status._id, class='text-center status') #{status.input}
+            br
 
 
 

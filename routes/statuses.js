@@ -26,6 +26,7 @@ router.get('/allStatuses', isAuthenticated, function(req, res) {
       res.sendStatus(404);
     }
     res.render('listing', {
+      title: 'Statuses',
       user:req.user,
       listing: statusList
     });
@@ -74,7 +75,7 @@ router.post('/newStatus', isAuthenticated, function(req, res) {
           console.log('Error in Saving status: ' + err);
           throw err;
         }
-        res.redirect('/auth/home');
+        res.redirect('/listing');
       });
     }
 

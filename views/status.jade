@@ -1,12 +1,14 @@
 extends home
 
 block main
-  ul.user-details
-    li #{status.input}
-    li Likes: #{status.likes}
+  #status
+    ul.user-details
       form(class='form-signin', action='/status/like/'+ status._id, method='POST')
-        input(class='btn btn-lg btn-primary btn-block', type="submit", placeholder='Like' value="Like")
-    li By: #{status._creator}
-    li Posted At: #{status.postedAt}
-    if status._creator == user.username
-      a(id='delete_status', class='text-center new-account', title='' + status._id) Delete Status
+          input(class='btn btn-lg btn-primary btn-block', type="submit", placeholder='Like' value="Like")
+      li #{status.input}
+      li Likes: #{status.likes}
+      li
+        a(href='/user/' + status._creator, class='listing-fonts') By: #{status._creator}
+      li Posted At: #{status.postedAt}
+      if status._creator == user.username
+        a(id='delete_status', title='' + status._id) Delete Status

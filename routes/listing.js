@@ -67,6 +67,7 @@ router.get('/', isAuthenticated, function(req, res) {
                     return 0;
                   });
                   res.render('listing', {
+                    title: 'Newsfeed',
                     user:req.user,
                     listing: array
                   });

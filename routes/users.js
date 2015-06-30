@@ -74,6 +74,7 @@ router.get('/followers', isAuthenticated, function(req, res) {
             length +=1;
             if(length === followLength){
               res.render('users', {
+                title: 'Followers',
                 users: array,
                 user: req.user
               });
@@ -104,6 +105,7 @@ router.get('/followings', isAuthenticated, function(req, res) {
             length +=1;
             if(length === followLength){
               res.render('users', {
+                title: 'Friends',
                 users: array,
                 user: req.user
               });
