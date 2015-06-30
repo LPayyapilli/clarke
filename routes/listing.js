@@ -37,6 +37,8 @@ router.get('/', isAuthenticated, function(req, res) {
             .exec( function(error, statusList) {
               if (error) {
                 console.log(error);
+                res.status(404);
+                res.end();
               } else {
                 statusList.forEach(function(status) {
                   array.push(status);
@@ -51,6 +53,8 @@ router.get('/', isAuthenticated, function(req, res) {
             .exec( function(error, pictureList) {
               if (error) {
                 console.log(error);
+                res.status(404);
+                res.end();
               } else {
                 pictureList.forEach(function(picture) {
                   array.push(picture);
