@@ -5,6 +5,7 @@ block main
   #user
     ul.user-details(style="background: #{otherUser.backgroundColor}")
       div.usershiz
+        if otherUser.username !== user.username
         form(class='form-signin text-center follow-button', action='/user/follow/'+ otherUser.username, method='POST')
           input(class='btn btn-lg btn-primary btn-block text-center', type="submit", placeholder='Follow' value="Follow")
         li.userinfo#padding-top-user #{otherUser.firstName}
