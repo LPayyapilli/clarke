@@ -6,6 +6,7 @@ var async = require('async');
 
 router.get('/', function(req, res) {
   // Display the Login page with any flash message, if any
+  console.log(req);
   res.render('index', {
     message: req.flash('message')
   });
