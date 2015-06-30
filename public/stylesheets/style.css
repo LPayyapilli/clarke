@@ -1,8 +1,9 @@
 body {
     text-align: center;
-    background-color: #DED8DC;
-/*    min-width: 800px;
-*/
+    background-color: #BD3E44;
+    margin: 0;
+    padding: 0;
+
     -webkit-animation: fadein 2s;
        -moz-animation: fadein 2s;
         -ms-animation: fadein 2s;
@@ -52,11 +53,10 @@ body {
     position: relative;
     box-shadow: 0 0 50px rgba(0,0,0,0.8);
     padding: 100px 0;
-    padding-top:200px;
+    padding-top:300px;
 }
 #loginhome {
     background: #BD3E44;
-   /* background:url("https://static.pexels.com/photos/4837/fishing-sea-man-person.jpg");*/
     height: 100vh;
     margin: 0 auto;
     width: 100%;
@@ -90,9 +90,10 @@ body {
 }
 
 .btn{
-    margin-top:20px;
-    color:white;
-    background-color:#C4B699;
+    margin-bottom: 20px;
+    color:black;
+    /*rgb(189, 56, 56);*/
+    background-color:rgba(230,230,230,0.5);
 }
 
 .btn:hover{
@@ -114,7 +115,7 @@ a {
 }
 
 .btn-primary{
-    background-color:#C4B699;
+    background-color:rgba(230,230,230,0.5);
     border-color:#C4B699;
 }
 
@@ -209,6 +210,8 @@ a {
 
 .member-text{
     margin:0 auto;
+    color:#E6E6E6;
+    font-size:16pt;
 }
 
 h1.error-message{
@@ -218,12 +221,6 @@ h1.error-message{
 ul.user-details{
     list-style: none;
     padding-left: 0;
-}
-
-
-.home_button{
-    font-size: 20pt;
-    padding-bottom: 20px;
 }
 
 .error-message{
@@ -255,7 +252,7 @@ ul.user-details{
     font-family: 'Calligraffitti', cursive;
     font-size:30px;
     word-spacing:8px;
-    color:white;
+    color:#E6E6E6;
 }
 
 #clarkelogintitle{
@@ -266,14 +263,15 @@ ul.user-details{
 }
 
 
-/*search bar*/
+/*Search bar*/
 #tfheader{
     background-color:#c3dfef;
 }
 #tfnewsearch{
     float:right;
-    padding:20px;
-    margin-top: -30px;
+    padding-top:25px;
+    padding-bottom: 20px;
+    padding-right: 50px;
 }
 .tftextinput2{
     margin: 0;
@@ -309,7 +307,7 @@ ul.user-details{
     background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
     background: -moz-linear-gradient(top,  #0095cc,  #00678e);
 }
-/* Fixes submit button height problem in Firefox */
+
 .tfbutton2::-moz-focus-inner {
   border: 0;
 }
@@ -319,11 +317,13 @@ ul.user-details{
 
 /*Home*/
 
-#userpage{
+#userpage, #userpage .row{
     width:100%;
+    padding: 0;
+    margin: 0;
 }
 
-#userpage input, #userpage button, #userpage a{
+#userpage input, #userpage button{
     width: 300px;
 }
 
@@ -331,29 +331,25 @@ ul.user-details{
     width:20px !important;
 }
 
-/*#welcome-msg{
-    margin-right:1200px;
-    color:white;
-    font-size:30px;
-    font-family: 'Raleway', sans-serif;
-    letter-spacing:2px;
-}*/
+#welcome-msg{
+    padding-left:60px;
+    text-align:left;
+}
 
 .push-icon{
     margin-right:20px;
 }
 
-.home_button{
-    font-size:14pt;
-    float:right;
-}
-
 #about-me-blurb{
     height:300px;
     width:300px;
-    background-color:pink;
     margin-left:55px;
     padding-left:0;
+    overflow: hidden;
+    border: solid #E6E6E6 2px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #transparent-about-me{
@@ -366,35 +362,144 @@ ul.user-details{
 #about-me-blurb ul{
     padding:0;
     padding-left:10px;
-    color: white;
+    color: #E6E6E6;
     list-style-type:none;
     background-color:rgba(0, 0, 0, 0.7);
+    height: 68px;
 }
-
+#about-me-blurb ul li a{
+    color: #E6E6E6;
+    margin-top: 0;
+}
 
 
 #links{
     clear:both;
-    margin-top:50px;
+    margin-top:10px;
     margin-left:55px;
+}
+#pictureContainer{
+    padding-bottom:30px;
 }
 
 #pictureContainer img{
     height: 300px;
-    width: 300px;
     background-position: center;
 }
 
 #newsfeed{
     text-align:center;
-    color:white;
+    color:#E6E6E6;
 }
 
 .msg{
     margin-left:0;
-    color:white;
+    color:#E6E6E6;
     font-size:30px;
     font-family: 'Raleway', sans-serif;
     letter-spacing:2px;
 
+}
+
+
+.profile-position{
+    width:400px;
+}
+
+.newsfeed-position{
+    width:calc(100vw - 420px);
+    min-width: 400px;
+}
+
+/*Listing*/
+.listing-fonts{
+    font-size:12pt;
+    text-align:center;
+}
+
+a{
+    color:#E6E6E6;
+}
+
+#links a{
+    font-size:13.5pt;
+}
+
+/*User*/
+.usershiz{
+    text-align: right;
+}
+
+
+
+
+/*Registration*/
+#registration-title{
+    text-align:center;
+    color:white;
+    font-size:30px;
+    margin-top:40px;
+    margin-bottom:20px;
+}
+
+.align-center{
+    margin-left:calc(50% - 150px);
+}
+
+.userinfo{
+    font-size: 16pt;
+}
+
+.home_button{
+    float: right;
+    padding: 20px;
+    padding-bottom: 0;
+    text-align: left;
+    font-size: 20pt;
+    width: 100%;
+}
+
+.fa-gear{
+    width: 16px;
+    margin: 0;
+    padding: 0;
+    padding-top: 14px;
+    margin-left:78px;
+    font-size: 28pt;
+}
+
+.col-xs-12, .col-md-7, .col-xs-7, .col-lg-9, .col-xs-5, .col-lg-3, .col-xs-12, .col-md-7, .col-md-5, .col-xs-6{
+    padding: 0;
+    margin: 0;
+}
+
+.text-left{
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+#status{
+    font-size: 14pt;
+}
+
+#captionContainer{
+    float: right;
+    font-size: 14pt;
+}
+#likesContainer{
+    float: left;
+    font-size: 14pt;
+}
+.picture_info{
+    font-size: 14pt;
+}
+
+.user-details{
+    font-size: 14pt;
+}
+
+.delete_account_button{
+    float: left;
+    margin-left: 75px;
 }
