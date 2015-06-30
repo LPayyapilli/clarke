@@ -11,6 +11,14 @@ router.get('/', function(req, res) {
   });
 });
 
+/* GET About Page */
+router.get('/about', function(req, res) {
+  res.render('about');
+});
 
+/* GET Contact Page */
+router.get('/contact', function(req, res) {
+  res.render('contact');
+});
 
 module.exports = router;
