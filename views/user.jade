@@ -3,30 +3,56 @@ extends home
 block main
   div#pictureContainer
   #user
-    ul.user-details(style="background: #{otherUser.backgroundColor}")
-      div.usershiz
-        form(class='form-signin text-center follow-button', action='/user/follow/'+ otherUser.username, method='POST')
-          input(class='btn btn-lg btn-primary btn-block text-center', type="submit", placeholder='Follow' value="Follow")
-        li.userinfo#padding-top-user #{otherUser.firstName}
-        li.userinfo #{otherUser.lastName}
-        li.userinfo #{otherUser.username}
-        li.userinfo #{otherUser.email}
-        li.userinfo #{otherUser.dob}
-      if statuses.length > 0
-        h3 #{otherUser.firstName}'s Statuses
-        for status in statuses
-          ul.user-details
-            li
-              a(href='/status/' + status._id, class='text-center status') #{status.input}
-            br
-      if pictures.length > 0
-        h3 #{otherUser.firstName}'s Pictures
-        for picture in pictures
-          ul.user-details
-            if picture.caption
-              a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.caption}
-            else
-              a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.src}
+    if otherUser.backgroundColor
+      ul.user-details(style="background: #{otherUser.backgroundColor}")
+        div.usershiz
+          form(class='form-signin text-center follow-button', action='/user/follow/'+ otherUser.username, method='POST')
+            input(class='btn btn-lg btn-primary btn-block text-center', type="submit", placeholder='Follow' value="Follow")
+          li.userinfo#padding-top-user #{otherUser.firstName}
+          li.userinfo #{otherUser.lastName}
+          li.userinfo #{otherUser.username}
+          li.userinfo #{otherUser.email}
+          li.userinfo #{otherUser.dob}
+        if statuses.length > 0
+          h3 #{otherUser.firstName}'s Statuses
+          for status in statuses
+            ul.user-details
+              li
+                a(href='/status/' + status._id, class='text-center status') #{status.input}
+              br
+        if pictures.length > 0
+          h3 #{otherUser.firstName}'s Pictures
+          for picture in pictures
+            ul.user-details
+              if picture.caption
+                a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.caption}
+              else
+                a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.src}
+    else
+      ul.user-details
+        div.usershiz
+          form(class='form-signin text-center follow-button', action='/user/follow/'+ otherUser.username, method='POST')
+            input(class='btn btn-lg btn-primary btn-block text-center', type="submit", placeholder='Follow' value="Follow")
+          li.userinfo#padding-top-user #{otherUser.firstName}
+          li.userinfo #{otherUser.lastName}
+          li.userinfo #{otherUser.username}
+          li.userinfo #{otherUser.email}
+          li.userinfo #{otherUser.dob}
+        if statuses.length > 0
+          h3 #{otherUser.firstName}'s Statuses
+          for status in statuses
+            ul.user-details
+              li
+                a(href='/status/' + status._id, class='text-center status') #{status.input}
+              br
+        if pictures.length > 0
+          h3 #{otherUser.firstName}'s Pictures
+          for picture in pictures
+            ul.user-details
+              if picture.caption
+                a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.caption}
+              else
+                a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.src}
 
 
 
