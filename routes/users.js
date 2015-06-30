@@ -48,8 +48,7 @@ router.get('/makeProfilePicture/:imageID', isAuthenticated, function(req, res) {
       res.end();
      }
      else {
-      res.status(304);
-      res.end();
+      res.redirect('/auth/home');
     }
    });
 });

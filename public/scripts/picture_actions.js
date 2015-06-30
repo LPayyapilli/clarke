@@ -17,7 +17,7 @@ $(document).ready(function() {
     })
     .done(function(picture) {
       var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
-      $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/>');
+      $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/><a href="/user/makeProfilePicture/' + picture._id +'" class="text-center status"> Make Profile Picture <a/>');
       $('#pictureContainer').append(picture.caption);
     })
     .fail(function() {
@@ -25,7 +25,7 @@ $(document).ready(function() {
     })
   });
 
-  $('#pictureContainer').on('click',function(event) {
+  $('#bigImage').on('click',function(event) {
     var imageID = event.target.id.substring(5);
     console.log(imageID);
     $.ajax({
