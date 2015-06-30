@@ -19,19 +19,22 @@ block content
 		div.row
 			div.col-xs-5.col-lg-3.profile-position
 				div#about-me-blurb
-
-					//- div#transparent-about-me
-					//- 	ul
-					//- 		li About me
-					//- 		li Interests
-					//- 		li Friends
-
+					div#transparent-about-me
+						div#profilePicture
+						ul
+							li About me
+							li Interests
+							li
+								a(href='/user/followings',  class='new-account') Friends
+							li.settings_button
+								a(href='/auth/patch/user', class='text-center new-account fa fa-gear')
 				div#links
 					form(class='form-signin', action='/status/newStatus', method='POST')
 						input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
 						button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
 					form(class='form-signin', method="post" enctype="multipart/form-data" action="/picture/upload")
 						input(class='form-control', type="file" name="thumbnail")
+						input(class='form-control', type="text" name="caption", placeholder='Caption')
 						button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
 					a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
 					a(href='/picture/allPictures', class='text-center new-account') All Pictures
@@ -39,7 +42,6 @@ block content
 					a(href='/user',  class='text-center new-account') All Users
 					a(href='/user/followers',  class='text-center new-account') Followers
 					a(href='/user/followings',  class='text-center new-account') People I Follow
-					a(href='/auth/patch/user', class='text-center new-account') Account Settings
 					a(href='/auth/signout', class='text-center new-account') Sign Out
 			#message
 			if message

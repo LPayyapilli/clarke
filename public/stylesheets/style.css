@@ -355,9 +355,10 @@ ul.user-details{
     margin-left:55px;
     padding-left:0;
     overflow: hidden;
-    border: solid blue 2px;
-    background-size: contain;
+    border: solid white 2px;
+    background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 #transparent-about-me{
@@ -374,7 +375,10 @@ ul.user-details{
     list-style-type:none;
     background-color:rgba(0, 0, 0, 0.7);
 }
-
+#about-me-blurb ul li a{
+    color: white;
+    margin-top: 0;
+}
 
 
 #links{
@@ -451,3 +455,14 @@ a{
 .userinfo{
     font-size: 16pt;
 }
+
+
+/*.settings_button{
+     width: 16px;
+}
+
+.fa-gear{
+    width: 16px;
+    margin: 0;
+    padding: 0;
+}*/
