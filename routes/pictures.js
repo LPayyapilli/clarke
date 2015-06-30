@@ -129,6 +129,7 @@ router.post('/upload', function(req, res) {
           newPicture.save(function(err) {
             if (err) {
               console.log('Error in Saving status: ' + err);
+              res.end();
               throw err;
             }
               console.log('picture saved!');
