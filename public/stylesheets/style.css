@@ -413,7 +413,7 @@ ul.user-details{
 
 /*Listing*/
 .listing-fonts{
-    font-size:20pt;
+    font-size:12pt;
     text-align:center;
 }
 
@@ -487,6 +487,10 @@ a{
     float: right;
     font-size: 14pt;
 }
+#likesContainer{
+    float: left;
+    font-size: 14pt;
+}
 .picture_info{
     float: right;
     font-size: 14pt;
@@ -494,4 +498,9 @@ a{
 
 .user-details{
     font-size: 14pt;
+}
+
+.delete_account_button{
+    float: left;
+    margin-left: 75px;
 }

@@ -2,7 +2,10 @@ extends layout
 
 block content
 	div.container#userpage
-		div.signup-wall(style="background: #{user.backgroundColor}")
+		if user.backgroundColor.length > 25
+			div.signup-wall(style="background-image: url(#{user.backgroundColor})")
+		else
+			div.signup-wall(style="background-color: #{user.backgroundColor}")
 		div.row
 			div.col-xs-12.col-md-5
 				div.msg
