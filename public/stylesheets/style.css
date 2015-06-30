@@ -378,14 +378,6 @@ ul.user-details{
     margin-top:10px;
     margin-left:55px;
 }
-#pictureContainer{
-    padding-bottom:30px;
-}
-
-#pictureContainer img{
-    height: 300px;
-    background-position: center;
-}
 
 #newsfeed{
     text-align:center;
@@ -483,15 +475,27 @@ a{
     font-size: 14pt;
 }
 
+#pictureContainer{
+    padding-bottom:30px;
+}
+
+#pictureContainer img{
+    height: 400px;
+    background-position: center;
+    float left
+    border: solid #E6E6E6 2px;
+}
 #captionContainer{
-    float: right;
     font-size: 14pt;
 }
 #likesContainer{
-    float: left;
     font-size: 14pt;
 }
 .picture_info{
+    font-size: 14pt;
+}
+.delete_picture{
+    padding: 10px;
     font-size: 14pt;
 }
 

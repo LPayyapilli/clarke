@@ -6,12 +6,14 @@ $(document).ready(function() {
     })
     .done(function(picture) {
       var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
-      $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info"> Make Profile Picture <a/><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div>');
+      $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/><div class="delete_picturee"><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info"> Make Profile Picture <a/></div><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div><div class="delete_picture"><a id="delete_picture" title="' + picture._id + '"> Delete Picture</a></div>');
     })
     .fail(function() {
       console.log("error");
     })
   });
+
+
 
   $('#pictureContainer').on('click',function(event) {
     if (event.target.id.substring(0, 5) === 'image') {
@@ -27,7 +29,7 @@ $(document).ready(function() {
         })
         .done(function(picture) {
           var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
-          $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info"> Make Profile Picture <a/><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div>');
+          $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/><div class="delete_picturee"><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info"> Make Profile Picture <a/></div><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div><div class="delete_picture"><a id="delete_picture" title="' + picture._id + '"> Delete Picture</a></div>');
         })
         .fail(function() {
           console.log("error");
@@ -37,7 +39,20 @@ $(document).ready(function() {
         console.log("error");
       })
     }
+    else if (event.target.id === 'delete_picture') {
+      var pictureID = event.target.title;
+      $.ajax({
+        method: 'DELETE',
+        url: 'http://localhost:3000/delete/picture/' + pictureID
+      })
+        .done(function(response) {
+          window.location.pathname = '/auth/home';
+      });
+    }
   });
+
+
+
 
   $.ajax({
     url: 'http://localhost:3000/user/profilePicture',

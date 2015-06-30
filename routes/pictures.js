@@ -124,16 +124,17 @@ router.post('/upload', function(req, res) {
           newPicture.likes = 0;
           newPicture.postedAt = new Date();
           newPicture._creator = req.user.username;
-          console.log(newPicture);
+          // console.log(newPicture);
           // save the picture
           newPicture.save(function(err) {
             if (err) {
               console.log('Error in Saving status: ' + err);
               res.end();
               throw err;
-            }
-              console.log('picture saved!');
-              res.redirect('/listing');
+            } else {
+                console.log('picture saved!');
+                res.redirect('/picture/allPictures');
+              }
             });
           }
         });

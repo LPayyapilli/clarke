@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var Status = require('../models/status.js');
+var Picture = require('../models/picture.js');
 var async = require('async');
 
 var isAuthenticated = function(req, res, next) {
@@ -34,6 +35,21 @@ var isAuthenticated = function(req, res, next) {
 router.delete('/status/:statusID', isAuthenticated, function(req, res) {
   Status.remove({
     _id: req.params.statusID
+  })
+  .exec(function(error) {
+    if (error) {
+      console.log(error)
+    }
+    res.status(204);
+    res.end();
+  });
+});
+
+/* Delete Status */
+router.delete('/picture/:pictureID', isAuthenticated, function(req, res) {
+  console.log(req.params.pictureID);
+  Picture.remove({
+    _id: req.params.pictureID
   })
   .exec(function(error) {
     if (error) {

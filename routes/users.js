@@ -140,7 +140,7 @@ router.get('/:username', isAuthenticated, function(req, res) {
       }
 
       Picture.find({
-        _creator: req.user.username
+        _creator: req.params.username
       })
       .sort('-postedAt')
       .exec( function(error, pictures) {
