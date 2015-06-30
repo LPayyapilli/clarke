@@ -7,14 +7,6 @@ Clarke is a social network app that allows users to connect with their family an
 This is a full-stack app utilizing Jade, Express, Node, Mongoose and MongoDB. Jade was the templating language used to enable the HTML coding. Express is the Node.js web application framework that was used to design our multi-page app. We also used a Node object modeling package, Mongoose, allowing us to reference other models and to access the MongoDB commands to perform CRUD actions in our app.
 
 
-##Installation Instructions
-To run our repo: <br>
-1. Clone down the repo<br>
-2. Run npm install<br>
-3. Run bower install<br>
-4. Run npm start to start the server<br>
-5. View the app in your browser on: http://localhost:3000
-
 
 
 ##Features / User Stories
@@ -51,3 +43,13 @@ To run our repo: <br>
 ![alt tag](http://i.imgur.com/6UZXavl.png)<br>
 5.
 ![alt tag](http://i.imgur.com/mYaZEoj.png)
+
+
+
+##Installation Instructions
+To run our repo: <br>
+1. Clone down the repo<br>
+2. Run npm install<br>
+3. Run bower install<br>
+4. Run npm start to start the server<br>
+5. View the app in your browser on: https://clarkesocial.herokuapp.com
