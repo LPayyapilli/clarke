@@ -42,12 +42,12 @@ To run our repo: <br>
 
 ##Wireframes
 1.
- ![alt tag](http://i.imgur.com/gUKY6q0.png)
+ ![alt tag](http://i.imgur.com/gUKY6q0.png)<br>
 2.
-![alt tag](http://i.imgur.com/on5TVxP.png)
+![alt tag](http://i.imgur.com/on5TVxP.png)<br>
 3.
-![alt tag](http://i.imgur.com/gUKY6q0.png)
+![alt tag](http://i.imgur.com/gUKY6q0.png)<br>
 4.
-![alt tag](http://i.imgur.com/6UZXavl.png)
+![alt tag](http://i.imgur.com/6UZXavl.png)<br>
 5.
 ![alt tag](http://i.imgur.com/mYaZEoj.png)
