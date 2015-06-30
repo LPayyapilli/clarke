@@ -1,33 +1,53 @@
-# back_end
-Project 3 back-end with mongoose schemas and mongoDB
+#Clarke Social App
+
+##Description
+Clarke is a social network app that allows users to connect with their family and friends on a social media platform. Users can follow their friends, post pictures and post status updates.
+
+##Explanation & General Approach
+This is a full-stack app utilizing Jade, Express, Node, Mongoose and MongoDB. Jade was the templating language used to enable the HTML coding. Express is the Node.js web application framework that was used to design our multi-page app. We also used a Node object modeling package, Mongoose, allowing us to reference other models and to access the MongoDB commands to perform CRUD actions in our app.
 
 
-##ABOUT
+##Installation Instructions
+To run our repo: <br>
+1. Clone down the repo<br>
+2. Run npm install<br>
+3. Run bower install<br>
+4. Run npm start to start the server<br>
+5. View the app in your browser on: http://localhost:3000
 
 
 
-##Features
+##Features / User Stories
+1. Landing page shows login in area
 
-Landing page shows sign up area
+2. Users can create a new account
 
-User can create a new account (Registering a user with authentication and figure out validation)
+3. Users can login under a user account
 
-User can login under a user account (figure out validation)
+4. Users can see their individual profile page and perform CRUD actions on statuses and pictures.
 
-User can see their individual account and perform CRUD actions on pictures and statuses (create crud)
+5. Users can see each picture individually.
 
-User can also see listing of friends/followers, statuses and pictures
+6. Users can view a newsfeed of all followers pictures and statuses.
 
-User can like friends/followers, statuses and pictures (optional functionality )
+7. Users can like friends/followers, statuses and pictures.
+
+8. Users can search for other users by username.
+
+
+
+##Future
+1. Utilize a different method to incorporate picture upload
 
 
 ##Wireframes
-
-
-
-
-##Description
-
-
-
-##Install
+1.
+ ![alt tag](http://i.imgur.com/gUKY6q0.png)
+2.
+![alt tag](http://i.imgur.com/on5TVxP.png)
+3.
+![alt tag](http://i.imgur.com/gUKY6q0.png)
+4.
+![alt tag](http://i.imgur.com/6UZXavl.png)
+5.
+![alt tag](http://i.imgur.com/mYaZEoj.png)
