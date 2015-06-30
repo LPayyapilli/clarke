@@ -2,44 +2,52 @@ extends layout
 
 block content
 	div.container#userpage
-		div.signup-wall(style="background: #{user.backgroundColor}")
-		a(href='/auth/home', class='text-center new-account home_button') Home
+		if user.backgroundColor.length > 25
+			div.signup-wall(style="background-image: url(#{user.backgroundColor})")
+		else
+			div.signup-wall(style="background-color: #{user.backgroundColor}")
 		div.row
 			div.col-xs-12.col-md-5
 				div.msg
 					h1.text-center#welcome-msg
-						span.push-icon.fa.fa-user  #{user.firstName} #{user.lastName}
-							br
+						a(href='/auth/home')
+							span.push-icon.fa.fa-user  #{user.firstName} #{user.lastName}
+								br
 			div.col-xs-12.col-md-7
+				//- a(href='/auth/home', class='home_button') Home
 				div#search
 					form(id='tfnewsearch', method='POST', action='/search')
-						input(type='text', id='tfq', class='tftextinput2 ', placeholder='Search Users', name="q", size="21", maxlength="120", value="")
+						input(type='text', id='tfq', class='tftextinput2 ', placeholder='Search Users       (username)', name="q", size="21", maxlength="120", value="")
 						input(type='submit', value='>', class='tfbutton2', id='searchbutton')
 					//- block main
 		div.row
 			div.col-xs-5.col-lg-3.profile-position
 				div#about-me-blurb
-
-					//- div#transparent-about-me
-					//- 	ul
-					//- 		li About me
-					//- 		li Interests
-					//- 		li Friends
-
+					div#transparent-about-me
+						div#profilePicture
+						div.col-xs-6
+							ul
+								li
+									a(href='/listing', class='text-center new-account') Newsfeed
+								li
+									a(href='/user/followings',  class='new-account') Friends
+								li
+									a(href='/user/followers'  class='new-account') Followers
+						div.col-xs-6
+							ul
+								li.settings_button
+									a(href='/auth/patch/user', class='fa fa-gear')
 				div#links
+					a(href='/status/allStatuses',  class='text-left col-xs-6') My Statuses
+					a(href='/picture/allPictures', class='text-left col-xs-6') My Pictures
 					form(class='form-signin', action='/status/newStatus', method='POST')
 						input(type='text', name='input', class='form-control', placeholder='New Status', required, autofocus)
 						button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
 					form(class='form-signin', method="post" enctype="multipart/form-data" action="/picture/upload")
 						input(class='form-control', type="file" name="thumbnail")
+						input(class='form-control', type="text" name="caption", placeholder='Caption')
 						button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
-					a(href='/status/allStatuses',  class='text-center new-account') All My Statuses
-					a(href='/picture/allPictures', class='text-center new-account') All Pictures
-					a(href='/listing', class='text-center new-account') My Newsfeed
-					a(href='/user',  class='text-center new-account') All Users
-					a(href='/user/followers',  class='text-center new-account') Followers
-					a(href='/user/followings',  class='text-center new-account') People I Follow
-					a(href='/auth/patch/user', class='text-center new-account') Account Settings
+					//- a(href='/user',  class='text-center new-account') All Users
 					a(href='/auth/signout', class='text-center new-account') Sign Out
 			#message
 			if message

@@ -37,6 +37,7 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
       res.sendStatus(404);
     }
     res.render('listing', {
+      title: 'Pictures',
       user:req.user,
       listing: pictures
     });

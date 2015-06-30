@@ -1,23 +1,28 @@
 extends home
 
 block main
-  h1 Newsfeed
+  h1= title
   div#pictureContainer
   if (listing.length > 0)
     for item in listing
       if item.src
         ul.user-details.listing-fonts
           li
-            a(title='/picture/' + item._id, class='text-center pictureLink') #{item.src}
-          li By: #{item._creator}
-          if item._creator == user.username
-            a(href='/user/makeProfilePicture/' + item._id, class='text-center status') Make Profile Picture
+            if item.caption
+              a(title='/picture/' + item._id, class='text-center pictureLink') #{item.caption}
+            else
+              a(title='/picture/' + item._id, class='text-center pictureLink') #{item.src}
+          if title == 'Newsfeed'
+            li
+              a(href='/user/' + item._creator, class='listing-fonts') By: #{item._creator}
           br
       else
         ul.user-details.listing-fonts
           li
-            a(href='/status/' + item._id, class='text-center status') #{item.input}
-          li By: #{item._creator}
+            a(href='/status/' + item._id, class='status') #{item.input}
+          if title == 'Newsfeed'
+            li
+              a(href='/user/' + item._creator, class='listing-fonts') By: #{item._creator}
           br
 
 

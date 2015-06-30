@@ -48,8 +48,7 @@ router.get('/makeProfilePicture/:imageID', isAuthenticated, function(req, res) {
       res.end();
      }
      else {
-      res.status(304);
-      res.end();
+      res.redirect('/auth/home');
     }
    });
 });
@@ -75,6 +74,7 @@ router.get('/followers', isAuthenticated, function(req, res) {
             length +=1;
             if(length === followLength){
               res.render('users', {
+                title: 'Followers',
                 users: array,
                 user: req.user
               });
@@ -105,6 +105,7 @@ router.get('/followings', isAuthenticated, function(req, res) {
             length +=1;
             if(length === followLength){
               res.render('users', {
+                title: 'Friends',
                 users: array,
                 user: req.user
               });
@@ -137,11 +138,25 @@ router.get('/:username', isAuthenticated, function(req, res) {
         console.log(error);
         res.sendStatus(404);
       }
-      res.render('user', {
-        statuses: statusList,
-        otherUser: otherUser,
-        user: req.user
-     });
+
+      Picture.find({
+        _creator: req.user.username
+      })
+      .sort('-postedAt')
+      .exec( function(error, pictures) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(404);
+        }
+        res.render('user', {
+          pictures: pictures,
+          statuses: statusList,
+          otherUser: otherUser,
+          user: req.user
+       });
+      });
+
+
     });
   });
 });

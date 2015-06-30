@@ -34,10 +34,6 @@ var userSchema = new mongoose.Schema({
   password: {
     type: String
   },
-  pictures: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Picture'
-  }],
   following: [],
   followedBy: [],
   age: {
