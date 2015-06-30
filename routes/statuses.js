@@ -75,7 +75,7 @@ router.post('/newStatus', isAuthenticated, function(req, res) {
           console.log('Error in Saving status: ' + err);
           throw err;
         }
-        res.redirect('/listing');
+        res.redirect('/auth/home');
       });
     }
 

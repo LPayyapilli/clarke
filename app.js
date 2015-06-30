@@ -4,12 +4,11 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var dbConfig = require('./db.js');
 var mongoose = require('mongoose');
 require('dotenv').load();
 
 // Connect to DB
-mongoose.connect(dbConfig.url);
+mongoose.connect(process.env.MONGOURL);
 
 var app = express();
 
