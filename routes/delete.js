@@ -24,6 +24,8 @@ var isAuthenticated = function(req, res, next) {
       function(error) {
         if (error) {
           console.error(error);
+          res.status(404);
+          res.end();
         }
         res.status(204);
         res.end();
@@ -38,7 +40,9 @@ router.delete('/status/:statusID', isAuthenticated, function(req, res) {
   })
   .exec(function(error) {
     if (error) {
-      console.log(error)
+      console.log(error);
+      res.status(404);
+      res.end();
     }
     res.status(204);
     res.end();
@@ -53,7 +57,9 @@ router.delete('/picture/:pictureID', isAuthenticated, function(req, res) {
   })
   .exec(function(error) {
     if (error) {
-      console.log(error)
+      console.log(error);
+      res.status(404);
+      res.end();
     }
     res.status(204);
     res.end();

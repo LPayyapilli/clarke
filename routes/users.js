@@ -33,6 +33,8 @@ router.get('/profilePicture', isAuthenticated, function(req, res) {
    }, function(error, picture) {
     if (error) {
       console.log(error);
+      res.status(404);
+      res.end();
      }
      res.send(picture);
    });
@@ -59,28 +61,34 @@ router.get('/makeProfilePicture/:imageID', isAuthenticated, function(req, res) {
 router.get('/followers', isAuthenticated, function(req, res) {
   User.findOne({username: req.user.username},function(error, user){
     if (error) {
-      console.log(error)
+      console.log(error);
+      res.status(404);
+      res.end();
     } else {
       var array = [];
       var length = 0;
       var followLength = user.followedBy.length;
-      for (var i = 0;i<followLength;i++) {
-        User.findOne({username: user.followedBy[i]},function(error, follower) {
-          if (error) {
-            console.log(error);
-            followLength = followLength - 1;
-          } else {
-            array.push(follower);
-            length +=1;
-            if(length === followLength){
-              res.render('users', {
-                title: 'Followers',
-                users: array,
-                user: req.user
-              });
+      if (followLength > 0){
+        for (var i = 0;i<followLength;i++) {
+          User.findOne({username: user.followedBy[i]},function(error, follower) {
+            if (error) {
+              console.log(error);
+              followLength = followLength - 1;
+            } else {
+              array.push(follower);
+              length +=1;
+              if(length === followLength){
+                res.render('users', {
+                  title: 'Followers',
+                  users: array,
+                  user: req.user
+                });
+              }
             }
-          }
-        });
+          });
+        }
+      }else {
+        res.redirect('/auth/home');
       }
     }
   });
@@ -91,27 +99,33 @@ router.get('/followings', isAuthenticated, function(req, res) {
   User.findOne({username: req.user.username},function(error, user){
     if (error) {
       console.log(error)
+      res.status(404);
+      res.end();
     } else {
       var array = [];
       var length = 0;
       var followLength = user.following.length;
-      for (var i = 0;i<followLength;i++) {
-        User.findOne({username: user.following[i]},function(error, follower) {
-          if (error) {
-            console.log(error);
-            followLength = followLength - 1;
-          } else {
-            array.push(follower);
-            length +=1;
-            if(length === followLength){
-              res.render('users', {
-                title: 'Friends',
-                users: array,
-                user: req.user
-              });
+      if (followLength > 0){
+        for (var i = 0;i<followLength;i++) {
+          User.findOne({username: user.following[i]},function(error, follower) {
+            if (error) {
+              console.log(error);
+              followLength = followLength - 1;
+            } else {
+              array.push(follower);
+              length +=1;
+              if(length === followLength){
+                res.render('users', {
+                  title: 'Friends',
+                  users: array,
+                  user: req.user
+                });
+              }
             }
-          }
-        });
+          });
+        }
+      } else {
+        res.redirect('/auth/home');
       }
     }
   });
@@ -127,6 +141,7 @@ router.get('/:username', isAuthenticated, function(req, res) {
     if (error) {
       console.log(error);
       res.status(404);
+      res.end()
     }
 
     Status.find({
@@ -136,7 +151,8 @@ router.get('/:username', isAuthenticated, function(req, res) {
     .exec( function(error, statusList) {
       if (error) {
         console.log(error);
-        res.sendStatus(404);
+        res.status(404);
+        res.end();
       }
 
       Picture.find({
@@ -146,7 +162,8 @@ router.get('/:username', isAuthenticated, function(req, res) {
       .exec( function(error, pictures) {
         if (error) {
           console.log(error);
-          res.sendStatus(404);
+          res.status(404);
+          res.end();
         }
         res.render('user', {
           pictures: pictures,
@@ -178,6 +195,8 @@ router.post('/follow/:otherUser', isAuthenticated, function(req, res, next) {
       }, {following: user.following}, function(err, user) {
         if (err) {
           console.log(err);
+          res.status(404);
+          res.end();
         } else {
           User.findOne({username: req.user.username},function(error, otherUser) {
             otherUser.followedBy.push(req.user.username);
@@ -186,6 +205,8 @@ router.post('/follow/:otherUser', isAuthenticated, function(req, res, next) {
             }, {followedBy: otherUser.followedBy}, function(err, user) {
               if (err) {
                 console.log(err);
+                res.status(404);
+                res.end();
               } else {
                 res.redirect('/user/' + req.params.otherUser);
               }

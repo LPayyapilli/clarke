@@ -73,6 +73,8 @@ module.exports = function(passport) {
     }, req.body, function(err, user) {
       if (err) {
         console.log(err);
+        res.status(404);
+        res.end();
       } else {
         res.redirect('/auth/patch/user');
       }

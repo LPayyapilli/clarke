@@ -34,7 +34,8 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
   .exec( function(error, pictures) {
     if (error) {
       console.log(error);
-      res.sendStatus(404);
+      res.status(404);
+      res.end();
     }
     res.render('listing', {
       title: 'Pictures',
@@ -50,6 +51,8 @@ router.post('/like/:pictureID', isAuthenticated, function(req, res) {
   Picture.findOne({"_id":req.params.pictureID}).exec( function(err, picture) {
     if (err) {
       console.log(err);
+      res.status(404);
+      res.end();
     } else {
       var liked = false;
       for (var i = 0; i < picture.likers.length; i++) {
