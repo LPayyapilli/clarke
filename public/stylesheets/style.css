@@ -210,7 +210,7 @@ a {
 
 .member-text{
     margin:0 auto;
-    color:white;
+    color:#E6E6E6;
     font-size:16pt;
 }
 
@@ -252,7 +252,7 @@ ul.user-details{
     font-family: 'Calligraffitti', cursive;
     font-size:30px;
     word-spacing:8px;
-    color:white;
+    color:#E6E6E6;
 }
 
 #clarkelogintitle{
@@ -346,7 +346,7 @@ ul.user-details{
     margin-left:55px;
     padding-left:0;
     overflow: hidden;
-    border: solid white 2px;
+    border: solid #E6E6E6 2px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -362,13 +362,13 @@ ul.user-details{
 #about-me-blurb ul{
     padding:0;
     padding-left:10px;
-    color: white;
+    color: #E6E6E6;
     list-style-type:none;
     background-color:rgba(0, 0, 0, 0.7);
     height: 68px;
 }
 #about-me-blurb ul li a{
-    color: white;
+    color: #E6E6E6;
     margin-top: 0;
 }
 
@@ -389,12 +389,12 @@ ul.user-details{
 
 #newsfeed{
     text-align:center;
-    color:white;
+    color:#E6E6E6;
 }
 
 .msg{
     margin-left:0;
-    color:white;
+    color:#E6E6E6;
     font-size:30px;
     font-family: 'Raleway', sans-serif;
     letter-spacing:2px;
@@ -418,7 +418,7 @@ ul.user-details{
 }
 
 a{
-    color:white;
+    color:#E6E6E6;
 }
 
 #links a{
