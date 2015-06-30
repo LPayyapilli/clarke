@@ -11,7 +11,6 @@ $(document).ready(function() {
   // });
 
   $('.pictureLink').on('click',function(event) {
-    console.log("test");
     $.ajax({
       url: 'http://localhost:3000' + event.target.title,
       type: 'GET'
@@ -39,5 +38,17 @@ $(document).ready(function() {
       console.log("error");
     })
   });
-
+  $.ajax({
+    url: 'http://localhost:3000/user/profilePicture',
+    type: 'GET'
+  })
+  .done(function(picture) {
+    var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
+    // $('#profilePicture').html('<img class="bigImage" id=image'+ picture._id+);
+    $('#about-me-blurb').css('background-image','url(' + link + ')');
+  })
+  .fail(function() {
+    console.log("error");
+  })
 });
+

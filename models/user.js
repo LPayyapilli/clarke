@@ -48,6 +48,10 @@ var userSchema = new mongoose.Schema({
   },
   backgroundColor: {
     type: String,
+  },
+  profilePicture: {
+    type: String,
+    ref: 'Picture'
   }
 });
 
