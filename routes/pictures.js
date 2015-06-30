@@ -34,7 +34,8 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
   .exec( function(error, pictures) {
     if (error) {
       console.log(error);
-      res.sendStatus(404);
+      res.status(404);
+      res.end();
     }
     res.render('listing', {
       title: 'Pictures',
@@ -50,6 +51,8 @@ router.post('/like/:pictureID', isAuthenticated, function(req, res) {
   Picture.findOne({"_id":req.params.pictureID}).exec( function(err, picture) {
     if (err) {
       console.log(err);
+      res.status(404);
+      res.end();
     } else {
       var liked = false;
       for (var i = 0; i < picture.likers.length; i++) {
@@ -124,15 +127,17 @@ router.post('/upload', function(req, res) {
           newPicture.likes = 0;
           newPicture.postedAt = new Date();
           newPicture._creator = req.user.username;
-          console.log(newPicture);
+          // console.log(newPicture);
           // save the picture
           newPicture.save(function(err) {
             if (err) {
               console.log('Error in Saving status: ' + err);
+              res.end();
               throw err;
-            }
-              console.log('picture saved!');
-              res.redirect('/listing');
+            } else {
+                console.log('picture saved!');
+                res.redirect('/picture/allPictures');
+              }
             });
           }
         });

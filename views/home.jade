@@ -2,10 +2,11 @@ extends layout
 
 block content
 	div.container#userpage
-		if user.backgroundColor.length > 25
-			div.signup-wall(style="background-image: url(#{user.backgroundColor})")
-		else
-			div.signup-wall(style="background-color: #{user.backgroundColor}")
+		if user.backgroundColor
+			if user.backgroundColor.length > 25
+				div.signup-wall(style="background-image: url(#{user.backgroundColor})")
+			else
+				div.signup-wall(style="background-color: #{user.backgroundColor}")
 		div.row
 			div.col-xs-12.col-md-5
 				div.msg
@@ -17,7 +18,7 @@ block content
 				//- a(href='/auth/home', class='home_button') Home
 				div#search
 					form(id='tfnewsearch', method='POST', action='/search')
-						input(type='text', id='tfq', class='tftextinput2 ', placeholder='Search Users       (username)', name="q", size="21", maxlength="120", value="")
+						input(type='text', id='tfq', class='tftextinput2 ', placeholder='Search by Username', name="q", size="21", maxlength="120", value="")
 						input(type='submit', value='>', class='tfbutton2', id='searchbutton')
 					//- block main
 		div.row

@@ -26,6 +26,7 @@ router.post('/', isAuthenticated, function(req, res) {
       if (error) {
         console.log(error);
         res.status(404);
+        res.end();
       }
       res.redirect('/user/'+otherUser.username)
     });

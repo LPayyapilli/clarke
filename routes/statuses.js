@@ -23,7 +23,8 @@ router.get('/allStatuses', isAuthenticated, function(req, res) {
   .exec( function(error, statusList) {
     if (error) {
       console.log(error);
-      res.sendStatus(404);
+      res.status(404);
+      res.end();
     }
     res.render('listing', {
       title: 'Statuses',
@@ -41,6 +42,8 @@ router.get('/:statusID', isAuthenticated, function(req, res) {
   }, function(error, status) {
     if (error) {
       console.log(error);
+      res.status(404);
+      res.end();
     }
     res.render('status', {
       user: req.user,
@@ -58,7 +61,8 @@ router.post('/newStatus', isAuthenticated, function(req, res) {
   }, function(error) {
     if (error) {
       console.log(error);
-      res.sendStatus(404);
+      res.status(404);
+      res.end();
     } else {
 
       var newStatus = new Status();
@@ -75,7 +79,7 @@ router.post('/newStatus', isAuthenticated, function(req, res) {
           console.log('Error in Saving status: ' + err);
           throw err;
         }
-        res.redirect('/listing');
+        res.redirect('/auth/home');
       });
     }
 
@@ -88,6 +92,8 @@ router.post('/like/:statusID', isAuthenticated, function(req, res) {
   Status.findOne({"_id":req.params.statusID}).exec( function(err, status) {
     if (err) {
       console.log(err);
+      res.status(404);
+      res.end();
     } else {
       var liked = false;
       for (var i = 0; i < status.likers.length; i++) {
@@ -101,6 +107,8 @@ router.post('/like/:statusID', isAuthenticated, function(req, res) {
         Status.findOneAndUpdate({"_id":req.params.statusID}, {likes: newLikes,likers: status.likers}, function(err, user) {
           if (err) {
             console.log(err);
+            res.status(404);
+            res.end();
           } else {
             res.redirect('/status/' + req.params.statusID);
           }
