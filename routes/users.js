@@ -186,8 +186,7 @@ router.post('/follow/:otherUser', isAuthenticated, function(req, res, next) {
       if (user.following[i] === req.params.otherUser) {
         followed = true;
         console.log("cannot follow someone twice");
-        res.status(404);
-        res.end();
+        res.redirect('/auth/home');
       }
     }
     if (followed === false) {
