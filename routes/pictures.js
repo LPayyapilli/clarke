@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user.js');
 var Status = require('../models/status.js');
 var Picture = require('../models/picture.js');
+var Comment = require('../models/comment.js');
 var async = require('async');
 var fs = require('fs');
 var multer = require('multer');
@@ -92,7 +93,6 @@ var s3 = new AWS.S3();
 router.use(bodyParser({uploadDir:'./uploads'}));
 
 router.use(multer({
-  inMemory: true,
   limits : { fileSize:1000000 },
   rename: function (pictures, src) {
     return src.replace(/\W+/g, '-').toLowerCase();
@@ -158,6 +158,26 @@ router.post('/upload', function(req, res) {
      res.send(picture);
    });
 });
+
+/* GET One USER PICTURES */
+ router.post('/:src/newComment', isAuthenticated, function(req, res) {
+  var newComment = new Picture();
+  newComment._post = 'picture' + req.params.src;
+  newComment.input = req.param('input');
+  newComment.likes = 0;
+  newComment.postedAt = new Date();
+  newComment._creator = req.user.username;
+  newComment.save(function(err) {
+    if (err) {
+      console.log('Error in Saving comment: ' + err);
+      res.end();
+      throw err;
+    } else {
+        res.redirect('/picture/allPictures');
+      }
+   });
+});
+
 
 
 module.exports = router;
