@@ -149,19 +149,28 @@ router.post('/upload', function(req, res) {
 
 /* GET One USER PICTURES */
  router.get('/:src', isAuthenticated, function(req, res) {
-   Picture.findOne({
-       _id: req.params.src
-   }, function(error, picture) {
-    if (error) {
-      console.log(error);
-     }
-     res.send(picture);
-   });
+  Picture.findOne({
+     _id: req.params.src
+  }, function(error, picture) {
+  if (error) {
+    console.log(error);
+    res.status(404);
+    res.end();
+   }
+   Comment.find({
+      _post: 'picture' + req.params.src
+    }, function(error, comments) {
+      if (error) {
+        console.log(error);
+       }
+       res.send({picture: picture, comments: comments});
+    });
+  });
 });
 
 /* GET One USER PICTURES */
  router.post('/:src/newComment', isAuthenticated, function(req, res) {
-  var newComment = new Picture();
+  var newComment = new Comment();
   newComment._post = 'picture' + req.params.src;
   newComment.input = req.param('input');
   newComment.likes = 0;
@@ -173,6 +182,7 @@ router.post('/upload', function(req, res) {
       res.end();
       throw err;
     } else {
+        console.log(newComment);
         res.redirect('/picture/allPictures');
       }
    });
