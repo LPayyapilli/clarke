@@ -6,10 +6,15 @@ var async = require('async');
 
 router.get('/', function(req, res) {
   // Display the Login page with any flash message, if any
-  //FIXEME: redirect any requests at http://... to https://....
-  res.render('index', {
-    message: req.flash('message')
-  });
+  // PRODUCTION MODE
+  if (req.secure) {
+    res.render('index', {
+      message: req.flash('message')
+    });
+  }
+  else {
+    res.redirect('https://clarkesocial.herokuapp.com');
+  }
 });
 
 /* GET About Page */
