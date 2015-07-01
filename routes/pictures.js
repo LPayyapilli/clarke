@@ -92,7 +92,7 @@ var s3 = new AWS.S3();
 router.use(bodyParser({uploadDir:'./uploads'}));
 
 router.use(multer({
-  dest: './uploads',
+  inMemory: true,
   limits : { fileSize:1000000 },
   rename: function (pictures, src) {
     return src.replace(/\W+/g, '-').toLowerCase();
