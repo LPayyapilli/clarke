@@ -1,46 +1,9 @@
 $(document).ready(function() {
   var urlBase = 'https://clarkesocial.herokuapp.com';
-  $('.pictureLink').on('click',function(event) {
-    $.ajax({
-      url: urlBase + event.target.title,
-      type: 'GET'
-    })
-    .done(function(picture) {
-      var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
-      $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/><div class="delete_picturee"><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info"> Make Profile Picture <a/></div><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div><div class="delete_picture"><a id="delete_picture" title="' + picture._id + '"> Delete Picture</a></div>');
-    })
-    .fail(function() {
-      console.log("error");
-    })
-  });
-
-
+  // var urlBase = 'http://localhost:3000';
 
   $('#pictureContainer').on('click',function(event) {
-    if (event.target.id.substring(0, 5) === 'image') {
-      var imageID = event.target.id.substring(5);
-      $.ajax({
-        url: urlBase + '/picture/like/' + imageID,
-        type: 'POST'
-      })
-      .done(function(picture) {
-        $.ajax({
-          url: urlBase + '/picture/' + imageID,
-          type: 'GET'
-        })
-        .done(function(picture) {
-          var link = 'https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src;
-          $('#pictureContainer').html('<img class="bigImage" id=image'+ picture._id+' src="' + link + '"/><div class="delete_picturee"><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info"> Make Profile Picture <a/></div><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div><div class="delete_picture"><a id="delete_picture" title="' + picture._id + '"> Delete Picture</a></div>');
-        })
-        .fail(function() {
-          console.log("error");
-        })
-      })
-      .fail(function() {
-        console.log("error");
-      })
-    }
-    else if (event.target.id === 'delete_picture') {
+    if (event.target.id === 'delete_picture_button') {
       var pictureID = event.target.title;
       $.ajax({
         method: 'DELETE',
@@ -51,9 +14,6 @@ $(document).ready(function() {
       });
     }
   });
-
-
-
 
   $.ajax({
     url: urlBase + '/user/profilePicture',

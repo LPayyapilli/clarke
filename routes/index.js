@@ -5,7 +5,6 @@ var async = require('async');
 
 
 router.get('/', function(req, res) {
-  // Display the Login page with any flash message, if any
   // PRODUCTION MODE
   if (req.secure) {
     res.render('index', {
@@ -15,6 +14,11 @@ router.get('/', function(req, res) {
   else {
     res.redirect('https://clarkesocial.herokuapp.com');
   }
+
+  //DEV MODE
+  // res.render('index', {
+  //   message: req.flash('message')
+  // });
 });
 
 /* GET About Page */

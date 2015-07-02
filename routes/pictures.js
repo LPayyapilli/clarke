@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user.js');
 var Status = require('../models/status.js');
 var Picture = require('../models/picture.js');
+var Comment = require('../models/comment.js');
 var async = require('async');
 var fs = require('fs');
 var multer = require('multer');
@@ -46,7 +47,7 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
 });
 
 
-/*GET ONE PIC*/
+/*Like*/
 router.post('/like/:pictureID', isAuthenticated, function(req, res) {
   Picture.findOne({"_id":req.params.pictureID}).exec( function(err, picture) {
     if (err) {
@@ -63,7 +64,7 @@ router.post('/like/:pictureID', isAuthenticated, function(req, res) {
       if (liked === false) {
         var newLikes = picture.likes + 1;
         picture.likers.push(req.user.username);
-        Picture.findOneAndUpdate({"_id":req.params.pictureID}, {likes: newLikes,likers: picture.likers}, function(err, user) {
+        Picture.findOneAndUpdate({"_id":req.params.pictureID}, {likes: newLikes,likers: picture.likers}, function(err, picture) {
           if (err) {
             console.log(err);
             res.status(404);
@@ -74,8 +75,7 @@ router.post('/like/:pictureID', isAuthenticated, function(req, res) {
           }
         });
       } else {
-        res.status(304);
-        res.send(picture);
+        res.redirect('/picture/' + req.params.pictureID);
       }
     }
   });
@@ -98,7 +98,7 @@ router.use(multer({
   }
 }));
 
-router.post('/upload', function(req, res) {
+router.post('/upload', isAuthenticated, function(req, res) {
   if(req.files !== undefined) {
     fs.readFile(req.files.thumbnail.path, function(err, data){
       var params = {
@@ -148,15 +148,49 @@ router.post('/upload', function(req, res) {
 
 /* GET One USER PICTURES */
  router.get('/:src', isAuthenticated, function(req, res) {
-   Picture.findOne({
-       _id: req.params.src
-   }, function(error, picture) {
-    if (error) {
-      console.log(error);
-     }
-     res.send(picture);
+  Picture.findOne({
+     _id: req.params.src
+  }, function(error, picture) {
+  if (error) {
+    console.log(error);
+    res.status(404);
+    res.end();
+   }
+   Comment.find({
+      _post: 'picture' + req.params.src
+    }, function(error, comments) {
+      if (error) {
+        console.log(error);
+      }
+      res.render('picture',{
+        user: req.user,
+        picture: picture,
+        comments: comments
+      })
+    });
+  });
+});
+
+/* Post picture comment */
+ router.post('/:src/newComment', isAuthenticated, function(req, res) {
+  var newComment = new Comment();
+  newComment._post = 'picture' + req.params.src;
+  newComment.input = req.param('input');
+  newComment.likes = 0;
+  newComment.postedAt = new Date();
+  newComment._creator = req.user.username;
+  newComment.save(function(err) {
+    if (err) {
+      console.log('Error in Saving comment: ' + err);
+      res.end();
+      throw err;
+    } else {
+        console.log(newComment);
+        res.redirect('/picture/' + req.params.src);
+      }
    });
 });
+
 
 
 module.exports = router;

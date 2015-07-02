@@ -4,6 +4,7 @@ var User = require('../models/user.js');
 var Status = require('../models/status.js');
 var Picture = require('../models/picture.js');
 var async = require('async');
+var Comment = require('../models/comment.js');
 
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
@@ -49,9 +50,8 @@ router.delete('/status/:statusID', isAuthenticated, function(req, res) {
   });
 });
 
-/* Delete Status */
+/* Delete Picture */
 router.delete('/picture/:pictureID', isAuthenticated, function(req, res) {
-  console.log(req.params.pictureID);
   Picture.remove({
     _id: req.params.pictureID
   })
@@ -66,7 +66,21 @@ router.delete('/picture/:pictureID', isAuthenticated, function(req, res) {
   });
 });
 
-
+/* Delete Comment */
+router.delete('/comment/:commentID', isAuthenticated, function(req, res) {
+  Comment.remove({
+    _id: req.params.commentID
+  })
+  .exec(function(error) {
+    if (error) {
+      console.log(error);
+      res.status(404);
+      res.end();
+    }
+    res.status(204);
+    res.end();
+  });
+});
 
 
 module.exports = router

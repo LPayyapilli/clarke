@@ -9,6 +9,7 @@ require('dotenv').load();
 
 // Connect to DB
 mongoose.connect(process.env.MONGOURL);
+// mongoose.connect('mongodb://localhost/dbclarke');
 
 var app = express();
 
@@ -70,6 +71,9 @@ app.use('/search', searchRoutes);
 
 var listingRoutes = require('./routes/listing.js');
 app.use('/listing', listingRoutes);
+
+var commentRoutes = require('./routes/comment.js');
+app.use('/comment', commentRoutes);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
