@@ -1,18 +1,18 @@
 extends home
 
 block main
-  #status
+  #picture
     ul.user-details
-      form(class='form-signin', action='/status/like/'+ status._id, method='POST')
-          input(class='btn btn-lg btn-primary btn-block', type="submit", placeholder='Like' value="Like")
-      li #{status.input}
-      li Likes: #{status.likes}
-      li
-        a(href='/user/' + status._creator, class='listing-fonts') By: #{status._creator}
-      li Posted At: #{status.postedAt}
-      if status._creator == user.username
-        a(id='delete_status', title='' + status._id) Delete Status
-      form(class="form-signin commentButtonContainer", action="/status/"+ status._id +"/newComment", method="POST")
+      div#pictureContainer
+        img(class="bigImage", id="image"+ picture._id, src="https://s3-us-west-2.amazonaws.com/clarkedbteer/"+picture.src)
+        div(class="picture_info")
+          a(href="/user/makeProfilePicture/" + picture._id, class="picture_info") Make Profile Picture
+        div(id="captionContainer") Caption: #{picture.caption}
+        div(id="likesContainer") Likes: #{picture.likes}
+        div(Class="picture_info")
+          a(class="picture_info", if="delete_picture_button", title=picture._id) Delete Picture
+        div(Class="picture_info")
+      form(class="form-signin commentButtonContainer", action="/picture/"+ picture._id +"/newComment", method="POST")
             input(type="text", name="input", class="form-control", placeholder="New Comment" required autofocus)
             button(class="btn btn-lg btn-primary btn-block", type="submit") Submit Comment
       div(class="commentsContainer")

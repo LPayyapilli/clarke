@@ -73,6 +73,9 @@ app.use('/search', searchRoutes);
 var listingRoutes = require('./routes/listing.js');
 app.use('/listing', listingRoutes);
 
+var commentRoutes = require('./routes/comment.js');
+app.use('/comment', commentRoutes);
+
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

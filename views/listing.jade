@@ -9,9 +9,9 @@ block main
         ul.user-details.listing-fonts
           li
             if item.caption
-              a(title='/picture/' + item._id, class='text-center pictureLink') #{item.caption}
+              a(href='/picture/' + item._id, class='text-center pictureLink') #{item.caption}
             else
-              a(title='/picture/' + item._id, class='text-center pictureLink') #{item.src}
+              a(href='/picture/' + item._id, class='text-center pictureLink') #{item.src}
           if title == 'Newsfeed'
             li
               a(href='/user/' + item._creator, class='listing-fonts') By: #{item._creator}

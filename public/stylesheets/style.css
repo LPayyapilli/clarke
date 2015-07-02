@@ -492,11 +492,8 @@ a{
     margin-left: calc(50% - 150px);
 }
 
-.commentsContainer{
-
-}
-.commentContainer{
-
+.like_button{
+    margin-left: calc(50% - 150px);
 }
 .user-details{
     font-size: 14pt;
@@ -506,13 +503,6 @@ a{
     float: left;
     margin-left: 75px;
 }
-
-/* contacts style */
-
-/*.contacts {
-    list-style-type: none;
-    text-align: center;
-}*/
 
 #contact{
     color:white;
@@ -576,7 +566,3 @@ a{
     padding-bottom:40px;
 }
 
-/*#positionabout{
-    width:1000px;
-    margin-right:400px;
-}*/

@@ -47,7 +47,7 @@ router.get('/allPictures', isAuthenticated, function(req, res) {
 });
 
 
-/*GET ONE PIC*/
+/*Like*/
 router.post('/like/:pictureID', isAuthenticated, function(req, res) {
   Picture.findOne({"_id":req.params.pictureID}).exec( function(err, picture) {
     if (err) {
@@ -64,7 +64,7 @@ router.post('/like/:pictureID', isAuthenticated, function(req, res) {
       if (liked === false) {
         var newLikes = picture.likes + 1;
         picture.likers.push(req.user.username);
-        Picture.findOneAndUpdate({"_id":req.params.pictureID}, {likes: newLikes,likers: picture.likers}, function(err, user) {
+        Picture.findOneAndUpdate({"_id":req.params.pictureID}, {likes: newLikes,likers: picture.likers}, function(err, picture) {
           if (err) {
             console.log(err);
             res.status(404);
@@ -75,8 +75,7 @@ router.post('/like/:pictureID', isAuthenticated, function(req, res) {
           }
         });
       } else {
-        res.status(304);
-        res.send(picture);
+        res.redirect('/picture/' + req.params.pictureID);
       }
     }
   });
@@ -99,7 +98,7 @@ router.use(multer({
   }
 }));
 
-router.post('/upload', function(req, res) {
+router.post('/upload', isAuthenticated, function(req, res) {
   if(req.files !== undefined) {
     fs.readFile(req.files.thumbnail.path, function(err, data){
       var params = {
@@ -162,13 +161,17 @@ router.post('/upload', function(req, res) {
     }, function(error, comments) {
       if (error) {
         console.log(error);
-       }
-       res.send({picture: picture, comments: comments});
+      }
+      res.render('picture',{
+        user: req.user,
+        picture: picture,
+        comments: comments
+      })
     });
   });
 });
 
-/* GET One USER PICTURES */
+/* Post picture comment */
  router.post('/:src/newComment', isAuthenticated, function(req, res) {
   var newComment = new Comment();
   newComment._post = 'picture' + req.params.src;
@@ -183,7 +186,7 @@ router.post('/upload', function(req, res) {
       throw err;
     } else {
         console.log(newComment);
-        res.redirect('/picture/allPictures');
+        res.redirect('/picture/' + req.params.src);
       }
    });
 });

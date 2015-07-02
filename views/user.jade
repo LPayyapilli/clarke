@@ -25,9 +25,9 @@ block main
         for picture in pictures
           ul.user-details
             if picture.caption
-              a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.caption}
+              a(href='/picture/' + picture._id, class='text-center pictureLink') #{picture.caption}
             else
-              a(title='/picture/' + picture._id, class='text-center pictureLink') #{picture.src}
+              a(href='/picture/' + picture._id, class='text-center pictureLink') #{picture.src}
 
 
 
