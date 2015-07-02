@@ -8,8 +8,8 @@ var mongoose = require('mongoose');
 require('dotenv').load();
 
 // Connect to DB
-// mongoose.connect(process.env.MONGOURL);
-mongoose.connect('mongodb://localhost/dbclarke');
+mongoose.connect(process.env.MONGOURL);
+// mongoose.connect('mongodb://localhost/dbclarke');
 
 var app = express();
 
