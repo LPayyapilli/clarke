@@ -27,23 +27,10 @@ router.get('/', isAuthenticated, function(req, res) {
   });
 });
 
-router.get('/profilePicture', isAuthenticated, function(req, res) {
-  Picture.findOne({
-       _id: req.user.profilePicture
-   }, function(error, picture) {
-    if (error) {
-      console.log(error);
-      res.status(404);
-      res.end();
-     }
-     res.send(picture);
-   });
-});
-
-router.get('/makeProfilePicture/:imageID', isAuthenticated, function(req, res) {
+router.get('/makeProfilePicture/:src', isAuthenticated, function(req, res) {
   User.findOneAndUpdate({
        username: req.user.username
-   },{profilePicture: req.params.imageID},function(error, picture) {
+   },{profilePicture: req.params.src},function(error, picture) {
     if (error) {
       console.log(error);
       res.status(404);
@@ -55,6 +42,20 @@ router.get('/makeProfilePicture/:imageID', isAuthenticated, function(req, res) {
    });
 });
 
+router.get('/makeBackgroundPicture/:src', isAuthenticated, function(req, res) {
+  User.findOneAndUpdate({
+       username: req.user.username
+   },{backgroundPicture: req.params.src},function(error, picture) {
+    if (error) {
+      console.log(error);
+      res.status(404);
+      res.end();
+     }
+     else {
+      res.redirect('/auth/home');
+    }
+   });
+});
 
 
 /* GET All followers*/

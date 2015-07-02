@@ -2,11 +2,7 @@ extends layout
 
 block content
 	div.container#userpage
-		if user.backgroundColor
-			if user.backgroundColor.length > 25
-				div.signup-wall(style="background-image: url(#{user.backgroundColor})")
-			else
-				div.signup-wall(style="background-color: #{user.backgroundColor}")
+		div.signup-wall(style="background-image: url('https://s3-us-west-2.amazonaws.com/clarkedbteer/"+user.backgroundPicture+"')")
 		div.row
 			div.col-xs-12.col-md-5
 				div.msg
@@ -15,15 +11,13 @@ block content
 							span.push-icon.fa.fa-user  #{user.firstName} #{user.lastName}
 								br
 			div.col-xs-12.col-md-7
-				//- a(href='/auth/home', class='home_button') Home
 				div#search
 					form(id='tfnewsearch', method='POST', action='/search')
 						input(type='text', id='tfq', class='tftextinput2 ', placeholder='Search by Username', name="q", size="21", maxlength="120", value="")
 						input(type='submit', value='>', class='tfbutton2', id='searchbutton')
-					//- block main
 		div.row
 			div.col-xs-5.col-lg-3.profile-position
-				div#about-me-blurb
+				div#about-me-blurb(style="background-image: url('https://s3-us-west-2.amazonaws.com/clarkedbteer/"+user.profilePicture+"')")
 					div#transparent-about-me
 						div#profilePicture
 						div.col-xs-6
@@ -48,7 +42,7 @@ block content
 						input(class='form-control', type="file" name="thumbnail")
 						input(class='form-control', type="text" name="caption", placeholder='Caption')
 						button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
-					//- a(href='/user',  class='text-center new-account') All Users
+					a(href='/user',  class='text-center new-account') All Users
 					a(href='/auth/signout', class='text-center new-account') Sign Out
 			#message
 			if message

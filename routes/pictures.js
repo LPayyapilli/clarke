@@ -68,10 +68,9 @@ router.post('/like/:pictureID', isAuthenticated, function(req, res) {
           if (err) {
             console.log(err);
             res.status(404);
-            res.end();
+            res.redirect('/picture/' + req.params.pictureID);
           } else {
-            res.status(202);
-            res.end();
+            res.redirect('/picture/' + req.params.pictureID);
           }
         });
       } else {
@@ -92,7 +91,7 @@ var s3 = new AWS.S3();
 router.use(bodyParser({uploadDir:'./uploads'}));
 
 router.use(multer({
-  limits : { fileSize:1000000 },
+  limits : { fileSize:10000000 },
   rename: function (pictures, src) {
     return src.replace(/\W+/g, '-').toLowerCase();
   }

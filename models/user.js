@@ -42,18 +42,15 @@ var userSchema = new mongoose.Schema({
   zip: {
     type: String,
   },
-  backgroundColor: {
-    type: String,
-  },
   profilePicture: {
+    type: String,
+    ref: 'Picture'
+  },
+  backgroundPicture: {
     type: String,
     ref: 'Picture'
   }
 });
-
-//FIXME: giving following error when
-//  user.plugin(passportLocalMongoose);
-//  TypeError: undefined is not a function
 
 userSchema.plugin(passportLocalMongoose);
 

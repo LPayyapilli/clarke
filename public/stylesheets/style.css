@@ -440,6 +440,7 @@ a{
 
 .userinfo{
     font-size: 16pt;
+    padding-right: 20px;
 }
 
 .home_button{
@@ -474,12 +475,31 @@ a{
 #status{
     font-size: 14pt;
 }
-
+.status_input{
+    font-size: 24pt;
+}.status_container{
+    background-color: rgba(150,150,150,0.5);
+    border-radius: 10px;
+    width:50%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-left: 25%;
+    margin-bottom: 10px;
+}
 #pictureContainer img{
     height: 400px;
     background-position: center;
     float left
     border: solid #E6E6E6 2px;
+}
+.inner_picture_container{
+    background-color: rgba(150,150,150,0.5);
+    border-radius: 10px;
+    width:60%;
+    margin-left: 20%;
+    padding-top: 25px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 .picture_info{
     font-size: 14pt;
@@ -487,9 +507,25 @@ a{
     float:none;
     margin: 0 auto;
 }
+.follow-button{
+    margin-left: calc(50% - 150px);
+}
+.bigImage{
+    border:solid white 2px;
+}
 
 .commentButtonContainer{
     margin-left: calc(50% - 150px);
+}
+.commentContainer{
+    background-color: rgba(150,150,150,0.5);
+    border-radius: 10px;
+    width:300px;
+    margin-left: calc(50% - 150px);
+}
+.likeContainer{
+    margin-left: calc(50% - 150px);
+    margin-top: 10px;
 }
 
 .like_button{
@@ -498,7 +534,7 @@ a{
 .user-details{
     font-size: 14pt;
 }
-
+.user
 .delete_account_button{
     float: left;
     margin-left: 75px;

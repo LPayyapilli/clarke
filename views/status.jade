@@ -3,15 +3,16 @@ extends home
 block main
   #status
     ul.user-details
-      form(class='form-signin', action='/status/like/'+ status._id, method='POST')
-          input(class='btn btn-lg btn-primary btn-block', type="submit", placeholder='Like' value="Like")
-      li #{status.input}
-      li Likes: #{status.likes}
-      li
-        a(href='/user/' + status._creator, class='listing-fonts') By: #{status._creator}
-      li Posted At: #{status.postedAt}
-      if status._creator == user.username
-        a(id='delete_status', title='' + status._id) Delete Status
+      div.status_container
+        li.status_input #{status.input}
+        form(class='form-signin likeContainer', action='/status/like/'+ status._id, method='POST')
+            input(class='btn btn-lg btn-primary btn-block', type="submit", placeholder='Like' value="Like")
+        li Likes: #{status.likes}
+        li
+          a(href='/user/' + status._creator, class='listing-fonts') By: #{status._creator}
+        li Posted At: #{status.postedAt}
+        if status._creator == user.username
+          a(id='delete_status', title='' + status._id) Delete Status
       form(class="form-signin commentButtonContainer", action="/status/"+ status._id +"/newComment", method="POST")
             input(type="text", name="input", class="form-control", placeholder="New Comment" required autofocus)
             button(class="btn btn-lg btn-primary btn-block", type="submit") Submit Comment
@@ -19,11 +20,12 @@ block main
         if comments
           if comments.length > 0
             for comment in comments
-              li #{comment.input}
-              li Likes: #{comment.likes}
-              li
-                a(href='/user/' + comment._creator, class='listing-fonts') By: #{comment._creator}
-              if comment._creator == user.username
-                a(class='delete_comment', title='' + comment._id) Delete Comment
+              div.commentContainer
+                li #{comment.input}
+                li Likes: #{comment.likes}
+                li
+                  a(href='/user/' + comment._creator, class='listing-fonts') By: #{comment._creator}
+                if comment._creator == user.username
+                  a(class='delete_comment', title='' + comment._id) Delete Comment
               form(class='form-signin like_button', action='/comment/like/'+ comment._id, method='POST')
                   input(class='btn btn-lg btn-primary btn-block', type="submit", placeholder='Like' value="Like")

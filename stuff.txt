@@ -1,0 +1,5 @@
+to change from production to development
+
+change base url in public scripts
+change connection to mongo in app.js
+change route in route/index.js
