@@ -10,8 +10,14 @@ $(document).ready(function() {
     .done(function(data) {
       var picture = data.picture;
       var comments = data.comments;
-      console.log(comments);
-      $('#pictureContainer').html('<img class="bigImage" id="image'+ picture._id+'" src="https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src + '"/><div class="delete_picture"><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info">Make Profile Picture<a/></div><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div><div class="delete_picture"><a id="delete_picture" title="' + picture._id + '">Delete Picture</a></div><div class="delete_picture"><form class="form-signin" action="/picture/'+ picture._id +'/newComment" method="POST"><input type="text" name="input" class="form-control" placeholder="New Comment" required autofocus></input><button class="btn btn-lg btn-primary btn-block" type="submit">Submit Comment</button></form><div>');
+      $('#pictureContainer').html('<img class="bigImage" id="image'+ picture._id+'" src="https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src + '"/><div class="picture_info"><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info">Make Profile Picture<a/></div><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div><div class="picture_info"><a id="picture_info" title="' + picture._id + '">Delete Picture</a></div><div class="picture_info"><form class="form-signin commentButtonContainer" action="/picture/'+ picture._id +'/newComment" method="POST"><input type="text" name="input" class="form-control" placeholder="New Comment" required autofocus></input><button class="btn btn-lg btn-primary btn-block" type="submit">Submit Comment</button></form><div><div class="commentsContainer"></div>');
+      if (comments.lenght > 0) {
+        $('.commentsContainer').html('');
+        for (comment in comments) {
+          console.log(comment);
+          // $('.commentsContainer').append()
+        }
+      }
     })
     .fail(function() {
       console.log("error");
@@ -32,7 +38,16 @@ $(document).ready(function() {
           type: 'GET'
         })
         .done(function(picture) {
-          $('#pictureContainer').html('<img class="bigImage" id="image'+ picture._id+'" src="https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src + '"/><div class="delete_picture"><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info">Make Profile Picture<a/></div><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div><div class="delete_picture"><a id="delete_picture" title="' + picture._id + '">Delete Picture</a></div><div class="delete_picture"><form class="form-signin" action="/picture/'+ picture._id +'/newComment" method="POST"><input type="text" name="input" class="form-control" placeholder="New Comment" required autofocus></input><button class="btn btn-lg btn-primary btn-block" type="submit">Submit Comment</button></form><div>');
+          var picture = data.picture;
+          var comments = data.comments;
+          $('#pictureContainer').html('<img class="bigImage" id="image'+ picture._id+'" src="https://s3-us-west-2.amazonaws.com/clarkedbteer/' + picture.src + '"/><div class="picture_info"><a href="/user/makeProfilePicture/' + picture._id +'" class="picture_info">Make Profile Picture<a/></div><div id="captionContainer">Caption: ' + picture.caption + '</div><div id="likesContainer">Likes: ' + picture.likes + '</div><div class="picture_info"><a id="picture_info" title="' + picture._id + '">Delete Picture</a></div><div class="picture_info"><form class="form-signin commentButtonContainer" action="/picture/'+ picture._id +'/newComment" method="POST"><input type="text" name="input" class="form-control" placeholder="New Comment" required autofocus></input><button class="btn btn-lg btn-primary btn-block" type="submit">Submit Comment</button></form><div><div class="commentsContainer"></div>');
+          if (comments.lenght > 0) {
+            $('.commentsContainer').html('');
+            for (comment in comments) {
+              console.log(comment);
+              // $('.commentsContainer').append()
+            }
+          }
         })
         .fail(function() {
           console.log("error");
@@ -42,7 +57,7 @@ $(document).ready(function() {
         console.log("error");
       })
     }
-    else if (event.target.id === 'delete_picture') {
+    else if (event.target.id === 'picture_info') {
       var pictureID = event.target.title;
       $.ajax({
         method: 'DELETE',

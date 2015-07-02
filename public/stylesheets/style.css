@@ -475,30 +475,29 @@ a{
     font-size: 14pt;
 }
 
-#pictureContainer{
-    padding-bottom:30px;
-}
-
 #pictureContainer img{
     height: 400px;
     background-position: center;
     float left
     border: solid #E6E6E6 2px;
 }
-#captionContainer{
-    font-size: 14pt;
-}
-#likesContainer{
-    font-size: 14pt;
-}
 .picture_info{
     font-size: 14pt;
-}
-.delete_picture{
-    padding: 10px;
-    font-size: 14pt;
+    padding: 5px;
+    float:none;
+    margin: 0 auto;
 }
 
+.commentButtonContainer{
+    margin-left: calc(50% - 150px);
+}
+
+.commentsContainer{
+
+}
+.commentContainer{
+
+}
 .user-details{
     font-size: 14pt;
 }
