@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user.js');
 var async = require('async');
+var fuzzy = require('fuzzy');
 
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
@@ -13,22 +14,30 @@ var isAuthenticated = function(req, res, next) {
   res.redirect('/');
 }
 
-
+// FIXEME: add fuzzy match and search by more than username
 
 
 /*search for a user*/
 router.post('/', isAuthenticated, function(req, res) {
-  User.findOne({
-    username: req.body.q
+  User.find({
   })
     .select('-password')
-    .exec(function(error, otherUser) {
+    .exec(function(error, users) {
       if (error) {
         console.log(error);
         res.status(404);
         res.end();
       }
-      res.redirect('/user/'+otherUser.username)
+      var usernameArray = []
+      users.forEach(function(user){
+        usernameArray.push(user.username);
+      });
+      var results = fuzzy.filter(req.body.q, usernameArray);
+      if (results.length > 0){
+        res.redirect('/user/'+ results[0].string)
+      } else {
+        res.redirect('/auth/home');
+      }
     });
 });
 
