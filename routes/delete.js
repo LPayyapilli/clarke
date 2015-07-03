@@ -3,8 +3,8 @@ var router = express.Router();
 var User = require('../models/user.js');
 var Status = require('../models/status.js');
 var Picture = require('../models/picture.js');
-var async = require('async');
 var Comment = require('../models/comment.js');
+var Conversation = require('../models/conversation.js');
 
 var isAuthenticated = function(req, res, next) {
   // if user is authenticated in the session, call the next() to call the next request handler
@@ -82,5 +82,20 @@ router.delete('/comment/:commentID', isAuthenticated, function(req, res) {
   });
 });
 
+/* Delete Conversation */
+router.delete('/convo/:convoID', isAuthenticated, function(req, res) {
+  Conversation.remove({
+    _id: req.params.convoID
+  })
+  .exec(function(error) {
+    if (error) {
+      console.log(error);
+      res.status(404);
+      res.end();
+    }
+    res.status(204);
+    res.end();
+  });
+});
 
 module.exports = router

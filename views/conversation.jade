@@ -3,10 +3,16 @@ extends home
 block main
   #convo
     ul.user-details
+      a(href='/conversation/all',  class='') All Conversations
+      br
       h3= convo.title
+      if convo._creator == user.username
+          a(id='delete_convo', title='' + convo._id) Delete Conversation
       ul
       for message in convo.messages
         li= message.input
+        li
+          a(href='/user/' + message._creator, class='listing-fonts') By: #{message._creator}
       form(class='form-signin messageButtonContainer', method="post" action="/conversation/"+ convo._id +"/newMessage")
         input(class='form-control', type="text" name="input" placeholder="Message")
         button(class='btn btn-lg btn-primary btn-block', type='submit') Send Message

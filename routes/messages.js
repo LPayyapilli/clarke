@@ -68,7 +68,7 @@ router.post('/:convoID/newMessage', isAuthenticated, function(req, res) {
 
 router.get('/all',isAuthenticated,function(req,res) {
   Conversation.find({
-    _creator: req.user.username
+    recipients: req.user.username
   }, function(error,convos) {
     if (error) {
       console.log(error);

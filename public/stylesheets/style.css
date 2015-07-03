@@ -515,6 +515,7 @@ a{
 }
 
 .commentButtonContainer, .messageButtonContainer{
+    margin-top: 10px;
     margin-left: calc(50% - 150px);
 }
 .commentContainer{
