@@ -7,22 +7,25 @@ block main
     for item in listing
       if item.src
         ul.user-details.listing-fonts
-          li
-            if item.caption
-              a(href='/picture/' + item._id, class='text-center pictureLink') #{item.caption}
-            else
-              a(href='/picture/' + item._id, class='text-center pictureLink') #{item.src}
-          if title == 'Newsfeed'
+          div.status_container
             li
-              a(href='/user/' + item._creator, class='listing-fonts') By: #{item._creator}
-          br
+              if item.caption
+                a(href='/picture/' + item._id, class='text-center pictureLink')
+                  img(class="mediumImage", id="image"+ item._id, src="https://s3-us-west-2.amazonaws.com/clarkedbteer/"+item.src)
+              else
+                a(href='/picture/' + item._id, class='text-center pictureLink') #{item.src}
+            if title == 'Newsfeed'
+              li
+                a(href='/user/' + item._creator, class='listing-fonts') By: #{item._creator}
+            br
       else
         ul.user-details.listing-fonts
-          li
-            a(href='/status/' + item._id, class='status') #{item.input}
-          if title == 'Newsfeed'
+          div.status_container
             li
-              a(href='/user/' + item._creator, class='listing-fonts') By: #{item._creator}
-          br
+              a(href='/status/' + item._id, class='status') #{item.input}
+            if title == 'Newsfeed'
+              li
+                a(href='/user/' + item._creator, class='listing-fonts') By: #{item._creator}
+            br
 
 

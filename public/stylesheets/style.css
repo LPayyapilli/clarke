@@ -424,9 +424,17 @@ a{
     text-align: right;
 }
 
+.users{
+    font-size: 18pt;
+}
 
-
-
+.user_name{
+    background-color: rgba(150,150,150,0.5);
+    border-radius: 10px;
+}
+.userBlock{
+    margin: 10px;
+}
 /*Registration*/
 #registration-title{
     text-align:center;
@@ -477,12 +485,16 @@ a{
 #status{
     font-size: 14pt;
 }
+.status{
+    font-size: 18pt;
+}
 .status_input{
     font-size: 24pt;
 }.status_container{
     background-color: rgba(150,150,150,0.5);
     border-radius: 10px;
     width:50%;
+    min-width: 400px;
     padding-top: 20px;
     padding-bottom: 10px;
     margin-left: 25%;
@@ -515,7 +527,21 @@ a{
 .bigImage{
     border:solid white 2px;
 }
-
+.mediumImage{
+    border:solid white 2px;
+    height: 250px;
+}
+.smallImage{
+    border:solid white 2px;
+    height: 150px;
+    width: 150px;
+}
+.userImage{
+    border:solid white 2px;
+    height: 200px;
+    width: 200px;
+    float: left;
+}
 .commentButtonContainer, .messageButtonContainer{
     margin-top: 10px;
     margin-left: calc(50% - 150px);
