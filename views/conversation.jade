@@ -3,14 +3,15 @@ extends home
 block main
   #convo
     ul.user-details
-      a(href='/conversation/all',  class='') All Conversations
+      a(href='/conversation/all',  class='titleConvo') All Conversations
       br
       div.conversation_info
-        h2.titleConvo= convo.title
+        h2.titleConvo #{convo.title}
         if convo._creator == user.username
             a(id='delete_convo', title='' + convo._id) Delete Conversation
         ul
-        for message in convo.messages
+      for message in convo.messages
+        div.conversation_info
           li= message.input
           li
             a(href='/user/' + message._creator, class='listing-fonts') By: #{message._creator}

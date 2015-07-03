@@ -537,8 +537,8 @@ a{
     margin-bottom: 10px;
     margin-left: calc(50% - 150px);
 }
-#convo .titleConvo{
-    font-size: 24pt;
+.titleConvo{
+    font-size: 20pt;
 }
 .commentContainer{
     background-color: rgba(150,150,150,0.5);
