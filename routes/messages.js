@@ -14,12 +14,18 @@ var isAuthenticated = function(req, res, next) {
 
 /* Post picture Message */
 router.post('/newConversation', isAuthenticated, function(req, res) {
-  console.log(req.body);
+  var recipientsArray = [req.user.username]
+  // FIXEME: remove any spaces before the split
+  var recipients = req.body.recipients.split(',');
+  recipients.forEach(function(recipient) {
+    recipientsArray.push(recipient);
+  })
+  console.log(recipientsArray);
   var newConversation = new Conversation();
   newConversation.title = req.param('title');
   newConversation.postedAt = new Date();
   newConversation._creator = req.user.username;
-  newConversation.recipients = [req.user.username, req.body.recipients];
+  newConversation.recipients = recipientsArray;
   newConversation.messages.push({
     _creator: req.user.username,
     postedAt: new Date(),
@@ -38,7 +44,6 @@ router.post('/newConversation', isAuthenticated, function(req, res) {
 
 /* Post picture Message */
 router.post('/:convoID/newMessage', isAuthenticated, function(req, res) {
-  console.log(req.body);
   Conversation.findOne({
     _id: req.params.convoID
   }, function(error,Convo) {

@@ -32,6 +32,7 @@ module.exports = function(passport){
                         newUser.email = req.param('email');
                         newUser.firstName = req.param('firstName');
                         newUser.lastName = req.param('lastName');
+                        newUser.fullName = req.param('firstName') + " " + req.param('lastName')
                         newUser.following = [username];
                         newUser.followedBy = [username];
 

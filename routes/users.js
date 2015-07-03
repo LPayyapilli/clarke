@@ -191,7 +191,7 @@ router.post('/follow/:otherUser', isAuthenticated, function(req, res, next) {
       }
     }
     if (followed === false) {
-      user.following.push(req.params.otherUser)
+      user.following.push(req.params.otherUser);
       User.findOneAndUpdate({
         username: req.user.username
       }, {following: user.following}, function(err, user) {
@@ -200,7 +200,7 @@ router.post('/follow/:otherUser', isAuthenticated, function(req, res, next) {
           res.status(404);
           res.end();
         } else {
-          User.findOne({username: req.user.username},function(error, otherUser) {
+          User.findOne({username: req.params.otherUser},function(error, otherUser) {
             otherUser.followedBy.push(req.user.username);
             User.findOneAndUpdate({
               username: req.params.otherUser
