@@ -15,12 +15,12 @@ var isAuthenticated = function(req, res, next) {
 /* Post picture Message */
 router.post('/newConversation', isAuthenticated, function(req, res) {
   var recipientsArray = [req.user.username]
-  // FIXEME: remove any spaces before the split
-  var recipients = req.body.recipients.split(',');
+  var reciptientsHash = [{username:req.user.username,newMessage: false}]
+  var recipients = req.body.recipients.replace(/\s+/g,'').split(',');
   recipients.forEach(function(recipient) {
     recipientsArray.push(recipient);
+    reciptientsHash.push({username:recipient,newMessage:true});
   })
-  console.log(recipientsArray);
   var newConversation = new Conversation();
   newConversation.title = req.param('title');
   newConversation.postedAt = new Date();
@@ -29,7 +29,8 @@ router.post('/newConversation', isAuthenticated, function(req, res) {
   newConversation.messages.push({
     _creator: req.user.username,
     postedAt: new Date(),
-    input: req.param('input')
+    input: req.param('input'),
+    recipients: reciptientsHash
   });
   newConversation.save(function(err) {
     if (err) {
@@ -52,10 +53,20 @@ router.post('/:convoID/newMessage', isAuthenticated, function(req, res) {
       res.status(404);
       res.end()
     } else {
+      var reciptientsHash = []
+      var recipients = Convo.recipients;
+      recipients.forEach(function(recipient) {
+        if (recipient === req.user.username){
+          reciptientsHash.push({username:recipient,newMessage:false});
+        } else {
+          reciptientsHash.push({username:recipient,newMessage:true});
+        }
+      })
       Convo.messages.push({
         _creator: req.user.username,
         postedAt: new Date(),
-        input: req.param('input')
+        input: req.param('input'),
+        recipients: reciptientsHash
       });
       Convo.save(function(err) {
         if (err) {

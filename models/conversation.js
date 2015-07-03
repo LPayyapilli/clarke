@@ -12,7 +12,8 @@ var messageSchema = new mongoose.Schema({
   postedAt: {
     type: Date,
     required: true
-  }
+  },
+  recipients: []
 });
 
 var conversationSchema = new mongoose.Schema({
