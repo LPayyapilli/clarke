@@ -3,9 +3,10 @@ extends home
 block main
   #convos
     ul.user-details
+      h2 Conversations
       if convos
         if convos.length > 0
           ul
           for convo in convos
-            li
+            li.conversation_list
               a(href='/conversation/' + convo._id, class='listing-fonts user-details') #{convo.title}

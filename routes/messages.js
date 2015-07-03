@@ -31,7 +31,7 @@ router.post('/newConversation', isAuthenticated, function(req, res) {
       res.end();
       throw err;
     } else {
-        res.redirect('/auth/home');
+        res.redirect('/conversation/all');
       }
    });
 });

@@ -1,0 +1,21 @@
+{
+  "name": "clarke_back_end",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Team-Clarke/back_end",
+  "authors": [
+    "aaronw3373 <aaronw3373@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.3.0",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5"
+  }
+}

@@ -21,7 +21,7 @@ $(document).ready(function() {
       url: urlBase + '/delete/convo/' + convoID
     })
       .done(function(response) {
-        window.location.pathname('/conversation/all');
+        window.location.pathname = '/conversation/all';
     });
   });
 

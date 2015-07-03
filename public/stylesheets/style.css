@@ -518,6 +518,28 @@ a{
     margin-top: 10px;
     margin-left: calc(50% - 150px);
 }
+.conversation_list{
+    background-color: rgba(150,150,150,0.5);
+    border-radius: 10px;
+    width:300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: calc(50% - 150px);
+}
+.conversation_list a{
+    font-size: 18pt;
+}
+.conversation_info{
+    background-color: rgba(150,150,150,0.5);
+    border-radius: 10px;
+    width:300px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: calc(50% - 150px);
+}
+#convo .titleConvo{
+    font-size: 24pt;
+}
 .commentContainer{
     background-color: rgba(150,150,150,0.5);
     border-radius: 10px;
