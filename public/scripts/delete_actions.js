@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-  var urlBase = 'https://clarkesocial.herokuapp.com';
-  // var urlBase = 'http://localhost:3000';
+  // var urlBase = 'https://clarkesocial.herokuapp.com';
+  var urlBase = 'http://localhost:3000';
 
   $('.delete_comment').on('click', function(event) {
     var commentID = event.target.title;

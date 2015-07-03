@@ -514,7 +514,7 @@ a{
     border:solid white 2px;
 }
 
-.commentButtonContainer{
+.commentButtonContainer, .messageButtonContainer{
     margin-left: calc(50% - 150px);
 }
 .commentContainer{
@@ -534,7 +534,6 @@ a{
 .user-details{
     font-size: 14pt;
 }
-.user
 .delete_account_button{
     float: left;
     margin-left: 75px;

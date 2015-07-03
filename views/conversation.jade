@@ -1,0 +1,13 @@
+extends home
+
+block main
+  #convo
+    ul.user-details
+      h3= convo.title
+      ul
+      for message in convo.messages
+        li= message.input
+      form(class='form-signin messageButtonContainer', method="post" action="/conversation/"+ convo._id +"/newMessage")
+        input(class='form-control', type="text" name="input" placeholder="Message")
+        button(class='btn btn-lg btn-primary btn-block', type='submit') Send Message
+

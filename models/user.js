@@ -1,11 +1,5 @@
 var mongoose = require('mongoose');
-var async = require('async');
-var express = require('express');
-var bodyParser = require('body-parser');
-var jade = require('jade');
 var passportLocalMongoose = require('passport-local-mongoose');
-var Status = require('./status.js');
-var Picture = require('./picture.js');
 
 var userSchema = new mongoose.Schema({
   firstName: {

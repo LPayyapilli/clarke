@@ -41,7 +41,14 @@ block content
 					form(class='form-signin', method="post" enctype="multipart/form-data" action="/picture/upload")
 						input(class='form-control', type="file" name="thumbnail")
 						input(class='form-control', type="text" name="caption", placeholder='Caption')
-						button(class='btn btn-lg btn-primary btn-block', type='submit') Upload
+						button(class='btn btn-lg btn-primary btn-block', type='submit') Upload Picture
+					div#newConvoContainer
+						form(class='form-signin', method="post" action="/conversation/newConversation")
+							input(class='form-control', type="text" name="title" placeholder="Conversation Title")
+							input(class='form-control', type="text" name="input" placeholder="Message")
+							input(class='form-control', type="text" name="recipients", placeholder="Recipient")
+							button(class='btn btn-lg btn-primary btn-block', type='submit') Send Message
+					a(href='/conversation/all',  class='text-center new-account') All Conversation
 					a(href='/user',  class='text-center new-account') All Users
 					a(href='/auth/signout', class='text-center new-account') Sign Out
 			#message

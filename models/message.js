@@ -1,15 +1,10 @@
 var mongoose = require('mongoose');
 
-var statusSchema = new mongoose.Schema({
+var messageSchema = new mongoose.Schema({
   input: {
     type: String,
     required: true
   },
-  likes: {
-    type: Number,
-    required: true
-  },
-  likers: [],
   _creator: {
     type: String,
     ref: 'User'
@@ -17,11 +12,15 @@ var statusSchema = new mongoose.Schema({
   postedAt: {
     type: Date,
     required: true
-  }
+  },
+  conversation: {
+
+  },
+  recipients: []
 });
 
 
-var Status = mongoose.model('status', statusSchema);
+var Message = mongoose.model('message', messageSchema);
 
 
-module.exports = Status;
+module.exports = Message;
