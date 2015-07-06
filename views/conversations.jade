@@ -9,4 +9,9 @@ block main
           ul
           for convo in convos
             li.conversation_list
+              for message in convo.messages
+                for recipient in message.recipients
+                  if recipient.username === user.username
+                    if recipient.newMessage === true
+                      div New Messages
               a(href='/conversation/' + convo._id, class='listing-fonts user-details') #{convo.title}
