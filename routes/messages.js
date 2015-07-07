@@ -91,7 +91,22 @@ router.get('/all',isAuthenticated,function(req,res) {
       res.status(404);
       res.end()
     } else {
+      var newMessagesArray = [];
+      convos.forEach(function(convo) {
+        var newMessages = 0;
+        convo.messages.forEach(function(message){
+          message.recipients.forEach(function(recipient){
+            if (recipient.username === req.user.username){
+              if (recipient.newMessage === true){
+                newMessages += 1;
+              }
+            }
+          })
+        })
+        newMessagesArray.push({convo:convo._id,newMessages:newMessages})
+      })
       res.render('conversations',{
+        newMessages: newMessagesArray,
         user: req.user,
         convos: convos
       })

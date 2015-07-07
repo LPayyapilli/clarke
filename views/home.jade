@@ -51,9 +51,9 @@ block content
 					a(href='/conversation/all',  class='text-center new-account') All Conversations
 					a(href='/user',  class='text-center new-account') All Users
 					a(href='/auth/signout', class='text-center new-account') Sign Out
-			#message
-			if message
-				h1.text-center.error-message #{message}
+			//- #message
+			//- if message
+			//- 	h1.text-center.error-message #{message}
 			div.col-xs-7.col-lg-9.newsfeed-position
 				div#newsfeed
 					block main

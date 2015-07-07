@@ -29,7 +29,10 @@ var conversationSchema = new mongoose.Schema({
     required: true
   },
   messages: [messageSchema],
-  recipients: []
+  recipients: [],
+  newMessages: {
+    type: Number
+  }
 });
 
 
